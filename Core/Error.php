@@ -15,7 +15,7 @@ class Error
         }
     }
 
-    public static function exceptionHandler(\Exception $exception) : void
+    public static function exceptionHandler($exception)
     {
         $code = $exception->getCode();
 

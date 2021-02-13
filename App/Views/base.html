@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="Aplikacja służy do prowadzenia budżetu osobistego, w celu użycia należy się zarejestrować a później
+                                      zalogować. Po zalogowaniu można korzystać z opcji dodania przychodu bądź wydatku, przeglądania bilansu
+                                      aktualnego miesiąca, poprzedniego miesiąca bądź z wybranego okresu czasu. W ustawieniach jest możliwość
+                                      zmiany hasła imienia lub adresu e-mail przypisanego do konta." />
+    <meta name="keywords" content="budżet osobity, oszczędzanie, wydatki, przychody, bilans, konto osobiste" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../public/css/webDesign.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;subset=latin-ext" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+            <span class="d-none d-sm-block">
+                <div class="bg-budget text-center">
+                    <a class="navbar-brand nav-item nav-link mr-auto ml-auto mt-2" href="#">
+                        <h1>BUDŻET DOMOWY</h1>
+                    </a>
+                    <form class="form-inline">
+                            <button class="btn bg-budget login shadow-none" type="submit">
+                                <a href="#" style="color: #ffffff">ZALOGUJ SIĘ</a>
+                            </button>
+                    </form>
+                </div>
+            </span>
+
+        <nav class="navbar navbar-dark bg-budget navbar-expand-lg">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainmenu">
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"> Strona główna </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> Dodaj przychód </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> Dodaj Wydatek </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> Przeglądaj bilans </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> Ustawienia </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <span class="d-block d-sm-none">
+                            <a class="nav-link" href="#"><div class="text-center">
+                                <button class="btn bg-budget smallLogin shadow-none" type="submit">ZALOGUJ SIĘ</button></div>
+                            </a>
+                        </span>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    {% block body %}
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+    <script src="../../public/js/bootstrap.min.js"></script>
+
+    {% block footer %}
+    {% endblock %}
+
+</body>
+</html>

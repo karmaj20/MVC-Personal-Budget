@@ -2,6 +2,8 @@
 
 declare(strict_types = 1);
 
+namespace Core;
+
 // use App\Auth;
 // use App\Flash;
 
@@ -27,6 +29,10 @@ abstract class Controller
     }
 
     protected function before() : void
+    {
+    }
+
+    protected function after() : void
     {
     }
 
