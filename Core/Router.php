@@ -11,18 +11,20 @@ class Router
 
     public function add(string $route, $params = []) : void
     {
-        // convert the route to a regular expression: escape forward slashes
-        $route = preg_match('/\//', '\\/', $route);
+        // Convert the route to a regular expression: escape forward slashes
+        $route = preg_replace('/\//', '\\/', $route);
 
-        // convert variables e.g. {controller}
-        $route = preg_replace('/\{[a-z]+)\}', '(?P<\1>[a-z-]+)', $route);
+        // Convert variables e.g. {controller}
+        $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
 
-        // convert variables with custom regular expressions e.g. {id:\d+}
-        $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2', $route);
+        // Convert variables with custom regular expressions e.g. {id:\d+}
+        $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
 
-        // Add start and end delmiters and case insensitive flag
+        // Add start and end delimiters, and case insensitive flag
         $route = '/^' . $route . '$/i';
 
+        dump($route);
+        dump($params);
         $this->routes[$route] = $params;
     }
 
@@ -59,7 +61,7 @@ class Router
     /*
      * Dispatch - creating the controller object and running the action method
      */
-    public function dispatch($url) : void
+    public function dispatch($url)
     {
         $url = $this->removeQueryStringVariables($url);
 
@@ -69,14 +71,14 @@ class Router
             $controller = $this->getNamespace() . $controller;
 
             if (class_exists($controller)) {
-
                 $controller_object = new $controller($this->params);
 
                 $action = $this->params['action'];
                 $action = $this->convertToCamelCase($action);
 
-                if (is_callable([$controller_object], $action)) {
-                    $controller_object->action();
+                if (is_callable([$controller_object, $action])) {
+                    $controller_object->$action();
+
                 } else {
                     throw new \Exception("Method $action (in controller $controller) not found");
                 }
@@ -84,9 +86,8 @@ class Router
                 throw new \Exception("Controller class $controller not found");
             }
         } else {
-            throw new \Exception("No route matched.", 404);
+            throw new \Exception('No route matched.', 404);
         }
-
     }
 
     protected function convertToStudlyCaps(string $string) : string

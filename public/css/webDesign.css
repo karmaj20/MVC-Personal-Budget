@@ -1,0 +1,126 @@
+body
+{
+    height: 100%;
+    background-image: url("../img/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.bg-budget
+{
+	background-color: #46b646 !important;
+}
+
+.bg-budgetOpacity
+{
+	background-color: rgb(70, 182, 70, 0.9) !important;
+}
+
+.interval
+{
+    margin-top: 10%;
+}
+
+.login
+{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.custom
+{
+    width: 120px !important;
+    color: white;
+}
+
+.customInputs
+{
+    width: 50% !important;
+}
+
+.smallLogin
+{
+    color: white;
+}
+
+.links{
+    color: white;
+}
+
+.logo
+{
+    font-size: 36px;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.logo:hover
+{
+    color: white;
+}
+
+h1
+{
+    font-size: 28px;
+    color: white;
+    letter-spacing: 1px;
+}
+
+h2
+{
+    font-size: 26px;
+    margin: 20px;
+    color: white;
+    letter-spacing: 2px;
+    border-bottom: 2px dotted #fff;
+}
+
+h4
+{
+    color: #000000;
+}
+
+h5
+{
+    color: white;
+}
+
+.information
+{
+    font-size: 16px;
+}
+
+.registration
+{
+    letter-spacing: 2px;
+}
+
+.income
+{
+    width: 80%;
+}
+
+.customText
+{
+    font-size: 16px;
+}
+
+.bord
+{
+	border-right: 2px dotted white;
+}
+
+
+@media(max-width: 575px)
+{
+    .information
+    {
+        margin: 20px;
+    }
+
+}

@@ -22,7 +22,7 @@ class View
         }
     }
 
-    public static function renderTemplate(string $template, array $args) : void
+    public static function renderTemplate(string $template, $args = []) : void
     {
         echo static::getTemplate($template, $args);
     }
