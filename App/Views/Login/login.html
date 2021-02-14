@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+<main>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-8 col-md-6 bg-budgetOpacity text-center mr-auto ml-auto interval">
+                <form class="form-block" method="post">
+                    <h2>LOGOWANIE</h2>
+
+                    <div class="form-group mt-5 customInputs mr-auto ml-auto">
+                        <input type="text" class="form-control" placeholder="login" name="login">
+                    </div>
+
+                    <div class="form-group mt-4 customInputs mr-auto ml-auto">
+                        <input type="password" class="form-control" placeholder="hasło" name="password">
+                    </div>
+
+                    <button class="btn btn-primary mt-4 mb-3 registration customInputs" type="submit">
+                        ZALOGUJ SIĘ
+                    </button>
+
+                    <h5>Nie masz jeszcze konta ?</h5>
+
+                    <button class="btn btn-danger mt-2 mb-5 registration customInputs" type="submit">
+                        ZAREJESTRUJ SIĘ
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

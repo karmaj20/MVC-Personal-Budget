@@ -23,8 +23,6 @@ class Router
         // Add start and end delimiters, and case insensitive flag
         $route = '/^' . $route . '$/i';
 
-        dump($route);
-        dump($params);
         $this->routes[$route] = $params;
     }
 
