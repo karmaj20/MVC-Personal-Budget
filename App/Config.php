@@ -13,4 +13,6 @@ class Config
     const DB_PASSWORD = 'secret';
 
     const SHOW_ERRORS = true;
+
+    const SECRET_KEY = 'secret';
 }
