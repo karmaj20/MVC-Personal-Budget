@@ -24,24 +24,31 @@ class User extends \Core\Model
 
         if (empty($this->errors)) {
 
-            $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+            $password_hash = password_hash($this->userPassword, PASSWORD_DEFAULT);
 
             $token = new Token();
             $hashed_token = $token->getHash();
             $this->activation_token = $token->getValue();
 
-            $sql = 'INSERT INTO users (id, username, password, email)
-                    VALUES (null, :username, :$password_hash, :email)';
+            $sql = "INSERT INTO users
+                    VALUES (null, :username, :password, :email)";
 
             $database = static::getDatabase();
             $stmt = $database->prepare($sql);
 
-            $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
-            $stmt->bindValue(':username', $this->username, PDO::PARAM_STR);
-            $stmt->bindValue(':passowrd', $password_hash, PDO::PARAM_STR);
+            //dump($this->id);
+            dump($this->name);
+            dump($password_hash);
+            dump($this->email);
+
+            $stmt->bindValue(':username', $this->name, PDO::PARAM_STR);
+            $stmt->bindValue(':password', $password_hash, PDO::PARAM_STR);
+            $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
 
             return $stmt->execute();
         }
+
+        return false;
     }
 
     public function validate() : void
@@ -61,17 +68,17 @@ class User extends \Core\Model
         }
 
         // password
-        if (isset($this->password)) {
+        if (isset($this->userPassword)) {
 
-            if (strlen($this->password) < 6) {
+            if (strlen($this->userPassword) < 6) {
                 $this->errors[] = 'Hasło musi zawierać co najmniej 6 znaków';
             }
 
-            if (preg_match('/.*[a-z]+.*/i', $this->password) == 0) {
+            if (preg_match('/.*[a-z]+.*/i', $this->userPassword) == 0) {
                 $this->errors[] = 'Hasło musi zawierać co najmniej 1 litere';
             }
 
-            if (preg_match('/.*\d+.*/i', $this->password) == 0) {
+            if (preg_match('/.*\d+.*/i', $this->userPassword) == 0) {
                 $this->errors[] = 'Hasło musi zawierać co najmniej jedną cyfrę';
             }
         }

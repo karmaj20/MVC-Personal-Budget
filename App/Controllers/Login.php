@@ -16,7 +16,7 @@ class Login extends \Core\Controller
         View::renderTemplate('Login/login.html');
     }
 
-    /*
+
     public function createAction()
     {
         $user = User::authenticate($_POST['email'], $_POST['password']);
@@ -55,5 +55,5 @@ class Login extends \Core\Controller
 
         $this->redirect('/');
     }
-    */
+
 }
