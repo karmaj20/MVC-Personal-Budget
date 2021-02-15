@@ -19,5 +19,9 @@ $router = new Core\Router();
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('signup', ['controller' => 'Signup', 'action' => 'new']);
 $router->add('login', ['controller' => 'Login', 'action' => 'new']);
+$router->add('income', ['controller' => 'Income', 'action' => 'new']);
+$router->add('expense', ['controller' => 'Expense', 'action' => 'new']);
+$router->add('balance', ['controller' => 'Balance', 'action' => 'new']);
+$router->add('{controller}/{action}');
 
 $router->dispatch($_SERVER['QUERY_STRING']);
