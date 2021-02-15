@@ -6,10 +6,10 @@ namespace App\Controllers;
 
 use Core\View;
 
-class Income extends \Core\Controller
+class Expense extends \Core\Controller
 {
     public function newAction()
     {
-        View::renderTemplate('Income/income.html');
+        View::renderTemplate('Expense/expense.html');
     }
 }
