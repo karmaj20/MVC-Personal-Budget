@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Balance{% endblock %}
+
+{% block body %}
+
+    <main>
+        <article>
+
+            <div class="container">
+
+                    <div class="row mt-5 mr-auto ml-auto">
+                        <div class="col-12 text-center bg-budgetOpacity p-3">
+                            <h4>PRZEGLĄDAJ BILANS</h4>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Ustaw zakres analizy bilansu domowego
+                            </button>
+                        </div>
+                        <!-- Modal -->
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <form method="post">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body mr-auto ml-auto text-center">
+                                            <label class="mt-2 customText">Wybierz okres, w którym chcesz przejrzeć bilans</label>
+                                            <select class="custom-select customInputs" id="inlineFormCustomSelectPref" name="range">
+                                                <option value="currentMonth" name = "currentMonth" selected>Bieżący miesiąc</option>
+                                                <option value="previousMonth" name = "previousMonth">Poprzedni miesiąc</option>
+                                                <option value="currentYear" name = "currentYear">Bieżący rok</option>
+                                                <option value="chosenPeriod" name = "chosenPeriod" >Inny zakres</option>
+                                            </select>
+                                            <div class="form-group mt-3">
+                                                OD
+                                                <input type="date" class="form-control" name="startPeriod">
+                                            </div>
+                                            <div class="form-group">
+                                                DO
+                                                <input type="date" class="form-control" name="endPeriod">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="submit" class="btn btn-danger" data-dismiss="modal" value="ZAMKNIJ" />
+                                            <input name="update" type="submit" class="btn btn-success" value="ZAPISZ" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <form method="post">
+                            <div class="col-12 mt-4 text-center bg-budgetOpacity p-3">
+                                <h4>ANALIZA PRZYCHODÓW</h4>
+                            </div>
+
+                                <div class="col-12 mt-4 text-center bg-budgetOpacity p-3">
+                                    <h4>ANALIZA WYDATKÓW</h4>
+                                </div>
+
+                                <div class="col-12 mt-4 text-center bg-budgetOpacity p-3">
+                                    <h4>PODSUMOWANIE</h4>
+                                </div>
+
+
+                                <div class="row mt-4 bg-budgetOpacity mr-auto ml-auto">
+                                    <div class="col-lg-12 m-auto ">
+                                        <div class="card mt-5">
+                                            <div class="card-header">
+                                                <div class="text-center"><h3>GRAFICZNA ANALIZA WYDATKÓW ORAZ PRZYCHODÓW</h3></div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="piechartincome"></div>
+                                                <div class="piechartexpense"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="piechartincome" style="width: 900px; height: 400px;"></div>
+                            <div class="piechartexpense" style="width: 900px; height: 400px;"></div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+{% endblock %}
