@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace App\Controllers;
 
-// use App\Flash;
+use App\Flash;
 use \Core\View;
-// use App\Models\User;
-// use App\Auth;
+use App\Models\User;
+use App\Auth;
 
 class Login extends \Core\Controller
 {
@@ -19,13 +19,13 @@ class Login extends \Core\Controller
 
     public function createAction()
     {
-        $user = User::authenticate($_POST['email'], $_POST['password']);
+        $user = User::authenticate($_POST['login'], $_POST['password']);
 
         $remember_me = isset($_POST['remember_me']);
 
         if ($user) {
 
-            Auth::login($user, $remember_me);
+            //Auth::login($user, $remember_me);
 
             // remember the login here
 
@@ -36,7 +36,7 @@ class Login extends \Core\Controller
             Flash::addMessage('Login unsuccessful, please try again', FLASH::WARNING);
 
             View::renderTemplate('Login/login.html', [
-                'email' => $_POST['email'],
+                'email' => $_POST['login'],
                 'remember_me' => $remember_me
             ]);
         }

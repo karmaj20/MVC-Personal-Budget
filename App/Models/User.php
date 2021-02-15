@@ -84,7 +84,7 @@ class User extends \Core\Model
         }
     }
 
-    public static function emailExists(string $email, $ignore_id = null)
+    public static function emailExists(string $email, $ignore_id = null) : bool
     {
         $user = static::findByEmail($email);
 
@@ -97,19 +97,47 @@ class User extends \Core\Model
         return false;
     }
 
-    public static function findByEmail(string $email)
+    public static function findByEmail(string $username) : User
     {
-        $sql = 'SELECT * FROM users WHERE email = :email';
+        $sql = 'SELECT * FROM users WHERE username = :username';
 
         $database = static::getDatabase();
         $stmt = $database->prepare($sql);
-        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stmt->execute();
 
         return $stmt->fetch();
+    }
+
+    public static function findByID(int $id)
+    {
+        $sql = 'SELECT * FROM users WHERE id = :id';
+
+        $database = static::getDatabase();
+        $stmt = $database->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+
+    public static function authenticate(string $name, string $password)
+    {
+        $user = static::findByEmail($name);
+
+        if ($user) {
+            if (password_verify($password, $user->password)) {
+                return $user;
+            }
+        }
+
+        return false;
     }
 
 }

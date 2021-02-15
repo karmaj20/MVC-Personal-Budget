@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Core;
 
-// use App\Auth;
-// use App\Flash;
+use App\Auth;
+use App\Flash;
 
 abstract class Controller
 {
@@ -42,10 +42,10 @@ abstract class Controller
         exit;
     }
 
-    /*
+
     public function requireLogin() : void
     {
-        if(!Auth::getUser()){
+        if (!Auth::getUser()) {
 
             Flash::addMessage('Please login to access that page' . FLASH::INFO);
 
@@ -55,5 +55,4 @@ abstract class Controller
 
         }
     }
-    */
 }
