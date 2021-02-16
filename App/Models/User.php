@@ -36,11 +36,6 @@ class User extends \Core\Model
             $database = static::getDatabase();
             $stmt = $database->prepare($sql);
 
-            //dump($this->id);
-            dump($this->name);
-            dump($password_hash);
-            dump($this->email);
-
             $stmt->bindValue(':username', $this->name, PDO::PARAM_STR);
             $stmt->bindValue(':password', $password_hash, PDO::PARAM_STR);
             $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
@@ -86,7 +81,7 @@ class User extends \Core\Model
 
     public static function emailExists(string $email, $ignore_id = null) : bool
     {
-        $user = static::findByEmail($email);
+        $user = static::findByUsername($email);
 
         if ($user) {
             if ($user->id != $ignore_id) {
@@ -97,7 +92,7 @@ class User extends \Core\Model
         return false;
     }
 
-    public static function findByEmail(string $username) : User
+    public static function findByUsername(string $username)
     {
         $sql = 'SELECT * FROM users WHERE username = :username';
 
@@ -129,7 +124,7 @@ class User extends \Core\Model
 
     public static function authenticate(string $name, string $password)
     {
-        $user = static::findByEmail($name);
+        $user = static::findByUsername($name);
 
         if ($user) {
             if (password_verify($password, $user->password)) {

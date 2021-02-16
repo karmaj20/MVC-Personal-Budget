@@ -10,7 +10,7 @@ class Flash
     const INFO = 'info';
     const WARNING = 'warning';
 
-    public static function addMessage(string $message, string $type = 'success') : void
+    public static function addMessage(string $message, $type = 'success') : void
     {
         if (!isset($_SESSION['flash_notifications'])) {
             $_SESSION['flash_notifications'] = [];
