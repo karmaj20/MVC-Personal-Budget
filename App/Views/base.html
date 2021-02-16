@@ -24,9 +24,15 @@
                     <h1>BUDŻET DOMOWY</h1>
                 </a>
                 <form class="form-inline">
+                    {% if current_user %}
+                        <button class="btn bg-budget login shadow-none" type="submit">
+                            <a href="/Logout" style="color: #ffffff">WYLOGUJ SIĘ</a>
+                        </button>
+                    {% else %}
                         <button class="btn bg-budget login shadow-none" type="submit">
                             <a href="/Login" style="color: #ffffff">ZALOGUJ SIĘ</a>
                         </button>
+                    {% endif %}
                 </form>
             </div>
         </span>

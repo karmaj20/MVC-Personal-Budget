@@ -60,7 +60,7 @@ class Auth
         return $_SESSION['return_to'] ?? '/';
     }
 
-    public static function getUser() : User
+    public static function getUser() : ?User
     {
         if (isset($_SESSION['user_id'])) {
 

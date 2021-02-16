@@ -23,6 +23,8 @@ class Signup extends \Core\Controller
 
         if ($user->saveUserToDatabase()) {
 
+            Flash::addMessage('Poprawna rejestracja, możesz się zalogować.');
+
             $this->redirect('/Login');
 
         } else {

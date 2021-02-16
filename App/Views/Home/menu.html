@@ -30,9 +30,12 @@
                     </div>
 
                     <div class="mt-5 text-center ml-auto mr-auto btn-lg">
-                        <button type="button" class="col-4 btn bg-budgetOpacity registration btn-lg">
-                            <a href="/Signup/new" style="color: white">REJESTRACJA</a>
-                        </button>
+                        {% if current_user %}
+                        {% else %}
+                            <button type="button" class="col-4 btn bg-budgetOpacity registration btn-lg">
+                                <a href="/Signup/new" style="color: white">REJESTRACJA</a>
+                            </button>
+                        {% endif %}
                     </div>
 
                 </div>
