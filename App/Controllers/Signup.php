@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Models\User;
 use \Core\View;
+use App\Flash;
 //use App\Auth;
 
 
@@ -22,7 +23,8 @@ class Signup extends \Core\Controller
 
         if ($user->saveUserToDatabase()) {
 
-            $this->redirect('/signup/success');
+            $this->redirect('/Login');
+
         } else {
 
             View::renderTemplate('Signup/new.html', [
@@ -33,7 +35,7 @@ class Signup extends \Core\Controller
 
     public function successAction() : void
     {
-        View::renderTemplate('Signup/success.html');
+        View::renderTemplate('Login/login.html');
     }
 
 }

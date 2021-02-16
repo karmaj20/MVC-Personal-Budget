@@ -4,13 +4,13 @@ declare(strict_types = 1);
 
 namespace App;
 
-//use App\Models\RememberedLogin;
+use App\Models\RememberedLogin;
 use App\Models\User;
 
 class Auth
 {
-    /*
-    public static function login(string $user, bool $remember_me)
+
+    public static function login($user, $remember_me) : void
     {
         session_regenerate_id(true);
 
@@ -19,12 +19,12 @@ class Auth
         if ($remember_me) {
             if($user->rememberLogin()) {
 
-                setcookie('remember_me', $user->remember_token, $user->expiry_timestamp, '/')''
+                setcookie('remember_me', $user->remember_token, $user->expiry_timestamp, '/');
 
             }
         }
     }
-    */
+
 
     public static function logout() : void
     {
@@ -60,7 +60,7 @@ class Auth
         return $_SESSION['return_to'] ?? '/';
     }
 
-    public static function getUser() : string
+    public static function getUser() : User
     {
         if (isset($_SESSION['user_id'])) {
 
@@ -72,7 +72,7 @@ class Auth
 
         }
     }
-    /*
+
     protected static function loginFromRememberCookie()
     {
         $cookie = $_COOKIE['remember_me'] ?? false;
@@ -107,5 +107,5 @@ class Auth
             setcookie('remember_me', '', time() - 3600);
         }
     }
-    */
+
 }

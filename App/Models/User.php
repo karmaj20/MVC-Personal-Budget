@@ -107,7 +107,7 @@ class User extends \Core\Model
         return $stmt->fetch();
     }
 
-    public static function findByID(int $id)
+    public static function findByID($id)
     {
         $sql = 'SELECT * FROM users WHERE id = :id';
 
