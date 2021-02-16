@@ -15,7 +15,7 @@
                         <h2>Witaj w sekcji "Dodaj Wydatek"</h2>
 
 
-                        <form method="post" id="buttons" class="form-block income mr-auto ml-auto mt-4">
+                        <form method="post" id="buttons" action="/expense/create" class="form-block income mr-auto ml-auto mt-4">
                             <div class="form-group mb-3">
                                 <h4>KWOTA</h4>
                                 <input type="value" class="form-control" placeholder="Wpisz kwotę" name="ammountExpense">
@@ -29,10 +29,10 @@
                             <h4>FORMA PŁATNOŚCI</h4>
                             <select class="form-select my-1 mr-sm-2 mt-3 mb-3" name="paymentMethod">
                                 <option selected>Wybierz...</option>
-                                <option value="G">Gotówka</option>
-                                <option value="K">Karta</option>
-                                <option value="P">Przelew</option>
-                                <option value="I">Inna forma płatności</option>
+                                <option value="1">Gotówka</option>
+                                <option value="2">Karta</option>
+                                <option value="3">Przelew</option>
+                                <option value="4">Inna forma płatności</option>
                             </select>
 
                             <label><h4>KATEGORIA</h4></label>
@@ -72,7 +72,7 @@
 
                     <div class="mt-3 text-center">
                         <p>
-                            <input class="btn bg-budget my-1 p-2 custom" type="submit" value="DODAJ" form="buttons" />
+                            <input class="btn bg-budget my-1 p-2 custom" style="color:#ffffff;" type="submit" value="DODAJ" form="buttons" />
                             <input class="btn btn-danger ml-3 my-1 p-2 custom" type="reset" value="ANULUJ" form="buttons" />
                         </p>
                     </div>

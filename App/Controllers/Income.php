@@ -32,7 +32,6 @@ class Income extends \Core\Controller
 
             $this->redirect('/Income');
         }
-
     }
 
 }
