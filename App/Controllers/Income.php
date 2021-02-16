@@ -19,7 +19,9 @@ class Income extends \Core\Controller
     {
         $income = new Money($_POST);
 
-        if ($income->addIncomeToDatabase()) {
+        if ($_POST['ammountIncome'] > 0) {
+
+            $income->addIncomeToDatabase();
 
             Flash::addMessage('Przychód został dodany');
 
@@ -28,6 +30,7 @@ class Income extends \Core\Controller
 
             Flash::addMessage('Przychód nie został dodany, spróbuj jeszcze raz.');
 
+            $this->redirect('/Income');
         }
 
     }
