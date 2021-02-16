@@ -5,14 +5,31 @@ declare(strict_types = 1);
 namespace App\Controllers;
 
 use App\Flash;
+use App\Models\Money;
 use Core\View;
-use PDO;
 
 class Income extends \Core\Controller
 {
-    public function newAction()
+    public function newAction() : void
     {
         View::renderTemplate('Income/income.html');
+    }
+
+    public function createAction()
+    {
+        $income = new Money($_POST);
+
+        if ($income->addIncomeToDatabase()) {
+
+            Flash::addMessage('Przychód został dodany');
+
+            $this->redirect('/Income');
+        } else {
+
+            Flash::addMessage('Przychód nie został dodany, spróbuj jeszcze raz.');
+
+        }
+
     }
 
 }
