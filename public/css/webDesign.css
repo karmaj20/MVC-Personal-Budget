@@ -1,7 +1,7 @@
 body
 {
     height: 100%;
-    background-image: url("../img/background.jpg");
+    background-image: url("/img/background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     font-size: 20px;
@@ -40,7 +40,7 @@ body
 
 .customInputs
 {
-    width: 50% !important;
+    width: 70%;
 }
 
 .smallLogin
@@ -98,11 +98,13 @@ h5
 .registration
 {
     letter-spacing: 2px;
+    margin: auto;
 }
 
 .income
 {
-    width: 80%;
+    width: 80% !important;
+    margin: auto;
 }
 
 .customText

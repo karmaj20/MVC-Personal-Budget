@@ -47,7 +47,7 @@ abstract class Controller
     {
         if (!Auth::getUser()) {
 
-            Flash::addMessage('Please login to access that page' . FLASH::INFO);
+            Flash::addMessage('Zaloguj się, aby uzyskać dostęp do zakładki' . FLASH::INFO);
 
             Auth::rememberRequestedPage();
 

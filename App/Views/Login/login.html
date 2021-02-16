@@ -1,28 +1,28 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block body %}
 
 <main>
-    <div class="container">
+    <div class="col-sm-8 col-lg-6 container">
 
-        <div class="row">
-            <div class="col-8 col-md-6 bg-budgetOpacity text-center mr-auto ml-auto interval">
-                <form class="form-block" method="post" action="/login/create">
+        <div class="row bg-budgetOpacity text-center" style="margin-top: 15%">
+                <form class="form-bloc p-4 " method="post" action="/login/create">
                     <h2>LOGOWANIE</h2>
 
-                    <div class="form-group mt-5 customInputs mr-auto ml-auto">
+                    <div class="form-group mt-5 customInputs registration">
                         <input type="text" class="form-control" placeholder="login" name="login" autofocus value="{{ name }}">
                     </div>
 
-                    <div class="form-group mt-4 customInputs mr-auto ml-auto">
+                    <div class="form-group mt-4 customInputs registration">
                         <input type="password" class="form-control" placeholder="hasło" name="password">
                     </div>
 
-                    <div class="checkbox">
+                    <div class="checkbox mt-3">
                         <label>
-                            <input type="checkbox" name="remember_me" {% if remember_me %} checked="checked" {% endif %}/> Remember me
+                            <input type="checkbox" name="remember_me" {% if remember_me %}
+                                   checked="checked" {% endif %}/> Zapamiętaj mnie
                         </label>
                     </div>
 
@@ -33,10 +33,9 @@
                     <h5>Nie masz jeszcze konta ?</h5>
 
                     <button class="btn btn-danger mt-2 mb-5 registration customInputs" type="submit">
-                        ZAREJESTRUJ SIĘ
+                        <a href="/Signup/new" style="color: white"> ZAREJESTRUJ SIĘ </a>
                     </button>
                 </form>
-            </div>
         </div>
     </div>
 </main>

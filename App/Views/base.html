@@ -10,25 +10,32 @@
     <meta name="keywords" content="budżet osobity, oszczędzanie, wydatki, przychody, bilans, konto osobiste" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <link href="/public/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="/public/webDesign.css" rel="stylesheet" type="text/css" />
+    <link href="/css/webDesign.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;subset=latin-ext" rel="stylesheet" />
 
 </head>
 <body>
     <header>
-            <span class="d-none d-sm-block">
-                <div class="bg-budget text-center">
-                    <a class="navbar-brand nav-item nav-link mr-auto ml-auto mt-2" href="/Home/index">
-                        <h1>BUDŻET DOMOWY</h1>
-                    </a>
-                    <form class="form-inline">
-                            <button class="btn bg-budget login shadow-none" type="submit">
-                                <a href="/Login" style="color: #ffffff">ZALOGUJ SIĘ</a>
-                            </button>
-                    </form>
-                </div>
-            </span>
+        <span class="d-none d-sm-block">
+            <div class="bg-budget text-center">
+                <a class="navbar-brand nav-item nav-link mr-auto ml-auto" href="/Home/index">
+                    <h1>BUDŻET DOMOWY</h1>
+                </a>
+                <form class="form-inline">
+                    {% if current_user %}
+                        <button class="btn bg-budget login shadow-none" type="submit">
+                            <a href="/Logout" style="color: #ffffff">WYLOGUJ SIĘ</a>
+                        </button>
+                    {% else %}
+                        <button class="btn bg-budget login shadow-none" type="submit">
+                            <a href="/Login" style="color: #ffffff">ZALOGUJ SIĘ</a>
+                        </button>
+                    {% endif %}
+                </form>
+            </div>
+        </span>
 
         <nav class="navbar navbar-dark bg-budget navbar-expand-lg">
 
@@ -39,26 +46,37 @@
             <div class="collapse navbar-collapse" id="mainmenu">
                 <ul class="navbar-nav mr-auto">
 
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#"> Strona główna </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/index"> Strona główna </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> Dodaj przychód </a>
+                        <a class="nav-link" {% if current_user %} href="/income" {% endif %}> Dodaj przychód </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> Dodaj Wydatek </a>
+                        <a class="nav-link" {% if current_user %} href="/expense" {% endif %}> Dodaj Wydatek </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> Przeglądaj bilans </a>
+                        <a class="nav-link" {% if current_user %} href="/balance" {% endif %}> Przeglądaj bilans </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> Ustawienia </a>
+                        <a class="nav-link" {% if current_user %} href="#" {% endif %}> Ustawienia </a>
                     </li>
 
+                    {% if current_user %}
+                    <li class="nav-item">
+                        <span class="d-block d-sm-none">
+                            <a class="nav-link" href="#">
+                                <div class="text-center">
+                                    <button class="btn bg-budget smallLogin shadow-none" type="submit">WYLOGUJ SIĘ</button>
+                                </div>
+                            </a>
+                        </span>
+                    </li>
+                    {% else %}
                     <li class="nav-item">
                         <span class="d-block d-sm-none">
                             <a class="nav-link" href="#">
@@ -68,11 +86,17 @@
                             </a>
                         </span>
                     </li>
-
+                    {% endif %}
                 </ul>
             </div>
         </nav>
     </header>
+
+    {% for message in flash_messages %}
+    <div class="alert alert-{{ message.type }} text-center">
+        {{ message.body }}
+    </div>
+    {% endfor %}
 
     {% block body %}
     {% endblock %}

@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Core;
 
-//use App\Auth;
-//use App\Flash;
+use App\Auth;
+use App\Flash;
 
 class View
 {
@@ -34,8 +34,8 @@ class View
         if ($twig == null) {
             $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__) . '/App/Views');
             $twig = new \Twig\Environment($loader);
-//            $twig->addGlobal('current_user', Auth::getUser());
-//            $twig->addGlobal('flash_messages', Flash::getMessages());
+            $twig->addGlobal('current_user', Auth::getUser());
+            $twig->addGlobal('flash_messages', Flash::getMessages());
         }
 
         return $twig->render($template, $args);

@@ -1,9 +1,8 @@
 <?php
 
 declare(strict_types = 1);
-session_start();
 
-//ini_set('session.cookie_lifetime', '864000');
+ini_set('session.cookie_lifetime', '864000');
 
 /*
  * load composer
@@ -15,10 +14,14 @@ error_reporting(E_ALL);
 set_error_handler('Core\Error::errorHandler');
 set_exception_handler('Core\Error::exceptionHandler');
 
+session_start();
+
 $router = new Core\Router();
+
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('signup', ['controller' => 'Signup', 'action' => 'new']);
 $router->add('login', ['controller' => 'Login', 'action' => 'new']);
+$router->add('logout', ['controller' => 'Login', 'action' => 'destroy']);
 $router->add('income', ['controller' => 'Income', 'action' => 'new']);
 $router->add('expense', ['controller' => 'Expense', 'action' => 'new']);
 $router->add('balance', ['controller' => 'Balance', 'action' => 'new']);
