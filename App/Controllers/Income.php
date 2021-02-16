@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace App\Controllers;
 
+use App\Flash;
 use Core\View;
+use PDO;
 
 class Income extends \Core\Controller
 {
@@ -12,4 +14,5 @@ class Income extends \Core\Controller
     {
         View::renderTemplate('Income/income.html');
     }
+
 }

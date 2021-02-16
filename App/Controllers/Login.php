@@ -29,7 +29,7 @@ class Login extends \Core\Controller
 
             Flash::addMessage('Poprawne logowanie');
 
-            $this->redirect(Auth::getReturnToPage());
+            $this->redirect('/Income');
         } else {
             Flash::addMessage('Niepoprawne logowanie, spróbuj jeszcze raz.', FLASH::WARNING);
 

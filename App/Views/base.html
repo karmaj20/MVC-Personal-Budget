@@ -46,26 +46,37 @@
             <div class="collapse navbar-collapse" id="mainmenu">
                 <ul class="navbar-nav mr-auto">
 
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#"> Strona główna </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/index"> Strona główna </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> Dodaj przychód </a>
+                        <a class="nav-link" {% if current_user %} href="/income" {% endif %}> Dodaj przychód </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> Dodaj Wydatek </a>
+                        <a class="nav-link" {% if current_user %} href="/expense" {% endif %}> Dodaj Wydatek </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> Przeglądaj bilans </a>
+                        <a class="nav-link" {% if current_user %} href="/balance" {% endif %}> Przeglądaj bilans </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> Ustawienia </a>
+                        <a class="nav-link" {% if current_user %} href="#" {% endif %}> Ustawienia </a>
                     </li>
 
+                    {% if current_user %}
+                    <li class="nav-item">
+                        <span class="d-block d-sm-none">
+                            <a class="nav-link" href="#">
+                                <div class="text-center">
+                                    <button class="btn bg-budget smallLogin shadow-none" type="submit">WYLOGUJ SIĘ</button>
+                                </div>
+                            </a>
+                        </span>
+                    </li>
+                    {% else %}
                     <li class="nav-item">
                         <span class="d-block d-sm-none">
                             <a class="nav-link" href="#">
@@ -75,6 +86,7 @@
                             </a>
                         </span>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
