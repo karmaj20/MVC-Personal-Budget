@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Controllers;
 
+use App\Controllers\Account;
 use App\Models\User;
 use \Core\View;
 use App\Flash;
@@ -21,7 +22,9 @@ class Signup extends \Core\Controller
     {
         $user = new User($_POST);
 
-        if ($user->saveUserToDatabase()) {
+        if (Account::validateEmailAction($user->email) == true) {
+
+            $user->saveUserToDatabase();
 
             Flash::addMessage('Poprawna rejestracja, możesz się zalogować.');
 
@@ -29,9 +32,9 @@ class Signup extends \Core\Controller
 
         } else {
 
-            View::renderTemplate('Signup/new.html', [
-                'user' => $user
-            ]);
+            Flash::addMessage('Rejestracja niepoprawna, istnieje użytkownik o takich danych');
+
+            View::renderTemplate('Signup/new.html');
         }
     }
 

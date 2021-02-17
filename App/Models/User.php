@@ -65,6 +65,10 @@ class User extends \Core\Model
         // password
         if (isset($this->userPassword)) {
 
+            if($this->userPassword != $this->repeatedUserPassword) {
+                $this->errors[] = 'Password must match confirmation.';
+            }
+
             if (strlen($this->userPassword) < 6) {
                 $this->errors[] = 'Hasło musi zawierać co najmniej 6 znaków';
             }
@@ -81,7 +85,7 @@ class User extends \Core\Model
 
     public static function emailExists(string $email, $ignore_id = null) : bool
     {
-        $user = static::findByUsername($email);
+        $user = static::findByEmail($email);
 
         if ($user) {
             if ($user->id != $ignore_id) {
@@ -90,6 +94,21 @@ class User extends \Core\Model
         }
 
         return false;
+    }
+
+    public static function findByEmail(string $email)
+    {
+        $sql = 'SELECT * FROM users WHERE email = :email';
+
+        $database = static::getDatabase();
+        $stmt = $database->prepare($sql);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+
+        return $stmt->fetch();
     }
 
     public static function findByUsername(string $username)
