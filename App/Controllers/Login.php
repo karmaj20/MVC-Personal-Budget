@@ -16,7 +16,6 @@ class Login extends \Core\Controller
         View::renderTemplate('Login/login.html');
     }
 
-
     public function createAction()
     {
         $user = User::authenticate($_POST['login'], $_POST['password']);
@@ -24,6 +23,8 @@ class Login extends \Core\Controller
         $remember_me = isset($_POST['remember_me']);
 
         if ($user) {
+
+            $_SESSION['id'] = $user->id;
 
             Auth::login($user, $remember_me);
 
