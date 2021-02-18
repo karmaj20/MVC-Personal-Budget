@@ -57,10 +57,38 @@
                 <form method="post">
                     <div class="col-12 mt-4 text-center bg-budgetOpacity p-3">
                         <h4>ANALIZA PRZYCHODÓW</h4>
+                        <table class="table mt-4">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Kategoria</th>
+                                <th>Kwota
+                            </tr>
+                        </thead>
+                            {% for incomeCategoryAmount in incomeCategoriesAmount %}
+                                <tr><td>{{ loop.index }}</td>
+                                    <td>{{ incomeCategoryAmount.0 }}</td>
+                                    <td>{{ incomeCategoryAmount.1 }}</td></tr>
+                            {% endfor %}
+                        </table>
                     </div>
 
                     <div class="col-12 mt-4 text-center bg-budgetOpacity p-3">
                         <h4>ANALIZA WYDATKÓW</h4>
+                        <table class="table mt-4">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Kategoria</th>
+                                    <th>Kwota
+                                </tr>
+                            </thead>
+                                {% for expenseCategoryAmount in expenseCategoriesAmount %}
+                                <tr><td>{{ loop.index }}</td>
+                                    <td>{{ expenseCategoryAmount.0 }}</td>
+                                    <td>{{ expenseCategoryAmount.1 }}</td></tr>
+                                {% endfor %}
+                        </table>
                     </div>
 
                     <div class="col-12 mt-4 text-center bg-budgetOpacity p-3">
