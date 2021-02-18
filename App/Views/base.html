@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;subset=latin-ext" rel="stylesheet" />
 
 </head>
+
 <body>
     <header>
         <span class="d-none d-sm-block">
@@ -68,23 +69,23 @@
 
                     {% if current_user %}
                     <li class="nav-item">
-                        <span class="d-block d-sm-none">
-                            <a class="nav-link" href="#">
-                                <div class="text-center">
-                                    <button class="btn bg-budget smallLogin shadow-none" type="submit">WYLOGUJ SIĘ</button>
-                                </div>
-                            </a>
-                        </span>
+                            <span class="d-block d-sm-none">
+                                <a class="nav-link" href="#">
+                                    <div class="text-center">
+                                        <button class="btn bg-budget smallLogin shadow-none" type="submit">WYLOGUJ SIĘ</button>
+                                    </div>
+                                </a>
+                            </span>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <span class="d-block d-sm-none">
-                            <a class="nav-link" href="#">
-                                <div class="text-center">
-                                    <button class="btn bg-budget smallLogin shadow-none" type="submit">ZALOGUJ SIĘ</button>
-                                </div>
-                            </a>
-                        </span>
+                            <span class="d-block d-sm-none">
+                                <a class="nav-link" href="#">
+                                    <div class="text-center">
+                                        <button class="btn bg-budget smallLogin shadow-none" type="submit">ZALOGUJ SIĘ</button>
+                                    </div>
+                                </a>
+                            </span>
                     </li>
                     {% endif %}
                 </ul>
@@ -99,7 +100,7 @@
     {% endfor %}
 
     {% block body %}
-    {% endblock %}
+    {% endblock%}
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -107,6 +108,5 @@
 
     {% block footer %}
     {% endblock %}
-
 </body>
 </html>

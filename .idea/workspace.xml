@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="156290d6-61f5-4bd3-95e7-20bb52dc9caa" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <executable path="composer" />
+    </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="composer.json" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1oI1a1CR991JQOD6luytYeN4fPA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="156290d6-61f5-4bd3-95e7-20bb52dc9caa" name="Default Changelist" comment="" />
+      <created>1612959352948</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612959352948</updated>
+      <workItem from="1612959354857" duration="6609000" />
+      <workItem from="1612970645500" duration="8060000" />
+      <workItem from="1612980996421" duration="8177000" />
+      <workItem from="1612997504791" duration="41000" />
+      <workItem from="1612997547818" duration="5541000" />
+      <workItem from="1613039086108" duration="11323000" />
+      <workItem from="1613056047617" duration="2716000" />
+      <workItem from="1613084294835" duration="7002000" />
+      <workItem from="1613126852451" duration="4127000" />
+      <workItem from="1613145997448" duration="5192000" />
+      <workItem from="1613227148784" duration="3287000" />
+      <workItem from="1613319407693" duration="1580000" />
+      <workItem from="1613326766716" duration="180000" />
+      <workItem from="1613338793324" duration="3322000" />
+      <workItem from="1613398079063" duration="7095000" />
+      <workItem from="1613415686611" duration="1758000" />
+      <workItem from="1613427269230" duration="2186000" />
+      <workItem from="1613475518235" duration="1139000" />
+      <workItem from="1613486269772" duration="4825000" />
+      <workItem from="1613502203258" duration="784000" />
+      <workItem from="1613515205086" duration="1272000" />
+      <workItem from="1613568542511" duration="4271000" />
+      <workItem from="1613577326215" duration="4526000" />
+      <workItem from="1613594695837" duration="596000" />
+      <workItem from="1613644458990" duration="59000" />
+      <workItem from="1613644534579" duration="6683000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

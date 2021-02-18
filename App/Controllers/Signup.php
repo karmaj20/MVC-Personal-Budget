@@ -1,46 +1,75 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace App\Controllers;
 
-use App\Controllers\Account;
-use App\Models\User;
 use \Core\View;
+use \App\Models\User;
 use App\Flash;
-//use App\Auth;
 
-
+/**
+ * Signup controller
+ *
+ * PHP version 7.0
+ */
 class Signup extends \Core\Controller
 {
-    public function newAction() : void
+
+    /**
+     * Show the signup page
+     *
+     * @return void
+     */
+    public function newAction()
     {
         View::renderTemplate('Signup/new.html');
     }
 
-    public function createAction() : void
+    /**
+     * Sign up a new user
+     *
+     * @return void
+     */
+    public function createAction()
     {
         $user = new User($_POST);
 
-        if (Account::validateEmailAction($user->email) == true) {
+        if ($user->save()) {
 
-            $user->saveUserToDatabase();
-
-            Flash::addMessage('Poprawna rejestracja, możesz się zalogować.');
+            //$user->sendActivationEmail();
+            Flash::addMessage('Poprawna rejestracja, możesz się zalogować !');
 
             $this->redirect('/Login');
 
         } else {
 
-            Flash::addMessage('Rejestracja niepoprawna, istnieje użytkownik o takich danych');
+            View::renderTemplate('Signup/new.html', [
+                'user' => $user
+            ]);
 
-            View::renderTemplate('Signup/new.html');
         }
     }
 
-    public function successAction() : void
+    /**
+     * Show the signup success page
+     *
+     * @return void
+     */
+    public function successAction()
     {
-        View::renderTemplate('Login/login.html');
+        View::renderTemplate('Signup/success.html');
     }
 
+    /*
+    public function activateAction()
+    {
+        User::activate($this->route_params['token']);
+
+        $this->redirect('/signup/activated');
+    }
+
+    public function activatedAction()
+    {
+        View::renderTemplate('Signup/activated.html');
+    }
+    */
 }

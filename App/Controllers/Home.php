@@ -1,17 +1,27 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace App\Controllers;
 
 use \Core\View;
-//use App\Auth;
+use App\Auth;
 
-
+/**
+ * Home controller
+ *
+ * PHP version 7.0
+ */
 class Home extends \Core\Controller
 {
-    public function indexAction() : void
+
+    /**
+     * Show the index page
+     *
+     * @return void
+     */
+    public function indexAction()
     {
-        View::renderTemplate('Home/menu.html');
+        /* \App\Mail::send('demo@daveh.io', 'Test', 'This is a test', '<h1> This is a test </h1>'); */
+
+        View::renderTemplate('Home/index.html');
     }
 }

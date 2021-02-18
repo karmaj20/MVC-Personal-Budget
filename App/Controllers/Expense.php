@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace App\Controllers;
 
 use App\Flash;
-use App\Models\Money;
+use App\Models\ExpenseMod;
 use Core\View;
 
 class Expense extends \Core\Controller
@@ -17,7 +15,7 @@ class Expense extends \Core\Controller
 
     public function createAction()
     {
-        $expense = new Money($_POST);
+        $expense = new ExpenseMod($_POST);
 
         if ($_POST['ammountExpense'] > 0) {
 

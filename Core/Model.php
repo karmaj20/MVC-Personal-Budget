@@ -1,27 +1,35 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace Core;
 
 use PDO;
 use App\Config;
 
+/**
+ * Base model
+ *
+ * PHP version 7.0
+ */
 abstract class Model
 {
-    protected static function getDatabase()
+
+    /**
+     * Get the PDO database connection
+     *
+     * @return mixed
+     */
+    protected static function getDB()
     {
+        static $db = null;
 
-        static $database = null;
+        if ($db === null) {
+            $dsn = 'mysql:host=' . Config::DB_HOST . ';dbname=' . Config::DB_NAME . ';charset=utf8';
+            $db = new PDO($dsn, Config::DB_USER, Config::DB_PASSWORD);
 
-        if ($database === null) {
-
-            $dsn = 'mysql:host=' . Config::DB_HOST . '; dbname=' . Config::DB_NAME . ';charset=utf8';
-            $database = new PDO($dsn, Config::DB_USER, Config::DB_PASSWORD);
-
-            $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // Throw an Exception when an error occurs
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
 
-        return $database;
+        return $db;
     }
 }

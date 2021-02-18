@@ -1,23 +1,22 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace App\Controllers;
 
 use App\Flash;
-use App\Models\Money;
+use App\Models;
+use App\Models\IncomeMod;
 use Core\View;
 
 class Income extends \Core\Controller
 {
-    public function newAction() : void
+    public function newAction()
     {
         View::renderTemplate('Income/income.html');
     }
 
     public function createAction()
     {
-        $income = new Money($_POST);
+        $income = new IncomeMod($_POST);
 
         if ($_POST['ammountIncome'] > 0) {
 
