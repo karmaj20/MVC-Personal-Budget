@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="156290d6-61f5-4bd3-95e7-20bb52dc9caa" name="Default Changelist" comment="" />
+    <list default="true" id="156290d6-61f5-4bd3-95e7-20bb52dc9caa" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/App/Controllers/Signup.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Controllers/Signup.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

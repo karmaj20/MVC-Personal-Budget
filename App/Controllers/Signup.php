@@ -36,6 +36,10 @@ class Signup extends \Core\Controller
         if ($user->save()) {
 
             //$user->sendActivationEmail();
+            $user->addPaymentMethodsToUser();
+            $user->addIncomeCategoryDefaultToUser();
+            $user->addExpenseCategoryDefaultToUser();
+
             Flash::addMessage('Poprawna rejestracja, możesz się zalogować !');
 
             $this->redirect('/Login');
