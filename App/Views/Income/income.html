@@ -12,52 +12,52 @@
 
             <div class="row bg-budgetOpacity mt-5 p-4 text-center">
 
-                    <h2>Witaj w sekcji "Dodaj Przychód"</h2>
+                <h2>Witaj w sekcji "Dodaj Przychód"</h2>
 
-                    <form method="post" id="buttons" action="income/create" class="form-block income">
-                        <div class="form-group mt-4">
-                            <h4>KWOTA</h4>
-                            <input type="value" class="form-control mt-3" placeholder="Wpisz kwotę" name="ammountIncome">
-                        </div>
+                <form method="post" id="buttons" action="income/create" class="form-block income">
+                    <div class="form-group mt-4">
+                        <h4>KWOTA</h4>
+                        <input type="value" class="form-control mt-3" placeholder="Wpisz kwotę" name="ammountIncome">
+                    </div>
 
-                        <div class="form-group mt-3 mb-3">
-                            <h4>DATA</h4>
-                            <input type="date" class="form-control" name='dateIncome' >
-                        </div>
+                    <div class="form-group mt-3 mb-3">
+                        <h4>DATA</h4>
+                        <input type="date" class="form-control" name='dateIncome' >
+                    </div>
 
 
-                        <h4>KATEGORIA</h4>
-                        <select class="form-select mt-3 customInputs" name="categoryIncome">
-                            <option selected>Wybierz...</option>
-                            <option value="1">Wynagrodzenie</option>
-                            <option value="2">Odsetki bankowe</option>
-                            <option value="3">Sprzedaż na allegro</option>
-                            <option value="4">Inne przychody</option>
-                        </select>
+                    <h4>KATEGORIA</h4>
+                    <select class="form-select mt-3 customInputs" name="categoryIncome">
+                        <option selected>Wybierz...</option>
+                        <option value="1">Wynagrodzenie</option>
+                        <option value="2">Odsetki bankowe</option>
+                        <option value="3">Sprzedaż na allegro</option>
+                        <option value="4">Inne przychody</option>
+                    </select>
 
-                        <div class="checkbox mt-3">
-                            <label>
-                                <input type="checkbox" name="remember_me" {% if remember_me %}
-                                       checked="checked" {% endif %}/> Zapamiętaj mój wybór
-                            </label>
-                        </div>
+                    <div class="checkbox mt-3">
+                        <label>
+                            <input type="checkbox" name="remember_me" {% if remember_me %}
+                                   checked="checked" {% endif %}/> Zapamiętaj mój wybór
+                        </label>
+                    </div>
 
-                        <div class="form-group mt-3 mb-5">
-                            <h5>Opcjonalny komentarz opisujący przychód</h5>
-                            <textarea class="form-control mt-4" rows="3" name="commentIncome"></textarea>
-                        </div>
+                    <div class="form-group mt-3 mb-5">
+                        <h5>Opcjonalny komentarz opisujący przychód</h5>
+                        <textarea class="form-control mt-4" rows="3" name="commentIncome"></textarea>
+                    </div>
 
-                    </form>
-                </div>
-
-                <div class="mt-3 text-center">
-                    <p>
-                        <input class="btn bg-budget my-2 p-2 custom" type="submit" style="color: white" value="DODAJ" form="buttons"/>
-                        <input class="btn btn-danger ml-3 my-2 p-2 custom" type="reset" value="ANULUJ" form="buttons"/>
-                    </p>
-                </div>
-
+                </form>
             </div>
+
+            <div class="mt-3 text-center">
+                <p>
+                    <input class="btn bg-budget my-2 p-2 custom" type="submit" style="color: white" value="DODAJ" form="buttons"/>
+                    <input class="btn btn-danger ml-3 my-2 p-2 custom" type="reset" value="ANULUJ" form="buttons"/>
+                </p>
+            </div>
+
+        </div>
     </article>
 </main>
 

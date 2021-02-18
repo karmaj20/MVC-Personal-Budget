@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/MVC-Personal-Budget.iml" filepath="$PROJECT_DIR$/.idea/MVC-Personal-Budget.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/MVC-udemy.iml" filepath="$PROJECT_DIR$/.idea/MVC-udemy.iml" />
     </modules>
   </component>
 </project>

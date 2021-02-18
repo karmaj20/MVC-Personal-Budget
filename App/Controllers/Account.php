@@ -2,26 +2,26 @@
 
 namespace App\Controllers;
 
-use App\Flash;
 use \App\Models\User;
 
+/**
+ * Account controller
+ *
+ * PHP version 7.0
+ */
 class Account extends \Core\Controller
 {
-    // validate if email is available for a new signup
 
-    public static function validateEmailAction(string $email) : bool
+    /**
+     * Validate if email is available (AJAX) for a new signup.
+     *
+     * @return void
+     */
+    public function validateEmailAction()
     {
-        $is_valid = ! User::emailExists($email, $_GET['ignore_id'] ?? null);
-
-        //header('Content-Type: application/json');
-        if (json_encode($is_valid) == "true") {
-
-            return true;
-
-        } else {
-
-            return false;
-
-        }
+        $is_valid = ! User::emailExists($_GET['email'], $_GET['ignore_id'] ?? null);
+        header('Content-Type: application/json');
+        echo json_encode($is_valid);
     }
+
 }

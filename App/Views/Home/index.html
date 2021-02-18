@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+    <main>
+        <article>
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-sm-12 bg-budgetOpacity text-center information mt-5">
+
+                        <h2>Witaj w programie, który zapewni Ci kontrolę nad przychodami oraz wydatkami domowymi !</h2>
+
+                        <p class="text-justify mt-3 mr-3 ml-3 p-2 font-weight-bold">
+                            Aby korzystać z usług witryny należy się zalogować. W zakładkach "Dodaj przychód" oraz
+                            "Dodaj wydatek" będziesz miał możliwość zapisania wydatku bądź przychodu z wybraną datą
+                            oraz kategorią tej usługi.</p>
+
+                        <p class="text-justify mr-3 ml-3 p-2 font-weight-bold">Kategoria "Przeglądaj bilans" służy do sprawdzania wydatków
+                            z aktualnego lub poprzedniego miesiąca albo wybranego przez siebie okresu. Dodatkowo w tej
+                            kategorii zobaczysz diagram kołowy pokazujący w sposób graficzny wydatki w zależności od kategorii.
+                            Menu "Ustawienia" pozwala na zmianę danych przypisanych do konta. Dodatkowo w tym menu można usuwać,
+                            edytować oraz dodawać kategorię przychododów, wydatków oraz rodzajów metod płatności. Dzięki temu masz
+                            możliwość personalizacji aplikacji według własnych potrzeb.</p>
+                    </div>
+
+                    <div class="mt-5 text-center ml-auto mr-auto btn-lg">
+                        {% if current_user %}
+                        {% else %}
+                        <button type="button" class="col-4 btn bg-budgetOpacity registration btn-lg">
+                            <a href="/Signup/new" style="color: white">REJESTRACJA</a>
+                        </button>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </article>
+    </main>
+
+{% endblock %}
