@@ -32,18 +32,18 @@
                                 <div class="modal-body mr-auto ml-auto text-center">
                                     <label class="mt-2 customText">Wybierz okres, w którym chcesz przejrzeć bilans</label>
                                     <select class="custom-select customInputs" id="inlineFormCustomSelectPref" name="range">
-                                        <option value="currentMonth"    name = "currentMonth" selected>Bieżący miesiąc</option>
-                                        <option value="previousMonth"   name = "previousMonth">Poprzedni miesiąc</option>
-                                        <option value="currentYear"     name = "currentYear">Bieżący rok</option>
-                                        <option value="chosenPeriod"    name = "chosenPeriod" >Inny zakres</option>
+                                        <option value="currentMonth"    name = "currentMonth" selected> Bieżący miesiąc</option>
+                                        <option value="previousMonth"   name = "previousMonth">         Poprzedni miesiąc</option>
+                                        <option value="currentYear"     name = "currentYear">           Bieżący rok</option>
+                                        <option value="chosenPeriod"    name = "chosenPeriod" >         Inny zakres</option>
                                     </select>
                                     <div class="form-group mt-3">
                                         OD
-                                        <input type="date" class="form-control" name="startPeriod">
+                                        <input type="date" value="startPeriod" class="form-control" name="startPeriod">
                                     </div>
                                     <div class="form-group">
                                         DO
-                                        <input type="date" class="form-control" name="endPeriod">
+                                        <input type="date" value="endPeriod" class="form-control" name="endPeriod">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -63,7 +63,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Kategoria</th>
-                                <th>Kwota
+                                <th>Kwota</th>
                             </tr>
                         </thead>
                             {% for incomeCategoryAmount in incomeCurrentMonth %}
@@ -81,7 +81,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Kategoria</th>
-                                    <th>Kwota
+                                    <th>Kwota</th>
                                 </tr>
                             </thead>
                                 {% for expenseCategoryAmount in expenseCurrentMonth %}
@@ -94,6 +94,23 @@
 
                     <div class="col-12 mt-4 text-center bg-budgetOpacity p-3">
                         <h4>PODSUMOWANIE</h4>
+                        <table class="table mt-4">
+                            <thead>
+                            <tr>
+                                <th>PRZYCHÓD</th>
+                                <th>WYDATKI</th>
+                                <th>Kwota</th>
+                            </tr>
+                            </thead>
+                            {% for incomeAmount in incomeSumUpCurrentMonth %}
+                            <tr>
+                                <td>{{ incomeAmount.0 }}</td>
+                            {% for expenseAmount in expenseSumUpCurrentMonth %}
+                                <td>{{ expenseAmount.0 }}</td>
+                                <td>{{ incomeAmount.0 - expenseAmount.0 }}</td></tr>
+                            {% endfor %}
+                            {% endfor %}
+                        </table>
                     </div>
 
 

@@ -51,9 +51,7 @@ abstract class Model
         $stmt = $db->prepare($sql);
         $stmt->execute();
 
-        $result = $stmt->fetchAll();
-
-        return $result;
+        return $stmt->fetchAll();
     }
 
     protected static function getBalanceExpenseSheet($start, $end, $id)
@@ -74,7 +72,38 @@ abstract class Model
         $stmt = $db->prepare($sql);
         $stmt->execute();
 
-        $result = $stmt->fetchAll();
-        return $result;
+        return $stmt->fetchAll();
+    }
+
+    protected static function incomeSumUp($start, $end, $id)
+    {
+        $sql = "
+                SELECT SUM(ammount) FROM incomes AS inc 
+                INNER JOIN users ON inc.user_id = users.id AND inc.user_id = '$id'
+                WHERE date_of_income BETWEEN '$start' AND '$end'
+                ";
+
+        $db = static::getDB();
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    protected static function expenseSumUp($start, $end, $id)
+    {
+        $sql = "
+                SELECT SUM(ammount) FROM expenses AS exp
+                INNER JOIN users ON exp.user_id = users.id AND exp.user_id = '$id'
+                WHERE date_of_expense BETWEEN '$start' AND '$end'
+                ";
+
+        $db = static::getDB();
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
     }
 }
