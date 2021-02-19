@@ -39,7 +39,7 @@ class BalanceMod extends \Core\Model
         $beginPreviousMonth = date('Y-m-d', strtotime('first day of last month'));
         $endPreviousMonth =  date('Y-m-d', strtotime('last day of last month'));
 
-        static::getBalanceIncomeSheet($beginPreviousMonth, $endPreviousMonth, $id);
+        return static::getBalanceIncomeSheet($beginPreviousMonth, $endPreviousMonth, $id);
     }
 
     public static function loadExpensePreviousMonth()
@@ -49,10 +49,49 @@ class BalanceMod extends \Core\Model
         $beginPreviousMonth = date('Y-m-d', strtotime('first day of last month'));
         $endPreviousMonth =  date('Y-m-d', strtotime('last day of last month'));
 
-        static::getBalanceExpenseSheet($beginPreviousMonth, $endPreviousMonth, $id);
+        return static::getBalanceExpenseSheet($beginPreviousMonth, $endPreviousMonth, $id);
     }
 
+    public static function loadIncomeCurrentYear()
+    {
+        $id = (int)$_SESSION['id'];
 
+        $beginCurrentYear = date('Y-01-01');
+        $endCurrentYear = date('Y-12-31');
+
+        return static::getBalanceIncomeSheet($beginCurrentYear, $endCurrentYear, $id);
+    }
+
+    public static function loadExpenseCurrentYear()
+    {
+        $id = (int)$_SESSION['id'];
+
+        $beginCurrentYear = date('Y-01-01');
+        $endCurrentYear = date('Y-12-31');
+
+        return static::getBalanceExpenseSheet($beginCurrentYear, $endCurrentYear, $id);
+    }
+    /*
+    public static function loadIncomeChosenPeriod()
+    {
+        $id = (int)$_SESSION['id'];
+
+        $beginChosenPeriod = $_POST['startPeriod'];
+        $endChosenPeriod = $_POST['endPeriod'];
+
+        return static::getBalanceIncomeSheet($beginChosenPeriod, $endChosenPeriod, $id);
+    }
+
+    public static function loadExpenseChosenPeriod()
+    {
+        $id = (int)$_SESSION['id'];
+
+        $beginChosenPeriod = $_POST['startPeriod'];
+        $endChosenPeriod = $_POST['endPeriod'];
+
+        return static::getBalanceExpenseSheet($beginChosenPeriod, $endChosenPeriod, $id);
+    }
+    */
     private static function isLeapYear(int $year) : bool {
 
         if (($year % 4 == 0 && $year % 100 != 0) || ($year % 400 == 0)) {

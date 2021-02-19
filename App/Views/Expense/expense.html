@@ -8,66 +8,69 @@
 
     <article>
 
-        <div class="col-sm-9 container">
+        <div class="container">
 
-            <div class="row bg-budgetOpacity mt-5 p-4 text-center">
+            <div class="row">
 
-                <h2>Witaj w sekcji "Dodaj Wydatek"</h2>
+                <div class="col-sm-10 bg-budgetOpacity text-center information mt-5 mr-auto ml-auto ">
+
+                    <h2 style="color: white">Witaj w sekcji "Dodaj Wydatek"</h2>
 
 
-                <form method="post" id="buttons" action="/expense/create" class="form-block income mr-auto ml-auto mt-4">
-                    <div class="form-group mb-3">
-                        <h4>KWOTA</h4>
-                        <input type="value" class="form-control" placeholder="Wpisz kwotę" name="ammountExpense">
-                    </div>
+                    <form method="post" id="buttons" action="/expense/create" class="form-block income mr-auto ml-auto mt-4">
+                        <div class="form-group mb-3">
+                            <h4>KWOTA</h4>
+                            <input type="value" class="form-control" placeholder="Wpisz kwotę" name="ammountExpense">
+                        </div>
 
-                    <div class="form-group mb-3">
-                        <h4>DATA</h4>
-                        <input type="date" class="form-control" name="dateExpense" >
-                    </div>
+                        <div class="form-group mb-3">
+                            <h4>DATA</h4>
+                            <input type="date" class="form-control" name="dateExpense" >
+                        </div>
 
-                    <h4>FORMA PŁATNOŚCI</h4>
-                    <select class="form-select my-1 mr-sm-2 mt-3 mb-3" name="paymentMethod">
-                        <option selected>Wybierz...</option>
-                        <option value="1">Gotówka</option>
-                        <option value="2">Karta</option>
-                        <option value="3">Przelew</option>
-                        <option value="4">Inna forma płatności</option>
-                    </select>
+                        <h4>FORMA PŁATNOŚCI</h4>
+                        <select class="custom-select my-1 mr-sm-2 mt-3 mb-3" name="paymentMethod">
+                            <option selected>Wybierz...</option>
+                            <option value="1">Gotówka</option>
+                            <option value="2">Karta</option>
+                            <option value="3">Przelew</option>
+                            <option value="4">Inna forma płatności</option>
+                        </select>
 
-                    <label><h4>KATEGORIA</h4></label>
-                    <select class="form-select my-1 mr-sm-2" name="categoryExpense">
-                        <option selected>Wybierz...</option>
-                        <option value="1">Jedzenie</option>
-                        <option value="2">Mieszkanie</option>
-                        <option value="3">Transport</option>
-                        <option value="4">Telekomunikacja</option>
-                        <option value="5">Opieka zdrowotna</option>
-                        <option value="6">Ubranie</option>
-                        <option value="7">Higiena</option>
-                        <option value="8">Dzieci</option>
-                        <option value="9">Rozrywka</option>
-                        <option value="10">Wycieczka</option>
-                        <option value="11">Szkolenia</option>
-                        <option value="12">Książki</option>
-                        <option value="13">Oszczędności</option>
-                        <option value="14">Emerytura</option>
-                        <option value="15">Spłata długów</option>
-                        <option value="16">Darowizna</option>
-                        <option value="17">Inne wydatki</option>
-                    </select>
+                        <label><h4>KATEGORIA</h4></label>
+                        <select class="custom-select my-1 mr-sm-2" name="categoryExpense">
+                            <option selected>Wybierz...</option>
+                            <option value="1">Jedzenie</option>
+                            <option value="2">Mieszkanie</option>
+                            <option value="3">Transport</option>
+                            <option value="4">Telekomunikacja</option>
+                            <option value="5">Opieka zdrowotna</option>
+                            <option value="6">Ubranie</option>
+                            <option value="7">Higiena</option>
+                            <option value="8">Dzieci</option>
+                            <option value="9">Rozrywka</option>
+                            <option value="10">Wycieczka</option>
+                            <option value="11">Szkolenia</option>
+                            <option value="12">Książki</option>
+                            <option value="13">Oszczędności</option>
+                            <option value="14">Emerytura</option>
+                            <option value="15">Spłata długów</option>
+                            <option value="16">Darowizna</option>
+                            <option value="17">Inne wydatki</option>
+                        </select>
 
-                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label">Zapamiętaj mój wybór</label>
-                    </div>
+                        <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                            <input type="checkbox" class="custom-control-input">
+                            <label class="custom-control-label">Zapamiętaj mój wybór</label>
+                        </div>
 
-                    <div class="form-group mt-3 mb-4">
-                        <h5>Opcjonalny komentarz opisujący wydatek</h5>
-                        <textarea class="form-control" rows="3" name="commentExpense"></textarea>
-                    </div>
+                        <div class="form-group mt-3 mb-4">
+                            <h5>Opcjonalny komentarz opisujący wydatek</h5>
+                            <textarea class="form-control" rows="3" name="commentExpense"></textarea>
+                        </div>
 
-                </form>
+                    </form>
+                </div>
             </div>
 
             <div class="mt-3 text-center">

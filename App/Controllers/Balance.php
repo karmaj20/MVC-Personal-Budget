@@ -13,8 +13,14 @@ class Balance extends \Core\Controller
         $balance = new BalanceMod();
 
         View::renderTemplate('Balance/balance.html', [
-            'incomeCategoriesAmount' => BalanceMod::loadIncomeCurrentMonth(),
-            'expenseCategoriesAmount' => BalanceMod::loadExpenseCurrentMonth()
+            'incomeCurrentMonth'    => BalanceMod::loadIncomeCurrentMonth(),
+            'expenseCurrentMonth'   => BalanceMod::loadExpenseCurrentMonth(),
+            'incomePreviousMonth'   => BalanceMod::loadIncomePreviousMonth(),
+            'expensePreviousMonth'  => BalanceMod::loadExpensePreviousMonth(),
+            'incomeCurrentYear'     => BalanceMod::loadIncomeCurrentYear(),
+            'expenseCurrentYear'    => BalanceMod::loadExpenseCurrentYear()
+            //'incomeChosenPeriod'    => BalanceMod::loadIncomeChosenPeriod(),
+            //'expenseChosenPeriod'   => BalanceMod::loadExpenseChosenPeriod()
         ]);
     }
 
