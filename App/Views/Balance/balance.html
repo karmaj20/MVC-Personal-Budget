@@ -10,20 +10,21 @@
         <div class="container">
 
             <div class="row mt-5 mr-auto ml-auto">
+
                 <div class="col-12 text-center bg-budgetOpacity p-3">
                     <h4>PRZEGLĄDAJ BILANS</h4>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         Ustaw zakres analizy bilansu domowego
                     </button>
                 </div>
                 <!-- Modal -->
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <form method="post">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                                    <h5 class="modal-title" id="myModalLabel">Modal Title</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -31,10 +32,10 @@
                                 <div class="modal-body mr-auto ml-auto text-center">
                                     <label class="mt-2 customText">Wybierz okres, w którym chcesz przejrzeć bilans</label>
                                     <select class="custom-select customInputs" id="inlineFormCustomSelectPref" name="range">
-                                        <option value="currentMonth" name = "currentMonth" selected>Bieżący miesiąc</option>
-                                        <option value="previousMonth" name = "previousMonth">Poprzedni miesiąc</option>
-                                        <option value="currentYear" name = "currentYear">Bieżący rok</option>
-                                        <option value="chosenPeriod" name = "chosenPeriod" >Inny zakres</option>
+                                        <option value="currentMonth"    name = "currentMonth" selected>Bieżący miesiąc</option>
+                                        <option value="previousMonth"   name = "previousMonth">Poprzedni miesiąc</option>
+                                        <option value="currentYear"     name = "currentYear">Bieżący rok</option>
+                                        <option value="chosenPeriod"    name = "chosenPeriod" >Inny zakres</option>
                                     </select>
                                     <div class="form-group mt-3">
                                         OD
@@ -54,13 +55,41 @@
                     </form>
                 </div>
 
-                <form method="post">
-                    <div class="col-12 mt-4 text-center bg-budgetOpacity p-3">
+                <form method="post" id="balance" class="col-12">
+                    <div class="mt-4 text-center bg-budgetOpacity p-3">
                         <h4>ANALIZA PRZYCHODÓW</h4>
+                        <table class="table mt-4">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Kategoria</th>
+                                <th>Kwota
+                            </tr>
+                        </thead>
+                            {% for incomeCategoryAmount in incomeCurrentMonth %}
+                                <tr><td>{{ loop.index }}</td>
+                                    <td>{{ incomeCategoryAmount.0 }}</td>
+                                    <td>{{ incomeCategoryAmount.1 }}</td></tr>
+                            {% endfor %}
+                        </table>
                     </div>
 
                     <div class="col-12 mt-4 text-center bg-budgetOpacity p-3">
                         <h4>ANALIZA WYDATKÓW</h4>
+                        <table class="table mt-4">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Kategoria</th>
+                                    <th>Kwota
+                                </tr>
+                            </thead>
+                                {% for expenseCategoryAmount in expenseCurrentMonth %}
+                                <tr><td>{{ loop.index }}</td>
+                                    <td>{{ expenseCategoryAmount.0 }}</td>
+                                    <td>{{ expenseCategoryAmount.1 }}</td></tr>
+                                {% endfor %}
+                        </table>
                     </div>
 
                     <div class="col-12 mt-4 text-center bg-budgetOpacity p-3">

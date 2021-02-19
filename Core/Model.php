@@ -32,4 +32,49 @@ abstract class Model
 
         return $db;
     }
+
+    protected static function getBalanceIncomeSheet($start, $end, $id)
+    {
+        $sql = "  
+                SELECT incdef.name, SUM(inc.ammount) 
+                FROM incomes AS inc 
+                INNER JOIN income_category_default AS incdef 
+                ON inc.income_category_assigned_to_user_id = incdef.id 
+                INNER JOIN users 
+                ON inc.user_id = users.id AND inc.user_id = '$id'
+                WHERE date_of_income BETWEEN '$start' AND '$end'
+                GROUP BY income_category_assigned_to_user_id
+               ";
+
+        $db = static::getDB();
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll();
+
+        return $result;
+    }
+
+    protected static function getBalanceExpenseSheet($start, $end, $id)
+    {
+        $sql = "  
+                SELECT exdef.name, SUM(ex.ammount) 
+                FROM expenses AS ex 
+                INNER JOIN expenses_category_default AS exdef 
+                ON ex.expense_category_assigned_to_user_id = exdef.id
+                INNER JOIN users 
+                ON ex.user_id = users.id AND ex.user_id = '$id'
+                WHERE date_of_expense BETWEEN '$start' AND '$end'
+                GROUP BY expense_category_assigned_to_user_id
+               ";
+
+        $db = static::getDB();
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll();
+        return $result;
+    }
 }

@@ -21,11 +21,6 @@ class User extends \Core\Model
      * @var array
      */
     public $errors = [];
-    public $keepPaymentMethodsDefault = array  ('Gotówka', 'Karta', 'Przelew', 'Inna forma płatności');
-    public $keepIncomeCategoryDefault = array  ('Wynagrodzenie', 'Odsetki Bankowe', 'Sprzedaż na allegro', 'Inne przychody');
-    public $keepExpenseCategoryDefault = array ('Jedzenie', 'Mieszkanie', 'Transport', 'Telekomunikacja', 'Opieka zdrowotna',
-                                                'Ubranie', 'Higiena', 'Dzieci', 'Rozrywka', 'Wycieczka', 'Szkolenia', 'Książki',
-                                                'Oszczędności', 'Emerytura', 'Spłata długów', 'Darowizna', 'Inne wydatki');
 
     /**
      * Class constructor
@@ -58,17 +53,46 @@ class User extends \Core\Model
             $hashed_token = $token->getHash();
             $this->activation_token = $token->getValue();
 
-            $sql = 'INSERT INTO users
-                    VALUES (null, :username, :password, :email)';
+            $sql_insert_user = 'INSERT INTO users
+                                VALUES (null, :username, :password, :email)';
+
+            $sql_insert_incomes = "INSERT INTO incomes_category_assigned_to_users (user_id, name)
+                                   SELECT users.id, income_category_default.name 
+                                   FROM users, income_category_default
+                                   WHERE users.email = :email";
+
+            $sql_insert_expenses = "INSERT INTO expenses_category_assigned_to_users (user_id, name)
+                                    SELECT users.id, expenses_category_default.name 
+                                    FROM users, expenses_category_default
+                                    WHERE users.email = :email";
+
+            $sql_insert_paymemnt = "INSERT INTO payment_methods_assigned_to_users (user_id, name)
+                                    SELECT users.id, payment_methods_default.name
+                                    FROM users, payment_methods_default
+                                    WHERE users.email = :email";
 
             $db = static::getDB();
-            $stmt = $db->prepare($sql);
 
-            $stmt->bindValue(':username', $this->name, PDO::PARAM_STR);
-            $stmt->bindValue(':password', $password_hash, PDO::PARAM_STR);
-            $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+            $stmt_user = $db->prepare($sql_insert_user);
 
-            return $stmt->execute();
+            $stmt_user->bindValue(':username', $this->name, PDO::PARAM_STR);
+            $stmt_user->bindValue(':password', $password_hash, PDO::PARAM_STR);
+            $stmt_user->bindValue(':email', $this->email, PDO::PARAM_STR);
+
+            $stmt_user->execute();
+
+            $stmt_incomes = $db->prepare($sql_insert_incomes);
+            $stmt_incomes->bindValue(':email', $this->email, PDO::PARAM_STR);
+            $stmt_incomes->execute();
+
+            $stmt_expenses = $db->prepare($sql_insert_expenses);
+            $stmt_expenses->bindValue(':email', $this->email, PDO::PARAM_STR);
+            $stmt_expenses->execute();
+
+            $stmt_payment = $db->prepare($sql_insert_paymemnt);
+            $stmt_payment->bindValue(':email', $this->email, PDO::PARAM_STR);
+
+            return $stmt_payment->execute();
         }
 
         return false;
@@ -204,92 +228,6 @@ class User extends \Core\Model
         $stmt->bindValue(':expires_at', date('Y-m-d H:i:s', $this->expiry_timestamp), PDO::PARAM_STR);
 
         return $stmt->execute();
-    }
-
-    public function addPaymentMethodsToUser()
-    {
-        $id = $this->getAlreadyRegistredUserID();
-
-        $sql = "
-                INSERT INTO payment_methods_assigned_to_users 
-                VALUES (NULL, :id, :keepPaymentMethodsDefault[0]), (NULL, :id, :keepPaymentMethodsDefault[1]),
-                       (NULL, :id, :keepPaymentMethodsDefault[2]), (NULL, :id, :keepPaymentMethodsDefault[3])
-                ";
-
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-
-        for ($i = 0; $i < 4; $i++) {
-            $stmt->bindValue(':user_id', $this->id, PDO::PARAM_INT);
-            $stmt->bindValue(':keepPaymentMethodsDefault[$i]', $this->keepPaymentMethodsDefault[$i], PDO::PARAM_STR);
-        }
-
-        return $stmt->execute();
-    }
-
-    public function addIncomeCategoryDefaultToUser()
-    {
-        $id = $this->getAlreadyRegistredUserID();
-
-        $sql = "
-                INSERT INTO incomes_category_assigned_to_users 
-                VALUES (NULL, :id, :keepIncomeCategoryDefault[0]), (NULL, :id, :keepIncomeCategoryDefault[1]),
-                       (NULL, :id, :keepIncomeCategoryDefault[2]), (NULL, :id, :keepIncomeCategoryDefault[3])
-                ";
-
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-
-        for ($i = 0; $i < 4; $i++) {
-            $stmt->bindValue(':user_id', $this->id, PDO::PARAM_INT);
-            $stmt->bindValue(':keepIncomeCategoryDefault[$i]', $this->keepIncomeCategoryDefault[$i], PDO::PARAM_STR);
-        }
-
-        return $stmt->execute();
-    }
-
-    public function addExpenseCategoryDefaultToUser()
-    {
-        $id = $this->getAlreadyRegistredUserID();
-
-        $sql = ("
-                INSERT INTO expenses_category_assigned_to_users 
-                VALUES (NULL, :id, :keepExpenseCategoryDefault[0]),  (NULL, :id, :keepExpenseCategoryDefault[1]),
-                       (NULL, :id, :keepExpenseCategoryDefault[2]),  (NULL, :id, :keepExpenseCategoryDefault[3]),
-                       (NULL, :id, :keepExpenseCategoryDefault[4]),  (NULL, :id, :keepExpenseCategoryDefault[5]),
-                       (NULL, :id, :keepExpenseCategoryDefault[6]),  (NULL, :id, :keepExpenseCategoryDefault[7]),
-                       (NULL, :id, :keepExpenseCategoryDefault[8]),  (NULL, :id, :keepExpenseCategoryDefault[9]),
-                       (NULL, :id, :keepExpenseCategoryDefault[10]), (NULL, :id, :keepExpenseCategoryDefault[11]),
-                       (NULL, :id, :keepExpenseCategoryDefault[12]), (NULL, :id, :keepExpenseCategoryDefault[13]),
-                       (NULL, :id, :keepExpenseCategoryDefault[14]), (NULL, :id, :keepExpenseCategoryDefault[15]),
-                       (NULL, :id, :keepExpenseCategoryDefault[16])
-                ");
-
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-
-        for ($i = 0; $i < 17; $i++) {
-            $stmt->bindValue(':user_id', $this->id, PDO::PARAM_INT);
-            $stmt->bindValue(':keepIncomeCategoryDefault[$i]', $this->keepIncomeCategoryDefault[$i], PDO::PARAM_STR);
-        }
-
-        return $stmt->execute();
-    }
-
-    private function getAlreadyRegistredUserID()
-    {
-        $sql = "SELECT id FROM users ORDER BY id DESC LIMIT 1";
-
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-
-        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
-
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
-        $stmt->execute();
-
-        return $stmt->fetch();
     }
     /*
     public static function sendPasswordReset($email)
