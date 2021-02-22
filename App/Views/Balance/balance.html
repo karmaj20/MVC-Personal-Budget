@@ -18,44 +18,42 @@
                     </button>
                 </div>
                 <!-- Modal -->
-
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <form method="post">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="myModalLabel">Modal Title</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body mr-auto ml-auto text-center">
-                                    <label class="mt-2 customText">Wybierz okres, w którym chcesz przejrzeć bilans</label>
-                                    <select class="custom-select customInputs" id="inlineFormCustomSelectPref" name="range">
-                                        <option value="currentMonth"    name = "currentMonth" selected> Bieżący miesiąc</option>
-                                        <option value="previousMonth"   name = "previousMonth">         Poprzedni miesiąc</option>
-                                        <option value="currentYear"     name = "currentYear">           Bieżący rok</option>
-                                        <option value="chosenPeriod"    name = "chosenPeriod" >         Inny zakres</option>
-                                    </select>
-                                    <div class="form-group mt-3">
-                                        OD
-                                        <input type="date" value="startPeriod" class="form-control" name="startPeriod">
+                <form method="post" id="balance" class="col-12" action="">
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="myModalLabel">Modal Title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                    <div class="form-group">
-                                        DO
-                                        <input type="date" value="endPeriod" class="form-control" name="endPeriod">
+                                    <div class="modal-body mr-auto ml-auto text-center">
+                                        <label class="mt-2 customText">Wybierz okres, w którym chcesz przejrzeć bilans</label>
+                                        <select class="custom-select customInputs" id="inlineFormCustomSelectPref" name="range">
+                                            <option value="{{ rangeCurrentMonth }}"    name = "currentMonth" selected> Bieżący miesiąc</option>
+                                            <option value="{{ rangePreviousMonth }}"   name = "previousMonth">         Poprzedni miesiąc</option>
+                                            <option value="{{ rangeCurrentYear }}"     name = "currentYear">           Bieżący rok</option>
+                                            <option value="{{ rangeChosenPeriod }}"    name = "chosenPeriod" >         Inny zakres</option>
+                                        </select>
+                                        <div class="form-group mt-3">
+                                            OD
+                                            <input type="date" value="startPeriod" class="form-control" name="startPeriod">
+                                        </div>
+                                        <div class="form-group">
+                                            DO
+                                            <input type="date" value="endPeriod" class="form-control" name="endPeriod">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="ZAMKNIJ" />
-                                    <input name="update" type="submit" class="btn btn-success" value="ZAPISZ" />
+                                    <div class="modal-footer">
+                                        <input type="submit" class="btn btn-danger" data-dismiss="modal" value="ZAMKNIJ" />
+                                        <input name="update" type="submit" class="btn btn-success" value="ZAPISZ" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
 
-                <form method="post" id="balance" class="col-12">
+
                     <div class="mt-4 text-center bg-budgetOpacity p-3">
                         <h4>ANALIZA PRZYCHODÓW</h4>
                         <table class="table mt-4">
@@ -66,11 +64,37 @@
                                 <th>Kwota</th>
                             </tr>
                         </thead>
-                            {% for incomeCategoryAmount in incomeCurrentMonth %}
+                            {% if range.rangeCurrentMonth %}
+                                {% for incomeCategoryAmount in incomeCurrentMonth %}
+                                    <tr><td>{{ loop.index }}</td>
+                                        <td>{{ incomeCategoryAmount.0 }}</td>
+                                        <td>{{ incomeCategoryAmount.1 }}</td></tr>
+                                {% endfor %}
+                            {% elseif range.rangePreviousMonth %}
+                                {% for incomeCategoryAmount in incomePreviousMonth %}
+                                    <tr><td>{{ loop.index }}</td>
+                                        <td>{{ incomeCategoryAmount.0 }}</td>
+                                        <td>{{ incomeCategoryAmount.1 }}</td></tr>
+                                    {% endfor %}
+                            {% elseif range.rangeCurrentYear %}
+                                {% for incomeCategoryAmount in incomeCurrentYear %}
                                 <tr><td>{{ loop.index }}</td>
                                     <td>{{ incomeCategoryAmount.0 }}</td>
                                     <td>{{ incomeCategoryAmount.1 }}</td></tr>
-                            {% endfor %}
+                                {% endfor %}
+                            {% elseif range.rangeChosenPeriod %}
+                                {% for incomeCategoryAmount in incomeChosenPeriod %}
+                                <tr><td>{{ loop.index }}</td>
+                                    <td>{{ incomeCategoryAmount.0 }}</td>
+                                    <td>{{ incomeCategoryAmount.1 }}</td></tr>
+                                {% endfor %}
+                            {% else %}
+                                {% for incomeCategoryAmount in incomeCurrentMonth %}
+                                <tr><td>{{ loop.index }}</td>
+                                    <td>{{ incomeCategoryAmount.0 }}</td>
+                                    <td>{{ incomeCategoryAmount.1 }}</td></tr>
+                                {% endfor %}
+                            {% endif %}
                         </table>
                     </div>
 
@@ -84,11 +108,37 @@
                                     <th>Kwota</th>
                                 </tr>
                             </thead>
+                            {% if range.rangeCurrentMonth %}
                                 {% for expenseCategoryAmount in expenseCurrentMonth %}
                                 <tr><td>{{ loop.index }}</td>
                                     <td>{{ expenseCategoryAmount.0 }}</td>
                                     <td>{{ expenseCategoryAmount.1 }}</td></tr>
                                 {% endfor %}
+                            {% elseif range.rangePreviousMonth %}
+                                {% for expenseCategoryAmount in expensePreviousMonth %}
+                                <tr><td>{{ loop.index }}</td>
+                                    <td>{{ expenseCategoryAmount.0 }}</td>
+                                    <td>{{ expenseCategoryAmount.1 }}</td></tr>
+                                {% endfor %}
+                            {% elseif range.rangeCurrentYear %}
+                                {% for expenseCategoryAmount in expenseCurrentYear %}
+                                <tr><td>{{ loop.index }}</td>
+                                    <td>{{ expenseCategoryAmount.0 }}</td>
+                                    <td>{{ expenseCategoryAmount.1 }}</td></tr>
+                                {% endfor %}
+                            {% elseif range.rangeChosenPeriod %}
+                                {% for expenseCategoryAmount in expenseChosenPeriod %}
+                                <tr><td>{{ loop.index }}</td>
+                                    <td>{{ expenseCategoryAmount.0 }}</td>
+                                    <td>{{ expenseCategoryAmount.1 }}</td></tr>
+                                {% endfor %}
+                            {% else %}
+                                {% for expenseCategoryAmount in expenseCurrentMonth %}
+                                <tr><td>{{ loop.index }}</td>
+                                    <td>{{ expenseCategoryAmount.0 }}</td>
+                                    <td>{{ expenseCategoryAmount.1 }}</td></tr>
+                                {% endfor %}
+                            {% endif %}
                         </table>
                     </div>
 
@@ -111,6 +161,11 @@
                             {% endfor %}
                             {% endfor %}
                         </table>
+                        {% if incomeAmount.0 - expenseAmount.0 %}
+                            <h4 style="color: blue">Gratulacje świetnie zarządzasz finansami</h4>
+                        {% else %}
+                            <h4 style="color: red">Uważaj wpadasz w długi</h4>
+                        {% endif %}
                     </div>
 
 
@@ -127,11 +182,11 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="piechartincome" style="width: 900px; height: 400px;"></div>
                     <div class="piechartexpense" style="width: 900px; height: 400px;"></div>
 
-                </form>
-            </div>
+            </form>
         </div>
         </div>
     </article>

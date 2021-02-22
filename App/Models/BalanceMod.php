@@ -40,25 +40,12 @@ class BalanceMod extends \Core\Model
 
     public static function getIncomeChosenPeriod()
     {
-        if (isset($beginChosenPeriod)) {
-            $beginChosenPeriod = $_POST['startPeriod'];
-            $endChosenPeriod = $_POST['endPeriod'];
-
-            return static::getBalanceIncomeSheet($beginChosenPeriod, $endChosenPeriod, $_SESSION['id']);
-        }
-        return 0;
+        return static::getBalanceIncomeSheet(Date::getBeginChosenPeriod(), Date::getEndChosenPeriod(), $_SESSION['id']);
     }
 
     public static function getExpenseChosenPeriod()
     {
-        if (isset($beginChosenPeriod)) {
-            $beginChosenPeriod = $_POST['startPeriod'];
-            $endChosenPeriod = $_POST['endPeriod'];
-
-            return static::getBalanceExpenseSheet($beginChosenPeriod, $endChosenPeriod, $_SESSION['id']);
-        }
-
-        return 0;
+        return static::getBalanceExpenseSheet(Date::getBeginChosenPeriod(), Date::getEndChosenPeriod(), $_SESSION['id']);
     }
 
     public static function getIncomeSumUpCurrentMonth()
@@ -93,23 +80,11 @@ class BalanceMod extends \Core\Model
 
     public static function getIncomeSumUpChosenPeriod()
     {
-        if (isset($beginChosenPeriod)) {
-            $beginChosenPeriod = $_POST['startPeriod'];
-            $endChosenPeriod = $_POST['endPeriod'];
-            return static::incomeSumUp($beginChosenPeriod, $endChosenPeriod, $_SESSION['id']);
-        }
-        return 0;
+        return static::incomeSumUp(Date::getBeginChosenPeriod(), Date::getEndChosenPeriod(), $_SESSION['id']);
     }
 
     public static function getExpenseSumUpChosenPeriod()
     {
-        if (isset($beginChosenPeriod)) {
-            $beginChosenPeriod = $_POST['startPeriod'];
-            $endChosenPeriod = $_POST['endPeriod'];
-
-            return static::expenseSumUp($beginChosenPeriod, $endChosenPeriod, $_SESSION['id']);
-        }
-
-        return 0;
+        return static::expenseSumUp(Date::getBeginChosenPeriod(), Date::getEndChosenPeriod(), $_SESSION['id']);
     }
 }

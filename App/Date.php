@@ -37,6 +37,34 @@ class Date
         return date('Y-12-31');
     }
 
+    public static function getBeginChosenPeriod()
+    {
+        if (isset($_POST['startPeriod'])) {
+            return $_POST['startPeriod'];
+        } else {
+            return 0;
+        }
+    }
+
+    public static function getEndChosenPeriod()
+    {
+        if (isset($_POST['endPeriod'])) {
+            return $_POST['endPeriod'];
+        } else {
+            return 0;
+        }
+    }
+
+    public static function getRange()
+    {
+        if(isset($_POST['update'])){
+            if(empty($_POST['range'])) {
+                $selected = $_POST['range'];
+                return $selected;
+            }
+        }
+    }
+
     private static function getMonth()
     {
         return substr(static::getBeginCurrentMonth(), 5,2);
