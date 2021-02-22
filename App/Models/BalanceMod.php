@@ -3,132 +3,88 @@
 namespace App\Models;
 
 use PDO;
+use \App\Models\User;
+use \App\Date;
 
 class BalanceMod extends \Core\Model
 {
-    public static function loadIncomeCurrentMonth()
+    public static function getIncomeCurrentMonth()
     {
-        $id = (int)$_SESSION['id'];
-
-        $beginCurrentMonth = date('Y-m-01');
-        $month = substr($beginCurrentMonth, 5,2);
-        $day = substr($beginCurrentMonth, 6,2);
-        $year = substr($beginCurrentMonth, 0,4);
-        $endCurrentMonth = static::checkDateCorectness($month, $day, $year);
-
-        return static::getBalanceIncomeSheet($beginCurrentMonth, $endCurrentMonth, $id);
+        return static::getBalanceIncomeSheet(Date::getBeginCurrentMonth(), Date::getEndCurrentMonth(), $_SESSION['id']);
     }
 
-    public static function loadExpenseCurrentMonth()
+    public static function getExpenseCurrentMonth()
     {
-        $id = (int)$_SESSION['id'];
-
-        $beginCurrentMonth = date('Y-m-01');
-        $month = substr($beginCurrentMonth, 5,2);
-        $day = substr($beginCurrentMonth, 6,2);
-        $year = substr($beginCurrentMonth, 0,4);
-        $endCurrentMonth = static::checkDateCorectness($month, $day, $year);
-
-        return static::getBalanceExpenseSheet($beginCurrentMonth, $endCurrentMonth, $id);
+        return static::getBalanceExpenseSheet(Date::getBeginCurrentMonth(), Date::getEndCurrentMonth(), $_SESSION['id']);
     }
 
-    public static function loadIncomePreviousMonth()
+    public static function getIncomePreviousMonth()
     {
-        $id = (int)$_SESSION['id'];
-
-        $beginPreviousMonth = date('Y-m-d', strtotime('first day of last month'));
-        $endPreviousMonth =  date('Y-m-d', strtotime('last day of last month'));
-
-        return static::getBalanceIncomeSheet($beginPreviousMonth, $endPreviousMonth, $id);
+        return static::getBalanceIncomeSheet(Date::getBeginPreviousMonth(), Date::getEndPreviousMonth(), $_SESSION['id']);
     }
 
-    public static function loadExpensePreviousMonth()
+    public static function getExpensePreviousMonth()
     {
-        $id = (int)$_SESSION['id'];
-
-        $beginPreviousMonth = date('Y-m-d', strtotime('first day of last month'));
-        $endPreviousMonth =  date('Y-m-d', strtotime('last day of last month'));
-
-        return static::getBalanceExpenseSheet($beginPreviousMonth, $endPreviousMonth, $id);
+        return static::getBalanceExpenseSheet(Date::getBeginPreviousMonth(), Date::getEndPreviousMonth(), $_SESSION['id']);
     }
 
-    public static function loadIncomeCurrentYear()
+    public static function getIncomeCurrentYear()
     {
-        $id = (int)$_SESSION['id'];
-
-        $beginCurrentYear = date('Y-01-01');
-        $endCurrentYear = date('Y-12-31');
-
-        return static::getBalanceIncomeSheet($beginCurrentYear, $endCurrentYear, $id);
+        return static::getBalanceIncomeSheet(Date::getBeginCurrentYear(), Date::getEndCurrentYear(), $_SESSION['id']);
     }
 
-    public static function loadExpenseCurrentYear()
+    public static function getExpenseCurrentYear()
     {
-        $id = (int)$_SESSION['id'];
-
-        $beginCurrentYear = date('Y-01-01');
-        $endCurrentYear = date('Y-12-31');
-
-        return static::getBalanceExpenseSheet($beginCurrentYear, $endCurrentYear, $id);
+        return static::getBalanceExpenseSheet(Date::getBeginCurrentYear(), Date::getEndCurrentYear(), $_SESSION['id']);
     }
-    /*
-    public static function loadIncomeChosenPeriod()
+
+    public static function getIncomeChosenPeriod()
     {
-        $id = (int)$_SESSION['id'];
-
-        $beginChosenPeriod = $_POST['startPeriod'];
-        $endChosenPeriod = $_POST['endPeriod'];
-
-        return static::getBalanceIncomeSheet($beginChosenPeriod, $endChosenPeriod, $id);
+        return static::getBalanceIncomeSheet(Date::getBeginChosenPeriod(), Date::getEndChosenPeriod(), $_SESSION['id']);
     }
 
-    public static function loadExpenseChosenPeriod()
+    public static function getExpenseChosenPeriod()
     {
-        $id = (int)$_SESSION['id'];
-
-        $beginChosenPeriod = $_POST['startPeriod'];
-        $endChosenPeriod = $_POST['endPeriod'];
-
-        return static::getBalanceExpenseSheet($beginChosenPeriod, $endChosenPeriod, $id);
-    }
-    */
-    private static function isLeapYear(int $year) : bool {
-
-        if (($year % 4 == 0 && $year % 100 != 0) || ($year % 400 == 0)) {
-            return true;
-        } else {
-            return false;
-        }
+        return static::getBalanceExpenseSheet(Date::getBeginChosenPeriod(), Date::getEndChosenPeriod(), $_SESSION['id']);
     }
 
-    private static function checkDateCorectness(string $month, string $day, string $year) {
-        switch ($month) {
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-            case 12:
-                $day = '31';
-                break;
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                $day = '30';
-                break;
-            case 2:
-                if (static::isLeapYear((int)$year) == true) {
-                    $day = '29';
-                } else {
-                    $day = '28';
-                }
-                break;
-        }
-
-        $date = $year . '-' . $month . '-' . $day;
-        return $date;
+    public static function getIncomeSumUpCurrentMonth()
+    {
+        return static::incomeSumUp(Date::getBeginCurrentMonth(), Date::getEndCurrentMonth(), $_SESSION['id']);
     }
 
+    public static function getExpenseSumUpCurrentMonth()
+    {
+        return static::expenseSumUp(Date::getBeginCurrentMonth(), Date::getEndCurrentMonth(), $_SESSION['id']);
+    }
+
+    public static function getIncomeSumUpPreviousMonth()
+    {
+        return static::incomeSumUp(Date::getBeginPreviousMonth(), Date::getEndPreviousMonth(), $_SESSION['id']);
+    }
+
+    public static function getExpenseSumUpPreviousMonth()
+    {
+        return static::expenseSumUp(Date::getBeginPreviousMonth(), Date::getEndPreviousMonth(), $_SESSION['id']);
+    }
+
+    public static function getIncomeSumUpCurrentYear()
+    {
+        return static::incomeSumUp(Date::getBeginCurrentYear(), Date::getEndCurrentYear(), $_SESSION['id']);
+    }
+
+    public static function getExpenseSumUpCurrentYear()
+    {
+        return static::expenseSumUp(Date::getBeginCurrentYear(), Date::getEndCurrentYear(), $_SESSION['id']);
+    }
+
+    public static function getIncomeSumUpChosenPeriod()
+    {
+        return static::incomeSumUp(Date::getBeginChosenPeriod(), Date::getEndChosenPeriod(), $_SESSION['id']);
+    }
+
+    public static function getExpenseSumUpChosenPeriod()
+    {
+        return static::expenseSumUp(Date::getBeginChosenPeriod(), Date::getEndChosenPeriod(), $_SESSION['id']);
+    }
 }
