@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="156290d6-61f5-4bd3-95e7-20bb52dc9caa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Controllers/Balance.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Controllers/Balance.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Date.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Date.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Models/BalanceMod.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Models/BalanceMod.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Views/Balance/balance.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Balance/balance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Views/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +23,8 @@
       <list>
         <option value="composer.json" />
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -62,7 +61,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Web-Personal-Budget" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -107,7 +106,10 @@
       <workItem from="1613743461995" duration="6301000" />
       <workItem from="1613756780487" duration="3853000" />
       <workItem from="1613772161363" duration="3597000" />
-      <workItem from="1613989784639" duration="309000" />
+      <workItem from="1613989784639" duration="6254000" />
+      <workItem from="1614003600801" duration="2780000" />
+      <workItem from="1614012910037" duration="2362000" />
+      <workItem from="1614026123917" duration="2285000" />
     </task>
     <servers />
   </component>

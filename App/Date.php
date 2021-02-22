@@ -58,9 +58,8 @@ class Date
     public static function getRange()
     {
         if(isset($_POST['update'])){
-            if(empty($_POST['range'])) {
-                $selected = $_POST['range'];
-                return $selected;
+            if(!empty($_POST['range'])) {
+                return $_POST['range'];
             }
         }
     }

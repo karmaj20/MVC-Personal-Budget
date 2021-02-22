@@ -4,6 +4,74 @@
 
 {% block body %}
 
+{% block footer %}
+
+<!--<script>-->
+<!--    let data = [-->
+<!--        -->
+<!--    ];-->
+
+<!--    const randomHexColorCode = () => {-->
+<!--        return "#" + Math.random().toString(16).slice(2, 8)-->
+<!--    };-->
+
+<!--    document.addEventListener('DOMContentLoaded', ()=>{-->
+<!--        let canvas = document.getElementById('c');-->
+<!--        let ctx = canvas.getContext('2d');-->
+<!--        canvas.width = 800;-->
+<!--        canvas.height = 600;-->
+<!--        let total = data.reduce( (ttl, house) => {-->
+<!--            return ttl + house.troops-->
+<!--        }, 0);-->
+<!--        let startAngle = 0;-->
+<!--        let radius = 100;-->
+<!--        let cx = canvas.width/2;-->
+<!--        let cy = canvas.height/2;-->
+
+<!--        data.forEach( house => {-->
+<!--            //set the styles before beginPath-->
+<!--            ctx.fillStyle = randomHexColorCode();-->
+<!--            ctx.lineWidth = 1;-->
+<!--            ctx.strokeStyle = '#333';-->
+<!--            ctx.beginPath();-->
+<!--            //console.log(total, house.troops, house.troops/total);-->
+<!--            // draw the pie wedges-->
+<!--            let endAngle = ((house.troops / total) * Math.PI * 2) + startAngle;-->
+<!--            ctx.moveTo(cx, cy);-->
+<!--            ctx.arc(cx, cy, radius, startAngle, endAngle, false);-->
+<!--            ctx.lineTo(cx, cy);-->
+<!--            ctx.fill();-->
+<!--            ctx.stroke();-->
+<!--            ctx.closePath();-->
+
+<!--            // add the labels-->
+<!--            ctx.beginPath();-->
+<!--            ctx.font = '20px Helvetica, Calibri';-->
+<!--            ctx.textAlign = 'center';-->
+<!--            ctx.fillStyle = 'rebeccapurple';-->
+<!--            // midpoint between the two angles-->
+<!--            // 1.5 * radius is the length of the Hypotenuse-->
+<!--            let theta = (startAngle + endAngle) / 2;-->
+<!--            let deltaY = Math.sin(theta) * 1.5 * radius;-->
+<!--            let deltaX = Math.cos(theta) * 1.5 * radius;-->
+<!--            /***-->
+<!--             SOH  - sin(angle) = opposite / hypotenuse-->
+<!--             = opposite / 1px-->
+<!--             CAH  - cos(angle) = adjacent / hypotenuse-->
+<!--             = adjacent / 1px-->
+<!--             TOA-->
+
+<!--             ***/-->
+<!--            ctx.fillText(house.name, deltaX+cx, deltaY+cy);-->
+<!--            ctx.closePath();-->
+
+<!--            startAngle = endAngle;-->
+<!--        })-->
+<!--    });-->
+<!--</script>-->
+
+{% endblock %}
+
 <main>
     <article>
 
@@ -30,11 +98,11 @@
                                     </div>
                                     <div class="modal-body mr-auto ml-auto text-center">
                                         <label class="mt-2 customText">Wybierz okres, w którym chcesz przejrzeć bilans</label>
-                                        <select class="custom-select customInputs" id="inlineFormCustomSelectPref" name="range">
-                                            <option value="{{ rangeCurrentMonth }}"    name = "currentMonth" selected> Bieżący miesiąc</option>
-                                            <option value="{{ rangePreviousMonth }}"   name = "previousMonth">         Poprzedni miesiąc</option>
-                                            <option value="{{ rangeCurrentYear }}"     name = "currentYear">           Bieżący rok</option>
-                                            <option value="{{ rangeChosenPeriod }}"    name = "chosenPeriod" >         Inny zakres</option>
+                                        <select class="custom-select customInputs" id="name" name="range">
+                                            <option value="rangeCurrentMonth"  selected>    Bieżący miesiąc</option>
+                                            <option value="rangePreviousMonth"  >          Poprzedni miesiąc</option>
+                                            <option value="rangeCurrentYear"    >          Bieżący rok</option>
+                                            <option value="rangeChosenPeriod"   >          Inny zakres</option>
                                         </select>
                                         <div class="form-group mt-3">
                                             OD
@@ -64,25 +132,25 @@
                                 <th>Kwota</th>
                             </tr>
                         </thead>
-                            {% if range.rangeCurrentMonth %}
+                            {% if range == "rangeCurrentMonth" %}
                                 {% for incomeCategoryAmount in incomeCurrentMonth %}
                                     <tr><td>{{ loop.index }}</td>
                                         <td>{{ incomeCategoryAmount.0 }}</td>
                                         <td>{{ incomeCategoryAmount.1 }}</td></tr>
                                 {% endfor %}
-                            {% elseif range.rangePreviousMonth %}
+                            {% elseif range == "rangePreviousMonth" %}
                                 {% for incomeCategoryAmount in incomePreviousMonth %}
                                     <tr><td>{{ loop.index }}</td>
                                         <td>{{ incomeCategoryAmount.0 }}</td>
                                         <td>{{ incomeCategoryAmount.1 }}</td></tr>
                                     {% endfor %}
-                            {% elseif range.rangeCurrentYear %}
+                            {% elseif range == "rangeCurrentYear" %}
                                 {% for incomeCategoryAmount in incomeCurrentYear %}
                                 <tr><td>{{ loop.index }}</td>
                                     <td>{{ incomeCategoryAmount.0 }}</td>
                                     <td>{{ incomeCategoryAmount.1 }}</td></tr>
                                 {% endfor %}
-                            {% elseif range.rangeChosenPeriod %}
+                            {% elseif range == "rangeChosenPeriod" %}
                                 {% for incomeCategoryAmount in incomeChosenPeriod %}
                                 <tr><td>{{ loop.index }}</td>
                                     <td>{{ incomeCategoryAmount.0 }}</td>
@@ -108,25 +176,25 @@
                                     <th>Kwota</th>
                                 </tr>
                             </thead>
-                            {% if range.rangeCurrentMonth %}
+                            {% if range == "rangeCurrentMonth" %}
                                 {% for expenseCategoryAmount in expenseCurrentMonth %}
                                 <tr><td>{{ loop.index }}</td>
                                     <td>{{ expenseCategoryAmount.0 }}</td>
                                     <td>{{ expenseCategoryAmount.1 }}</td></tr>
                                 {% endfor %}
-                            {% elseif range.rangePreviousMonth %}
+                            {% elseif range == "rangePreviousMonth" %}
                                 {% for expenseCategoryAmount in expensePreviousMonth %}
                                 <tr><td>{{ loop.index }}</td>
                                     <td>{{ expenseCategoryAmount.0 }}</td>
                                     <td>{{ expenseCategoryAmount.1 }}</td></tr>
                                 {% endfor %}
-                            {% elseif range.rangeCurrentYear %}
+                            {% elseif range == "rangeCurrentYear" %}
                                 {% for expenseCategoryAmount in expenseCurrentYear %}
                                 <tr><td>{{ loop.index }}</td>
                                     <td>{{ expenseCategoryAmount.0 }}</td>
                                     <td>{{ expenseCategoryAmount.1 }}</td></tr>
                                 {% endfor %}
-                            {% elseif range.rangeChosenPeriod %}
+                            {% elseif range == "rangeChosenPeriod" %}
                                 {% for expenseCategoryAmount in expenseChosenPeriod %}
                                 <tr><td>{{ loop.index }}</td>
                                     <td>{{ expenseCategoryAmount.0 }}</td>
@@ -152,39 +220,111 @@
                                 <th>Kwota</th>
                             </tr>
                             </thead>
-                            {% for incomeAmount in incomeSumUpCurrentMonth %}
-                            <tr>
-                                <td>{{ incomeAmount.0 }}</td>
-                            {% for expenseAmount in expenseSumUpCurrentMonth %}
-                                <td>{{ expenseAmount.0 }}</td>
-                                <td>{{ incomeAmount.0 - expenseAmount.0 }}</td></tr>
-                            {% endfor %}
-                            {% endfor %}
+
+                            {% if range == "rangeCurrentMonth" %}
+
+                                {% for incomeAmount in incomeSumUpCurrentMonth %}
+                                <tr>
+                                    <td>{{ incomeAmount.0 }}</td>
+                                    {% for expenseAmount in expenseSumUpCurrentMonth %}
+                                    <td>{{ expenseAmount.0 }}</td>
+                                    <td>{{ incomeAmount.0 - expenseAmount.0 }}</td></tr>
+
+                                    {% if  incomeAmount.0 > expenseAmount.0 %}
+                                    <h4 style="color: blue">Gratulacje świetnie zarządzasz finansami</h4>
+                                    {% else %}
+                                    <h4 style="color: red">Uważaj wpadasz w długi</h4>
+                                    {% endif %}
+                                {% endfor %}
+                                {% endfor %}
+
+                            {% elseif range == "rangePreviousMonth" %}
+
+                                {% for incomeAmount in incomeSumUpPreviousMonth %}
+                                <tr>
+                                    <td>{{ incomeAmount.0 }}</td>
+                                    {% for expenseAmount in expenseSumUpPreviousMonth %}
+                                    <td>{{ expenseAmount.0 }}</td>
+                                    <td>{{ incomeAmount.0 - expenseAmount.0 }}</td></tr>
+
+                                    {% if  (incomeAmount.0) > (expenseAmount.0) %}
+                                    <h4 style="color: blue">Gratulacje świetnie zarządzasz finansami</h4>
+                                    {% else %}
+                                    <h4 style="color: red">Uważaj wpadasz w długi</h4>
+                                    {% endif %}
+
+                                {% endfor %}
+                                {% endfor %}
+
+                            {% elseif range == "rangeCurrentYear" %}
+
+                                {% for incomeAmount in incomeSumUpCurrentYear %}
+                                <tr>
+                                    <td>{{ incomeAmount.0 }}</td>
+                                    {% for expenseAmount in expenseSumUpCurrentYear %}
+                                    <td>{{ expenseAmount.0 }}</td>
+                                    <td>{{ incomeAmount.0 - expenseAmount.0 }}</td></tr>
+
+                                    {% if  (incomeAmount) > (expenseAmount) %}
+                                    <h4 style="color: blue">Gratulacje świetnie zarządzasz finansami</h4>
+                                    {% else %}
+                                    <h4 style="color: red">Uważaj wpadasz w długi</h4>
+                                    {% endif %}
+
+                                {% endfor %}
+                                {% endfor %}
+
+                            {% elseif range == "rangeChosenPeriod" %}
+
+                                {% for incomeAmount in incomeSumUpChosenPeriod %}
+                                <tr>
+                                    <td>{{ incomeAmount.0 }}</td>
+                                    {% for expenseAmount in expenseSumUpChosenPeriod %}
+                                    <td>{{ expenseAmount.0 }}</td>
+                                    <td>{{ incomeAmount.0 - expenseAmount.0 }}</td></tr>
+
+                                    {% if  (incomeAmount.0) > (expenseAmount.0) %}
+                                    <h4 style="color: blue">Gratulacje świetnie zarządzasz finansami</h4>
+                                    {% else %}
+                                    <h4 style="color: red">Uważaj wpadasz w długi</h4>
+                                    {% endif %}
+
+                                {% endfor %}
+                                {% endfor %}
+
+                            {% else %}
+
+                                {% for incomeAmount in incomeSumUpCurrentMonth %}
+                                <tr>
+                                    <td>{{ incomeAmount.0 }}</td>
+                                    {% for expenseAmount in expenseSumUpCurrentMonth %}
+                                    <td>{{ expenseAmount.0 }}</td>
+                                    <td>{{ incomeAmount.0 - expenseAmount.0 }}</td></tr>
+
+                                    {% if  (incomeAmount.0) > (expenseAmount.0) %}
+                                    <h4 style="color: blue">Gratulacje świetnie zarządzasz finansami</h4>
+                                    {% else %}
+                                    <h4 style="color: #ff0000">Uważaj wpadasz w długi</h4>
+                                    {% endif %}
+
+                                {% endfor %}
+                                {% endfor %}
+
+                            {% endif %}
+
                         </table>
-                        {% if incomeAmount.0 - expenseAmount.0 %}
-                            <h4 style="color: blue">Gratulacje świetnie zarządzasz finansami</h4>
-                        {% else %}
-                            <h4 style="color: red">Uważaj wpadasz w długi</h4>
-                        {% endif %}
+
                     </div>
 
 
                     <div class="row mt-4 bg-budgetOpacity mr-auto ml-auto">
-                        <div class="col-lg-12 m-auto ">
-                            <div class="card mt-5">
-                                <div class="card-header">
-                                    <div class="text-center"><h3>GRAFICZNA ANALIZA WYDATKÓW ORAZ PRZYCHODÓW</h3></div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="piechartincome"></div>
-                                    <div class="piechartexpense"></div>
+                        <div class="col-lg-6 m-auto ">
+                            <div class="text-center"><h3>GRAFICZNA ANALIZA WYDATKÓW ORAZ PRZYCHODÓW</h3></div>
+                                    <canvas id="c"></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="piechartincome" style="width: 900px; height: 400px;"></div>
-                    <div class="piechartexpense" style="width: 900px; height: 400px;"></div>
 
             </form>
         </div>
