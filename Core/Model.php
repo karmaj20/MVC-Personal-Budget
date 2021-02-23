@@ -106,4 +106,48 @@ abstract class Model
 
         return $stmt->fetchAll();
     }
+
+    protected static function detailedIncomeBalance($start, $end, $id)
+    {
+        $sql = "
+                SELECT incdef.name, inc.ammount, inc.date_of_income, inc.income_comment 
+                FROM incomes AS inc 
+                INNER JOIN income_category_default AS incdef 
+                ON inc.income_category_assigned_to_user_id = incdef.id 
+                INNER JOIN users 
+                ON inc.user_id = users.id AND inc.user_id = '$id'
+                WHERE date_of_income BETWEEN '$start' AND '$end'
+				ORDER BY date_of_income ASC
+			    ";
+
+        $db = static::getDB();
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+//        dump($stmt->fetchAll());
+        return $stmt->fetchAll();
+    }
+
+    protected static function detailedExpenseBalance($start, $end, $id)
+    {
+        $sql = "
+                SELECT exdef.name, ex.ammount, ex.date_of_expense, ex.expense_comment 
+                FROM expenses AS ex 
+                INNER JOIN expenses_category_default AS exdef 
+                ON ex.expense_category_assigned_to_user_id = exdef.id 
+                INNER JOIN users 
+                ON ex.user_id = users.id AND ex.user_id = '$id'
+                WHERE date_of_expense BETWEEN '$start' AND '$end'
+				ORDER BY date_of_expense ASC
+			    ";
+
+        $db = static::getDB();
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+//        dump($stmt->fetchAll());
+        return $stmt->fetchAll();
+    }
 }

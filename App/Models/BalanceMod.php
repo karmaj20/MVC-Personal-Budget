@@ -87,4 +87,44 @@ class BalanceMod extends \Core\Model
     {
         return static::expenseSumUp(Date::getBeginChosenPeriod(), Date::getEndChosenPeriod(), $_SESSION['id']);
     }
+
+    public static function getDetailedIncomeCurrentMonth()
+    {
+        return static::detailedIncomeBalance(Date::getBeginCurrentMonth(), Date::getEndCurrentMonth(), $_SESSION['id']);
+    }
+
+    public static function getDetailedExpenseCurrentMonth()
+    {
+        return static::detailedExpenseBalance(Date::getBeginCurrentMonth(), Date::getEndCurrentMonth(), $_SESSION['id']);
+    }
+
+    public static function getDetailedIncomePreviousMonth()
+    {
+        return static::detailedIncomeBalance(Date::getBeginPreviousMonth(), Date::getEndPreviousMonth(), $_SESSION['id']);
+    }
+
+    public static function getDetailedExpensePreviousMonth()
+    {
+        return static::detailedExpenseBalance(Date::getBeginPreviousMonth(), Date::getEndPreviousMonth(), $_SESSION['id']);
+    }
+
+    public static function getDetailedIncomeCurrentYear()
+    {
+        return static::detailedIncomeBalance(Date::getBeginCurrentYear(), Date::getEndCurrentYear(), $_SESSION['id']);
+    }
+
+    public static function getDetailedExpenseCurrentYear()
+    {
+        return static::detailedExpenseBalance(Date::getBeginCurrentYear(), Date::getEndCurrentYear(), $_SESSION['id']);
+    }
+
+    public static function getDetailedIncomeChosenPeriod()
+    {
+        return static::detailedIncomeBalance(Date::getBeginChosenPeriod(), Date::getEndChosenPeriod(), $_SESSION['id']);
+    }
+
+    public static function getDetailedExpenseChosenPeriod()
+    {
+        return static::detailedExpenseBalance(Date::getBeginChosenPeriod(), Date::getEndChosenPeriod(), $_SESSION['id']);
+    }
 }

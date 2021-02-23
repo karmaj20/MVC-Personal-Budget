@@ -118,10 +118,8 @@ h5
 }
 
 
-@media(max-width: 575px)
-{
-    .information
-    {
+@media(max-width: 575px) {
+    .information {
         margin: 20px;
     }
 

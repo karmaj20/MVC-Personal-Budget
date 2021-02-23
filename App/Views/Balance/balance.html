@@ -6,69 +6,80 @@
 
 {% block footer %}
 
-<!--<script>-->
-<!--    let data = [-->
-<!--        -->
-<!--    ];-->
+<script>
 
-<!--    const randomHexColorCode = () => {-->
-<!--        return "#" + Math.random().toString(16).slice(2, 8)-->
-<!--    };-->
+    let expensesJson = '{{ expenses|json_encode|raw }}'
 
-<!--    document.addEventListener('DOMContentLoaded', ()=>{-->
-<!--        let canvas = document.getElementById('c');-->
-<!--        let ctx = canvas.getContext('2d');-->
-<!--        canvas.width = 800;-->
-<!--        canvas.height = 600;-->
-<!--        let total = data.reduce( (ttl, house) => {-->
-<!--            return ttl + house.troops-->
-<!--        }, 0);-->
-<!--        let startAngle = 0;-->
-<!--        let radius = 100;-->
-<!--        let cx = canvas.width/2;-->
-<!--        let cy = canvas.height/2;-->
+    let expenses  = JSON.parse(expensesJson);
 
-<!--        data.forEach( house => {-->
-<!--            //set the styles before beginPath-->
-<!--            ctx.fillStyle = randomHexColorCode();-->
-<!--            ctx.lineWidth = 1;-->
-<!--            ctx.strokeStyle = '#333';-->
-<!--            ctx.beginPath();-->
-<!--            //console.log(total, house.troops, house.troops/total);-->
-<!--            // draw the pie wedges-->
-<!--            let endAngle = ((house.troops / total) * Math.PI * 2) + startAngle;-->
-<!--            ctx.moveTo(cx, cy);-->
-<!--            ctx.arc(cx, cy, radius, startAngle, endAngle, false);-->
-<!--            ctx.lineTo(cx, cy);-->
-<!--            ctx.fill();-->
-<!--            ctx.stroke();-->
-<!--            ctx.closePath();-->
+    const expensesObj = [];
+    for(let i=0; i < expenses.length; i++ )
+    {
+        const singleExpense ={};
 
-<!--            // add the labels-->
-<!--            ctx.beginPath();-->
-<!--            ctx.font = '20px Helvetica, Calibri';-->
-<!--            ctx.textAlign = 'center';-->
-<!--            ctx.fillStyle = 'rebeccapurple';-->
-<!--            // midpoint between the two angles-->
-<!--            // 1.5 * radius is the length of the Hypotenuse-->
-<!--            let theta = (startAngle + endAngle) / 2;-->
-<!--            let deltaY = Math.sin(theta) * 1.5 * radius;-->
-<!--            let deltaX = Math.cos(theta) * 1.5 * radius;-->
-<!--            /***-->
-<!--             SOH  - sin(angle) = opposite / hypotenuse-->
-<!--             = opposite / 1px-->
-<!--             CAH  - cos(angle) = adjacent / hypotenuse-->
-<!--             = adjacent / 1px-->
-<!--             TOA-->
+        singleExpense.category = (expenses[i][0]);
+        singleExpense.value = (expenses[i][1]);
 
-<!--             ***/-->
-<!--            ctx.fillText(house.name, deltaX+cx, deltaY+cy);-->
-<!--            ctx.closePath();-->
+        expensesObj.push(singleExpense);
+    }
 
-<!--            startAngle = endAngle;-->
-<!--        })-->
-<!--    });-->
-<!--</script>-->
+    const labels = [];
+    for(let i=0; i < expensesObj.length; i++ )
+    {
+        labels.push(expensesObj[i]['category']);
+
+    }
+
+    const values = [];
+    for(let i=0; i < expensesObj.length; i++ )
+    {
+        values.push(expensesObj[i]['value']);
+
+    }
+
+    let ctx = document.getElementById("myChart").getContext("2d");;
+
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Wydatki',
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(94, 234, 36, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(156, 208, 114, 0.7)',
+                    'rgba(36, 219, 250, 0.7)',
+                    'rgba(10, 10, 250, 0.7)',
+                    'rgba(80, 10, 160, 0.7)',
+                    'rgba(75, 140, 192, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(94, 234, 36, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(156, 208, 114, 1)',
+                    'rgba(36, 219, 250, 1)',
+                    'rgba(10, 10, 250, 1)',
+                    'rgba(80, 10, 160, 1)',
+                    'rgba(75, 140, 192, 1)'
+                ],
+                data: values
+            }],
+            options: {}
+        }});
+
+
+
+
+</script>
 
 {% endblock %}
 
@@ -134,33 +145,33 @@
                         </thead>
                             {% if range == "rangeCurrentMonth" %}
                                 {% for incomeCategoryAmount in incomeCurrentMonth %}
-                                    <tr><td>{{ loop.index }}</td>
-                                        <td>{{ incomeCategoryAmount.0 }}</td>
-                                        <td>{{ incomeCategoryAmount.1 }}</td></tr>
+                                    <tr><th>{{ loop.index }}</th>
+                                        <th>{{ incomeCategoryAmount.0 }}</th>
+                                        <th>{{ incomeCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% elseif range == "rangePreviousMonth" %}
                                 {% for incomeCategoryAmount in incomePreviousMonth %}
-                                    <tr><td>{{ loop.index }}</td>
-                                        <td>{{ incomeCategoryAmount.0 }}</td>
-                                        <td>{{ incomeCategoryAmount.1 }}</td></tr>
+                                    <tr><th>{{ loop.index }}</th>
+                                        <th>{{ incomeCategoryAmount.0 }}</th>
+                                        <th>{{ incomeCategoryAmount.1 }}</th></tr>
                                     {% endfor %}
                             {% elseif range == "rangeCurrentYear" %}
                                 {% for incomeCategoryAmount in incomeCurrentYear %}
-                                <tr><td>{{ loop.index }}</td>
-                                    <td>{{ incomeCategoryAmount.0 }}</td>
-                                    <td>{{ incomeCategoryAmount.1 }}</td></tr>
+                                <tr><th>{{ loop.index }}</th>
+                                    <th>{{ incomeCategoryAmount.0 }}</th>
+                                    <th>{{ incomeCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% elseif range == "rangeChosenPeriod" %}
                                 {% for incomeCategoryAmount in incomeChosenPeriod %}
-                                <tr><td>{{ loop.index }}</td>
-                                    <td>{{ incomeCategoryAmount.0 }}</td>
-                                    <td>{{ incomeCategoryAmount.1 }}</td></tr>
+                                <tr><th>{{ loop.index }}</th>
+                                    <th>{{ incomeCategoryAmount.0 }}</th>
+                                    <th>{{ incomeCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% else %}
                                 {% for incomeCategoryAmount in incomeCurrentMonth %}
-                                <tr><td>{{ loop.index }}</td>
-                                    <td>{{ incomeCategoryAmount.0 }}</td>
-                                    <td>{{ incomeCategoryAmount.1 }}</td></tr>
+                                <tr><th>{{ loop.index }}</th>
+                                    <th>{{ incomeCategoryAmount.0 }}</th>
+                                    <th>{{ incomeCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% endif %}
                         </table>
@@ -178,33 +189,33 @@
                             </thead>
                             {% if range == "rangeCurrentMonth" %}
                                 {% for expenseCategoryAmount in expenseCurrentMonth %}
-                                <tr><td>{{ loop.index }}</td>
-                                    <td>{{ expenseCategoryAmount.0 }}</td>
-                                    <td>{{ expenseCategoryAmount.1 }}</td></tr>
+                                <tr><th>{{ loop.index }}</th>
+                                    <th>{{ expenseCategoryAmount.0 }}</th>
+                                    <th>{{ expenseCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% elseif range == "rangePreviousMonth" %}
                                 {% for expenseCategoryAmount in expensePreviousMonth %}
-                                <tr><td>{{ loop.index }}</td>
-                                    <td>{{ expenseCategoryAmount.0 }}</td>
-                                    <td>{{ expenseCategoryAmount.1 }}</td></tr>
+                                <tr><th>{{ loop.index }}</th>
+                                    <th>{{ expenseCategoryAmount.0 }}</th>
+                                    <th>{{ expenseCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% elseif range == "rangeCurrentYear" %}
                                 {% for expenseCategoryAmount in expenseCurrentYear %}
-                                <tr><td>{{ loop.index }}</td>
-                                    <td>{{ expenseCategoryAmount.0 }}</td>
-                                    <td>{{ expenseCategoryAmount.1 }}</td></tr>
+                                <tr><th>{{ loop.index }}</th>
+                                    <th>{{ expenseCategoryAmount.0 }}</th>
+                                    <th>{{ expenseCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% elseif range == "rangeChosenPeriod" %}
                                 {% for expenseCategoryAmount in expenseChosenPeriod %}
-                                <tr><td>{{ loop.index }}</td>
-                                    <td>{{ expenseCategoryAmount.0 }}</td>
-                                    <td>{{ expenseCategoryAmount.1 }}</td></tr>
+                                <tr><th>{{ loop.index }}</th>
+                                    <th>{{ expenseCategoryAmount.0 }}</th>
+                                    <th>{{ expenseCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% else %}
                                 {% for expenseCategoryAmount in expenseCurrentMonth %}
-                                <tr><td>{{ loop.index }}</td>
-                                    <td>{{ expenseCategoryAmount.0 }}</td>
-                                    <td>{{ expenseCategoryAmount.1 }}</td></tr>
+                                <tr><th>{{ loop.index }}</th>
+                                    <th>{{ expenseCategoryAmount.0 }}</th>
+                                    <th>{{ expenseCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% endif %}
                         </table>
@@ -225,10 +236,10 @@
 
                                 {% for incomeAmount in incomeSumUpCurrentMonth %}
                                 <tr>
-                                    <td>{{ incomeAmount.0 }}</td>
+                                    <th>{{ incomeAmount.0 }}</th>
                                     {% for expenseAmount in expenseSumUpCurrentMonth %}
-                                    <td>{{ expenseAmount.0 }}</td>
-                                    <td>{{ incomeAmount.0 - expenseAmount.0 }}</td></tr>
+                                    <th>{{ expenseAmount.0 }}</th>
+                                    <th>{{ incomeAmount.0 - expenseAmount.0 }}</th></tr>
 
                                     {% if  incomeAmount.0 > expenseAmount.0 %}
                                     <h4 style="color: blue">Gratulacje świetnie zarządzasz finansami</h4>
@@ -242,10 +253,10 @@
 
                                 {% for incomeAmount in incomeSumUpPreviousMonth %}
                                 <tr>
-                                    <td>{{ incomeAmount.0 }}</td>
+                                    <th>{{ incomeAmount.0 }}</th>
                                     {% for expenseAmount in expenseSumUpPreviousMonth %}
-                                    <td>{{ expenseAmount.0 }}</td>
-                                    <td>{{ incomeAmount.0 - expenseAmount.0 }}</td></tr>
+                                    <th>{{ expenseAmount.0 }}</th>
+                                    <th>{{ incomeAmount.0 - expenseAmount.0 }}</th></tr>
 
                                     {% if  (incomeAmount.0) > (expenseAmount.0) %}
                                     <h4 style="color: blue">Gratulacje świetnie zarządzasz finansami</h4>
@@ -260,10 +271,10 @@
 
                                 {% for incomeAmount in incomeSumUpCurrentYear %}
                                 <tr>
-                                    <td>{{ incomeAmount.0 }}</td>
+                                    <th>{{ incomeAmount.0 }}</th>
                                     {% for expenseAmount in expenseSumUpCurrentYear %}
-                                    <td>{{ expenseAmount.0 }}</td>
-                                    <td>{{ incomeAmount.0 - expenseAmount.0 }}</td></tr>
+                                    <th>{{ expenseAmount.0 }}</th>
+                                    <th>{{ incomeAmount.0 - expenseAmount.0 }}</th></tr>
 
                                     {% if  (incomeAmount) > (expenseAmount) %}
                                     <h4 style="color: blue">Gratulacje świetnie zarządzasz finansami</h4>
@@ -278,10 +289,10 @@
 
                                 {% for incomeAmount in incomeSumUpChosenPeriod %}
                                 <tr>
-                                    <td>{{ incomeAmount.0 }}</td>
+                                    <th>{{ incomeAmount.0 }}</th>
                                     {% for expenseAmount in expenseSumUpChosenPeriod %}
-                                    <td>{{ expenseAmount.0 }}</td>
-                                    <td>{{ incomeAmount.0 - expenseAmount.0 }}</td></tr>
+                                    <th>{{ expenseAmount.0 }}</th>
+                                    <th>{{ incomeAmount.0 - expenseAmount.0 }}</th></tr>
 
                                     {% if  (incomeAmount.0) > (expenseAmount.0) %}
                                     <h4 style="color: blue">Gratulacje świetnie zarządzasz finansami</h4>
@@ -296,10 +307,10 @@
 
                                 {% for incomeAmount in incomeSumUpCurrentMonth %}
                                 <tr>
-                                    <td>{{ incomeAmount.0 }}</td>
+                                    <th>{{ incomeAmount.0 }}</th>
                                     {% for expenseAmount in expenseSumUpCurrentMonth %}
-                                    <td>{{ expenseAmount.0 }}</td>
-                                    <td>{{ incomeAmount.0 - expenseAmount.0 }}</td></tr>
+                                    <th>{{ expenseAmount.0 }}</th>
+                                    <th>{{ incomeAmount.0 - expenseAmount.0 }}</th></tr>
 
                                     {% if  (incomeAmount.0) > (expenseAmount.0) %}
                                     <h4 style="color: blue">Gratulacje świetnie zarządzasz finansami</h4>
@@ -318,9 +329,11 @@
 
 
                     <div class="row mt-4 bg-budgetOpacity mr-auto ml-auto">
-                        <div class="col-lg-6 m-auto ">
-                            <div class="text-center"><h3>GRAFICZNA ANALIZA WYDATKÓW ORAZ PRZYCHODÓW</h3></div>
-                                    <canvas id="c"></canvas>
+                        <div class="col-lg-6 m-auto">
+                            <div class="text-center mt-3"><h3>GRAFICZNA ANALIZA WYDATKÓW</h3></div>
+                            <div class="card-body">
+                                <div id="myPieChart"></div>
+                            </div>
                                 </div>
                             </div>
                         </div>
