@@ -7,7 +7,7 @@ use App\Date;
 use Core\View;
 
 
-class Balance extends \Core\Controller
+class Balance extends Authenticated
 {
     public function newAction()
     {

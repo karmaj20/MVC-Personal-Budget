@@ -3,13 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="156290d6-61f5-4bd3-95e7-20bb52dc9caa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Controllers/Balance.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Controllers/Balance.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Models/BalanceMod.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Models/BalanceMod.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Controllers/Expense.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Controllers/Expense.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Controllers/Income.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Controllers/Income.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Controllers/detailedBalance.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Controllers/DetailedBalance.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Date.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Date.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Models/ExpenseMod.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Models/ExpenseMod.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Models/IncomeMod.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Models/IncomeMod.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Views/Balance/balance.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Balance/balance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Views/Balance/detailed.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Balance/detailed.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Views/Expense/expense.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Expense/expense.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Views/Income/income.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Income/income.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Views/Login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Login/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Views/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/webDesign.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/webDesign.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/webDesign.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +124,11 @@
       <workItem from="1614012910037" duration="2362000" />
       <workItem from="1614026123917" duration="4996000" />
       <workItem from="1614033473540" duration="1331000" />
-      <workItem from="1614113532241" duration="1430000" />
+      <workItem from="1614113532241" duration="5753000" />
+      <workItem from="1614122065253" duration="2552000" />
+      <workItem from="1614161925057" duration="5566000" />
+      <workItem from="1614171581318" duration="827000" />
+      <workItem from="1614172533681" duration="1944000" />
     </task>
     <servers />
   </component>

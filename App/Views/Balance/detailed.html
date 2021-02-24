@@ -12,10 +12,23 @@
             <div class="row mt-5 mr-auto ml-auto">
 
                 <div class="col-12 text-center bg-budgetOpacity p-3">
-                    <h4>PRZEGLĄDAJ BILANS</h4>
+                    <h4>SZCZEGÓŁOWA ANALIZA</h4>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         Ustaw zakres analizy bilansu domowego
                     </button>
+                    <div class="mt-3">
+                        {% if range == "rangeCurrentMonth" %}
+                        <h5 style="color: white">Przeglądasz szczegółowy bilans z aktualnego miesiąca</h5>
+                        {% elseif range == "rangePreviousMonth" %}
+                        <h5 style="color: white">Przeglądasz szczegółowy bilans z poprzedniego miesiąca</h5>
+                        {% elseif range == "rangeCurrentYear" %}
+                        <h5 style="color: white">Przeglądasz szczegółowy bilans z aktualnego roku</h5>
+                        {% elseif range == "rangeChosenPeriod" %}
+                        <h5 style="color: white">Przeglądasz szczegółowy bilans z wybranego okresu</h5>
+                        {% else %}
+                        <h5 style="color: white">Przeglądasz szczegółowy bilans z aktualnego miesiąca</h5>
+                        {% endif %}
+                    </div>
                 </div>
                 <!-- Modal -->
                 <form method="post" id="balance" class="col-12" action="">

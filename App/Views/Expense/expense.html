@@ -20,18 +20,17 @@
                     <form method="post" id="buttons" action="/expense/create" class="form-block income mr-auto ml-auto mt-4">
                         <div class="form-group mb-3">
                             <h4>KWOTA</h4>
-                            <input type="value" class="form-control" placeholder="Wpisz kwotę" name="ammountExpense">
+                            <input type="value" class="form-control" placeholder="Wpisz kwotę" name="amountExpense" required autofocus>
                         </div>
 
                         <div class="form-group mb-3">
                             <h4>DATA</h4>
-                            <input type="date" class="form-control" name="dateExpense" >
+                            <input type="date" class="form-control" name="dateExpense" value="{{ date }}">
                         </div>
 
                         <h4>FORMA PŁATNOŚCI</h4>
                         <select class="custom-select my-1 mr-sm-2 mt-3 mb-3" name="paymentMethod">
-                            <option selected>Wybierz...</option>
-                            <option value="1">Gotówka</option>
+                            <option value="1" selected>Gotówka</option>
                             <option value="2">Karta</option>
                             <option value="3">Przelew</option>
                             <option value="4">Inna forma płatności</option>
@@ -39,8 +38,7 @@
 
                         <label><h4>KATEGORIA</h4></label>
                         <select class="custom-select my-1 mr-sm-2" name="categoryExpense">
-                            <option selected>Wybierz...</option>
-                            <option value="1">Jedzenie</option>
+                            <option value="1" selected>Jedzenie</option>
                             <option value="2">Mieszkanie</option>
                             <option value="3">Transport</option>
                             <option value="4">Telekomunikacja</option>
@@ -59,10 +57,6 @@
                             <option value="17">Inne wydatki</option>
                         </select>
 
-                        <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                            <input type="checkbox" class="custom-control-input">
-                            <label class="custom-control-label">Zapamiętaj mój wybór</label>
-                        </div>
 
                         <div class="form-group mt-3 mb-4">
                             <h5>Opcjonalny komentarz opisujący wydatek</h5>

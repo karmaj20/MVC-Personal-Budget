@@ -15,24 +15,27 @@ class Config
      * @var string
      */
     const DB_HOST = 'localhost';
+//    const DB_HOST = 'localhost';
 
     /**
      * Database name
      * @var string
      */
     const DB_NAME = 'personalbudget';
-
+//    const DB_NAME = 'budzetka_homebudget';
     /**
      * Database user
      * @var string
      */
     const DB_USER = 'root';
+//    const DB_USER = 'budzetka_HomeBudgetAdmin';
 
     /**
      * Database password
      * @var string
      */
     const DB_PASSWORD = '';
+//    const DB_PASSWORD = '5y2GDSj6b6cfWEwg';
 
     /**
      * Show or hide error messages on screen

@@ -6,7 +6,7 @@ use App\Models\BalanceMod;
 use App\Date;
 use Core\View;
 
-class detailedBalance extends \Core\Controller
+class DetailedBalance extends Authenticated
 {
     public function newAction()
     {

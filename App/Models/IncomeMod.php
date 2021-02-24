@@ -17,25 +17,25 @@ class IncomeMod extends \Core\Model
     {
         $id = (int)$_SESSION['id'];
 
-        if (isset($_POST['ammountIncome'])) {
+        if (isset($_POST['amountIncome'])) {
 
-            $ammountIncome = $_POST['ammountIncome'];
-            $ammountIncome = str_replace(",", ".", $ammountIncome);
+            $amountIncome = $_POST['amountIncome'];
+            $amountIncome = str_replace(",", ".", $amountIncome);
             $dateIncome = $_POST['dateIncome'];
             $categoryIncome = $_POST['categoryIncome'];
             $commentIncome = $_POST['commentIncome'];
 
             $sql = "INSERT INTO incomes
-                    VALUES (null, :id, :categoryIncome, :ammountIncome, :dateIncome, :commentIncome)";
+                    VALUES (null, :id, :categoryIncome, :amountIncome, :dateIncome, :commentIncome)";
 
             $database = static::getDB();
             $stmt = $database->prepare($sql);
 
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->bindValue(':categoryIncome', $this->categoryIncome, PDO::PARAM_STR);
-            $stmt->bindValue(':ammountIncome',  $this->ammountIncome,  PDO::PARAM_STR);
-            $stmt->bindValue(':dateIncome',     $this->dateIncome,     PDO::PARAM_STR);
-            $stmt->bindValue(':commentIncome',  $this->commentIncome,  PDO::PARAM_STR);
+            $stmt->bindValue(':categoryIncome', $categoryIncome, PDO::PARAM_STR);
+            $stmt->bindValue(':amountIncome',   $amountIncome,  PDO::PARAM_STR);
+            $stmt->bindValue(':dateIncome',     $dateIncome,     PDO::PARAM_STR);
+            $stmt->bindValue(':commentIncome',  $commentIncome,  PDO::PARAM_STR);
 
             return $stmt->execute();
         }

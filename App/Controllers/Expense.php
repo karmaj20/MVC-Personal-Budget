@@ -2,22 +2,25 @@
 
 namespace App\Controllers;
 
+use App\Date;
 use App\Flash;
 use App\Models\ExpenseMod;
 use Core\View;
 
-class Expense extends \Core\Controller
+class Expense extends Authenticated
 {
     public function newAction()
     {
-        View::renderTemplate('Expense/expense.html');
+        View::renderTemplate('Expense/expense.html',[
+            'date' => Date::getCurrentDate()
+        ]);
     }
 
     public function createAction()
     {
         $expense = new ExpenseMod($_POST);
 
-        if ($_POST['ammountExpense'] > 0) {
+        if ($_POST['amountExpense'] > 0) {
 
             $expense->addExpenseToDatabase();
 

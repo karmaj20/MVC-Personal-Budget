@@ -4,6 +4,11 @@ namespace App;
 
 class Date
 {
+    public static function getCurrentDate()
+    {
+        return date('Y-m-d');
+    }
+
     public static function getBeginCurrentMonth()
     {
         return date('Y-m-01');

@@ -84,7 +84,7 @@ abstract class Controller
     {
         if(!Auth::getUser()){
 
-            Flash::addMessage('Please login to access that page'. FLASH::INFO);
+            Flash::addMessage('Zaloguj się, aby uzyskać dostęp do tej podstrony', FLASH::INFO);
 
             Auth::rememberRequestedPage();
 
