@@ -44,18 +44,19 @@
                                 <div class="modal-body mr-auto ml-auto text-center">
                                     <label class="mt-2 customText">Wybierz okres, w którym chcesz przejrzeć bilans</label>
                                     <select class="custom-select customInputs" id="name" name="range">
-                                        <option value="rangeCurrentMonth"  selected>    Bieżący miesiąc</option>
-                                        <option value="rangePreviousMonth"  >          Poprzedni miesiąc</option>
-                                        <option value="rangeCurrentYear"    >          Bieżący rok</option>
-                                        <option value="rangeChosenPeriod"   >          Inny zakres</option>
+                                        <option value="rangeCurrentMonth"  selected>          Bieżący miesiąc  </option>
+                                        <option value="rangePreviousMonth"         >          Poprzedni miesiąc</option>
+                                        <option value="rangeCurrentYear"           >          Bieżący rok      </option>
+                                        <option value="rangeChosenPeriod"          >          Inny zakres      </option>
                                     </select>
                                     <div class="form-group mt-3">
                                         OD
-                                        <input type="date" value="startPeriod" class="form-control" name="startPeriod">
+                                        <input type="date" value="{{ startPeriod }}" class="form-control" name="startPeriod">
+<!--                                               {{ range != "rangeChosenPeriod" ? 'disabled' : '' }}>-->
                                     </div>
                                     <div class="form-group">
                                         DO
-                                        <input type="date" value="endPeriod" class="form-control" name="endPeriod">
+                                        <input type="date" value="endPeriod" class="form-control" name="endPeriod" >
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -85,7 +86,8 @@
                                 <th>{{ incomeCategoryAmount.0 }}</th>
                                 <th>{{ incomeCategoryAmount.1 }}</th>
                                 <th>{{ incomeCategoryAmount.2 }}</th>
-                                <th>{{ incomeCategoryAmount.3 }}</th></tr>
+                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
                             {% endfor %}
                             {% elseif range == "rangePreviousMonth" %}
                             {% for incomeCategoryAmount in detailedIncomePreviousMonth %}
@@ -93,7 +95,8 @@
                                 <th>{{ incomeCategoryAmount.0 }}</th>
                                 <th>{{ incomeCategoryAmount.1 }}</th>
                                 <th>{{ incomeCategoryAmount.2 }}</th>
-                                <th>{{ incomeCategoryAmount.3 }}</th></tr>
+                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
                             {% endfor %}
                             {% elseif range == "rangeCurrentYear" %}
                             {% for incomeCategoryAmount in detailedIncomeCurrentYear %}
@@ -101,7 +104,8 @@
                                 <th>{{ incomeCategoryAmount.0 }}</th>
                                 <th>{{ incomeCategoryAmount.1 }}</th>
                                 <th>{{ incomeCategoryAmount.2 }}</th>
-                                <th>{{ incomeCategoryAmount.3 }}</th></tr>
+                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
                             {% endfor %}
                             {% elseif range == "rangeChosenPeriod" %}
                             {% for incomeCategoryAmount in detailedIncomeChosenPeriod %}
@@ -109,7 +113,8 @@
                                 <th>{{ incomeCategoryAmount.0 }}</th>
                                 <th>{{ incomeCategoryAmount.1 }}</th>
                                 <th>{{ incomeCategoryAmount.2 }}</th>
-                                <th>{{ incomeCategoryAmount.3 }}</th></tr>
+                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
                             {% endfor %}
                             {% else %}
                             {% for incomeCategoryAmount in detailedIncomeCurrentMonth %}
@@ -117,7 +122,8 @@
                                 <th>{{ incomeCategoryAmount.0 }}</th>
                                 <th>{{ incomeCategoryAmount.1 }}</th>
                                 <th>{{ incomeCategoryAmount.2 }}</th>
-                                <th>{{ incomeCategoryAmount.3 }}</th></tr>
+                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
                             {% endfor %}
                             {% endif %}
                         </table>
@@ -141,7 +147,8 @@
                                 <th>{{ expenseCategoryAmount.0 }}</th>
                                 <th>{{ expenseCategoryAmount.1 }}</th>
                                 <th>{{ expenseCategoryAmount.2 }}</th>
-                                <th>{{ expenseCategoryAmount.3 }}</th></tr>
+                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
                             {% endfor %}
                             {% elseif range == "rangePreviousMonth" %}
                             {% for expenseCategoryAmount in detailedExpensePreviousMonth %}
@@ -149,7 +156,8 @@
                                 <th>{{ expenseCategoryAmount.0 }}</th>
                                 <th>{{ expenseCategoryAmount.1 }}</th>
                                 <th>{{ expenseCategoryAmount.2 }}</th>
-                                <th>{{ expenseCategoryAmount.3 }}</th></tr>
+                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
                             {% endfor %}
                             {% elseif range == "rangeCurrentYear" %}
                             {% for expenseCategoryAmount in detailedExpenseCurrentYear %}
@@ -157,7 +165,8 @@
                                 <th>{{ expenseCategoryAmount.0 }}</th>
                                 <th>{{ expenseCategoryAmount.1 }}</th>
                                 <th>{{ expenseCategoryAmount.2 }}</th>
-                                <th>{{ expenseCategoryAmount.3 }}</th></tr>
+                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
                             {% endfor %}
                             {% elseif range == "rangeChosenPeriod" %}
                             {% for expenseCategoryAmount in detailedExpenseChosenPeriod %}
@@ -165,7 +174,8 @@
                                 <th>{{ expenseCategoryAmount.0 }}</th>
                                 <th>{{ expenseCategoryAmount.1 }}</th>
                                 <th>{{ expenseCategoryAmount.2 }}</th>
-                                <th>{{ expenseCategoryAmount.3 }}</th></tr>
+                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
                             {% endfor %}
                             {% else %}
                             {% for expenseCategoryAmount in detailedExpenseCurrentMonth %}
@@ -173,7 +183,8 @@
                                 <th>{{ expenseCategoryAmount.0 }}</th>
                                 <th>{{ expenseCategoryAmount.1 }}</th>
                                 <th>{{ expenseCategoryAmount.2 }}</th>
-                                <th>{{ expenseCategoryAmount.3 }}</th></tr>
+                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
                             {% endfor %}
                             {% endif %}
                         </table>
