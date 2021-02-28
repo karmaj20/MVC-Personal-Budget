@@ -21,26 +21,13 @@
                         <div class="collapse multi-collapse">
                             <div class="card card-body text-left">
                                 <ul class="list-group rounded font-weight-bold">
-                                    <li class="list-group-item border border-success rounded bg-budgetOpacity">
-                                        Wynagrodzenie
-                                        <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                        <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                    </li>
-                                    <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                        Odsetki bankowe
-                                        <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                        <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                    </li>
-                                    <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                        Sprzedaż na allegro
-                                        <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                        <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                    </li>
-                                    <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                        Inne przychody
-                                        <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                        <button class="btn-danger ml-auto float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                    </li>
+                                    {% for category in incomesCategory %}
+                                        <li class="list-group-item border border-success rounded bg-budgetOpacity mt-1">
+                                            {{ category.0 }}
+                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
+                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
+                                        </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
@@ -52,91 +39,13 @@
                     <div class="collapse multi-collapse">
                                 <div class="card card-body text-left">
                                     <ul class="list-group rounded font-weight-bold">
-                                        <li class="list-group-item border border-success rounded bg-budgetOpacity">
-                                            Jedzenie
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Mieszkanie
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Transport
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Telekomunikacja
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger ml-auto float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item border border-success rounded bg-budgetOpacity">
-                                            Opieka zdrowotna
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Ubranie
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Higiena
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Dzieci
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger ml-auto float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item border border-success rounded bg-budgetOpacity">
-                                            Rozrywka
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Wycieczka
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Szkolenia
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Ksiażki
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger ml-auto float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item border border-success rounded bg-budgetOpacity">
-                                            Oszczędności
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Emerytura
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Spłata długów
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Darowizna
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger ml-auto float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Inne wydatki
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger ml-auto float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
+                                        {% for category in expensesCategory %}
+                                            <li class="list-group-item border border-success rounded bg-budgetOpacity mt-1">
+                                                {{ category.0 }}
+                                                <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
+                                                <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
+                                            </li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>
@@ -148,26 +57,13 @@
                             <div class="collapse multi-collapse">
                                 <div class="card card-body text-left">
                                     <ul class="list-group rounded font-weight-bold">
-                                        <li class="list-group-item border border-success rounded bg-budgetOpacity">
-                                            Wynagrodzenie
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Odsetki bankowe
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Sprzedaż na allegro
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
-                                        <li class="list-group-item mt-2 border border-success rounded bg-budgetOpacity">
-                                            Inne przychody
-                                            <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
-                                            <button class="btn-danger ml-auto float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
-                                        </li>
+                                        {% for method in paymentMethods %}
+                                            <li class="list-group-item border border-success rounded bg-budgetOpacity mt-1">
+                                                {{ method.0 }}
+                                                <button class="btn-success float-right rounded ml-1" type="submit" value="Mod"><i class="icon-pencil"></i></button>
+                                                <button class="btn-danger float-right rounded" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
+                                            </li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>

@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="156290d6-61f5-4bd3-95e7-20bb52dc9caa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Controllers/Income.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Controllers/Income.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Models/ExpenseMod.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Models/ExpenseMod.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Models/IncomeMod.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Models/IncomeMod.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Views/Income/income.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Income/income.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Controllers/Settings.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Controllers/Settings.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Views/Settings/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Settings/settings.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Model.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +119,7 @@
       <workItem from="1614281413960" duration="6601000" />
       <workItem from="1614288275837" duration="281000" />
       <workItem from="1614357021594" duration="678000" />
-      <workItem from="1614513777415" duration="2550000" />
+      <workItem from="1614513777415" duration="4090000" />
     </task>
     <servers />
   </component>
