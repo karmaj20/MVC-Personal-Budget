@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ExpenseMod;
 use App\Models\IncomeMod;
+use App\Models\SettingsMod;
 use Core\View;
 
 class Settings extends Authenticated
@@ -13,7 +14,9 @@ class Settings extends Authenticated
         View::renderTemplate('Settings/settings.html',[
             'incomesCategory'  => IncomeMod::selectIncomesCategory(),
             'expensesCategory' => ExpenseMod::selectExpensesCategory(),
-            'paymentMethods'   => ExpenseMod::selectPaymentMethodsAssigned()
+            'paymentMethods'   => ExpenseMod::selectPaymentMethodsAssigned(),
+            'name'             => SettingsMod::selectUsername(),
+            'email'            => SettingsMod::selectEmail()
         ]);
     }
 }
