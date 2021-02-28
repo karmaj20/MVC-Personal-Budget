@@ -13,7 +13,8 @@ class Income extends Authenticated
     public function newAction()
     {
         View::renderTemplate('Income/income.html', [
-            'date' => Date::getCurrentDate()
+            'date' => Date::getCurrentDate(),
+            'incomesCategory' => IncomeMod::selectIncomesCategory()
         ]);
     }
 

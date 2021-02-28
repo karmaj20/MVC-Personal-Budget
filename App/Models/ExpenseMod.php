@@ -45,4 +45,38 @@ class ExpenseMod extends \Core\Model
 
         return false;
     }
+
+    public static function selectExpensesCategory()
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+                SELECT exCat.name 
+                FROM expenses_category_assigned_to_users AS exCat 
+                WHERE exCat.user_id = '$id'
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public static function selectPaymentMethodsAssigned()
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+                SELECT payMet.name 
+                FROM payment_methods_assigned_to_users AS payMet 
+                WHERE payMet.user_id = '$id'
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }

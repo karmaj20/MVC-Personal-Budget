@@ -42,4 +42,21 @@ class IncomeMod extends \Core\Model
 
         return false;
     }
+
+    public static function selectIncomesCategory()
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+                SELECT incCat.name 
+                FROM incomes_category_assigned_to_users AS incCat 
+                WHERE incCat.user_id = '$id'
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }

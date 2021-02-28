@@ -12,7 +12,9 @@ class Expense extends Authenticated
     public function newAction()
     {
         View::renderTemplate('Expense/expense.html',[
-            'date' => Date::getCurrentDate()
+            'date' => Date::getCurrentDate(),
+            'expensesCategory' => ExpenseMod::selectExpensesCategory(),
+            'paymentMethods' => ExpenseMod::selectPaymentMethodsAssigned()
         ]);
     }
 
