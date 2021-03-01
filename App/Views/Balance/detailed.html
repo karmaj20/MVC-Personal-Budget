@@ -67,6 +67,27 @@
                         </div>
                     </div>
 
+<!--                    MODAL SHOWS DETAILS OF INCOME OR EXPENSE-->
+                        <div class="modal fade" id="detailIncomeExpense" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="detailIncomeExpenseLabel">Szczegóły</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body mr-auto ml-auto text-center">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" class="btn btn-danger" data-dismiss="modal" value="ZAMKNIJ" />
+                                        <input name="update" type="submit" class="btn btn-success" value="ZAPISZ" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
                     <div class="mt-4 text-center bg-budgetOpacity p-3 detailedBalance">
                         <h4>ANALIZA PRZYCHODÓW</h4>
@@ -86,8 +107,10 @@
                                 <th>{{ incomeCategoryAmount.0 }}</th>
                                 <th>{{ incomeCategoryAmount.1 }}</th>
                                 <th>{{ incomeCategoryAmount.2 }}</th>
-                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
-                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
+                                <th><button class="btn-success" type="button" value="detail" data-toggle="modal" data-target="#detailIncomeExpense">
+                                    Szczegóły
+                                    </button>
+                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
                             {% endfor %}
                             {% elseif range == "rangePreviousMonth" %}
                             {% for incomeCategoryAmount in detailedIncomePreviousMonth %}
@@ -95,8 +118,8 @@
                                 <th>{{ incomeCategoryAmount.0 }}</th>
                                 <th>{{ incomeCategoryAmount.1 }}</th>
                                 <th>{{ incomeCategoryAmount.2 }}</th>
-                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
-                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
+                                <th><button class="btn-success" type="submit" value="details">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
                             {% endfor %}
                             {% elseif range == "rangeCurrentYear" %}
                             {% for incomeCategoryAmount in detailedIncomeCurrentYear %}
@@ -104,8 +127,8 @@
                                 <th>{{ incomeCategoryAmount.0 }}</th>
                                 <th>{{ incomeCategoryAmount.1 }}</th>
                                 <th>{{ incomeCategoryAmount.2 }}</th>
-                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
-                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
+                                <th><button class="btn-success" type="submit" value="details">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
                             {% endfor %}
                             {% elseif range == "rangeChosenPeriod" %}
                             {% for incomeCategoryAmount in detailedIncomeChosenPeriod %}
@@ -113,8 +136,8 @@
                                 <th>{{ incomeCategoryAmount.0 }}</th>
                                 <th>{{ incomeCategoryAmount.1 }}</th>
                                 <th>{{ incomeCategoryAmount.2 }}</th>
-                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
-                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
+                                <th><button class="btn-success" type="submit" value="details">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
                             {% endfor %}
                             {% else %}
                             {% for incomeCategoryAmount in detailedIncomeCurrentMonth %}
@@ -122,8 +145,8 @@
                                 <th>{{ incomeCategoryAmount.0 }}</th>
                                 <th>{{ incomeCategoryAmount.1 }}</th>
                                 <th>{{ incomeCategoryAmount.2 }}</th>
-                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
-                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
+                                <th><button class="btn-success" type="submit" value="details">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
                             {% endfor %}
                             {% endif %}
                         </table>
@@ -147,8 +170,8 @@
                                 <th>{{ expenseCategoryAmount.0 }}</th>
                                 <th>{{ expenseCategoryAmount.1 }}</th>
                                 <th>{{ expenseCategoryAmount.2 }}</th>
-                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
-                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
+                                <th><button class="btn-success" type="submit" value="details">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
                             {% endfor %}
                             {% elseif range == "rangePreviousMonth" %}
                             {% for expenseCategoryAmount in detailedExpensePreviousMonth %}
@@ -156,8 +179,8 @@
                                 <th>{{ expenseCategoryAmount.0 }}</th>
                                 <th>{{ expenseCategoryAmount.1 }}</th>
                                 <th>{{ expenseCategoryAmount.2 }}</th>
-                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
-                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
+                                <th><button class="btn-success" type="submit" value="details">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
                             {% endfor %}
                             {% elseif range == "rangeCurrentYear" %}
                             {% for expenseCategoryAmount in detailedExpenseCurrentYear %}
@@ -165,8 +188,8 @@
                                 <th>{{ expenseCategoryAmount.0 }}</th>
                                 <th>{{ expenseCategoryAmount.1 }}</th>
                                 <th>{{ expenseCategoryAmount.2 }}</th>
-                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
-                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
+                                <th><button class="btn-success" type="submit" value="details">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
                             {% endfor %}
                             {% elseif range == "rangeChosenPeriod" %}
                             {% for expenseCategoryAmount in detailedExpenseChosenPeriod %}
@@ -174,8 +197,8 @@
                                 <th>{{ expenseCategoryAmount.0 }}</th>
                                 <th>{{ expenseCategoryAmount.1 }}</th>
                                 <th>{{ expenseCategoryAmount.2 }}</th>
-                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
-                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
+                                <th><button class="btn-success" type="submit" value="details">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
                             {% endfor %}
                             {% else %}
                             {% for expenseCategoryAmount in detailedExpenseCurrentMonth %}
@@ -183,8 +206,8 @@
                                 <th>{{ expenseCategoryAmount.0 }}</th>
                                 <th>{{ expenseCategoryAmount.1 }}</th>
                                 <th>{{ expenseCategoryAmount.2 }}</th>
-                                <th><button class="btn-success" type="submit" value="Szczegóły">Szczegóły</button>
-                                    <button class="btn-danger" type="submit" value="Usuń">Usuń</button></th></tr>
+                                <th><button class="btn-success" type="submit" value="details">Szczegóły</button>
+                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
                             {% endfor %}
                             {% endif %}
                         </table>
