@@ -79,4 +79,84 @@ class ExpenseMod extends \Core\Model
 
         return $stmt->fetchAll();
     }
+
+    public static function insertExpenseCategory($expenseCategoryName, $expenseLimit)
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+               INSERT INTO expenses_category_assigned_to_users 
+               VALUES (null, '$id', '$expenseCategoryName', '$expenseLimit')
+               ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public static function deleteExpenseCategory($expenseCategoryName)
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+                DELETE FROM expenses_category_assigned_to_users
+                WHERE user_id = '$id' AND name = '$expenseCategoryName'
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public static function insertPaymentMethod($methodName)
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+               INSERT INTO payment_methods_assigned_to_users 
+               VALUES (null, '$id', '$methodName')
+               ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public static function deletePaymentMethod($methodName)
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+                DELETE FROM payment_methods_assigned_to_users
+                WHERE user_id = '$id' AND name = '$methodName'
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public static function deleteExpenses()
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+                DELETE FROM expenses 
+                WHERE user_id = '$id'
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }

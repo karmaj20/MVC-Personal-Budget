@@ -59,4 +59,52 @@ class IncomeMod extends \Core\Model
 
         return $stmt->fetchAll();
     }
+
+    public static function insertIncomeCategory($incomeCategoryName)
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+               INSERT INTO incomes_category_assigned_to_users 
+               VALUES (null, '$id', '$incomeCategoryName')
+               ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public static function deleteIncomeCategory($incomeCategoryName)
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+                DELETE FROM incomes_category_assigned_to_users
+                WHERE user_id = '$id' AND name = '$incomeCategoryName'
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public static function deleteIncomes()
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+                DELETE FROM incomes 
+                WHERE user_id = '$id'
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }

@@ -14,8 +14,55 @@
             <div class="col-12 col-md-10 bg-budgetOpacity text-center mr-auto ml-auto interval">
                 <form class="form-bloc p-4 " method="" action="">
                     <h2 style="color: white">USTAWIENIA</h2>
-<!--                        MODAL FOR EDITION INCOME AND EXPENSE CATEGORY -->
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+                    <!--                        MODAL FOR EDITION INCOME CATEGORY -->
+                    <div class="modal fade" id="editIncomeModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="myEditIncomeModalLabel">Edycja kategorii</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="text-left ml-2 mr-2">
+                                    <label class="mt-2 customText">Nazwa kategorii: </label>
+                                    <input type="textarea" class="col-12 form-control" autofocus>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <input name="update" type="submit" class="col-6 btn btn-success" value="ZMIEŃ" />
+                                    <input type="submit" class="col-6 btn btn-danger" data-dismiss="modal" value="ZAMKNIJ" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--                        MODAL FOR ADDING INCOME CATEGORY -->
+                    <div class="modal fade" id="addIncomeCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="myAddingIncomeCategoryModalLabel">Dodaj kategorię</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="text-left ml-2 mr-2">
+                                    <label class="mt-2 customText">Nazwa kategorii: </label>
+                                    <input type="textarea" class="col-12 form-control" autofocus>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <input name="update" type="submit" class="col-6 btn btn-success" value="DODAJ" />
+                                    <input type="submit" class="col-6 btn btn-danger" data-dismiss="modal" value="ZAMKNIJ" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+<!--                        MODAL FOR EDITION EXPENSE CATEGORY -->
+                        <div class="modal fade" id="editExpenseModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -45,9 +92,9 @@
                             </div>
                         </div>
 
-<!--                    MODAL FOR ADDING INCOME OR EXPENSE CATEGORY -->
+<!--                    MODAL FOR ADDING EXPENSE CATEGORY -->
 
-                    <div class="modal fade" id="addIncomeExpenseCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="addExpenseCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -137,13 +184,13 @@
                                             {{ category.0 }}
                                             <button class="btn-danger float-right rounded ml-1" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
                                             <button class="btn-success float-right rounded"
-                                                    data-toggle="modal" data-target="#myModal" type="button" value="modificate">
+                                                    data-toggle="modal" data-target="#editIncomeModal" type="button" value="modificate">
                                                 <i class="icon-pencil"></i>
                                             </button>
                                         </li>
                                     {% endfor %}
                                 </ul>
-                                <button class="mt-2 btn-success rounded" data-toggle="modal" data-target="#addIncomeExpenseCategoryModal" type="button">
+                                <button class="mt-2 btn-success rounded" data-toggle="modal" data-target="#addIncomeCategoryModal" type="button">
                                     <i class="icon-plus"></i>
                                     Dodaj nową kategorie
                                 </button>
@@ -160,15 +207,20 @@
                                     {% for category in expensesCategory %}
                                         <li class="list-group-item border border-success rounded bg-budgetOpacity mt-1">
                                             {{ category.0 }}
+                                            {% for x in limit %}
+                                            {% if x.name == category.0 %}
+                                            <div class="font-weight-normal d-inline-block">Limit: {{ x.expense_limit }}</div>
+                                            {% endif %}
+                                            {% endfor %}
                                             <button class="btn-danger float-right rounded ml-1" type="submit" value="delete"><i class="icon-trash-empty"></i></button>
                                             <button class="btn-success float-right rounded"
-                                                    data-toggle="modal" data-target="#myModal" type="button" value="modificate">
+                                                    data-toggle="modal" data-target="#editExpenseModal" type="button" value="modificate">
                                                 <i class="icon-pencil"></i>
                                             </button>
                                         </li>
                                     {% endfor %}
                                 </ul>
-                                <button class="mt-2 btn-success rounded" data-toggle="modal" data-target="#addIncomeExpenseCategoryModal" type="button">
+                                <button class="mt-2 btn-success rounded" data-toggle="modal" data-target="#addExpenseCategoryModal" type="button">
                                     <i class="icon-plus"></i>
                                     Dodaj nową kategorie
                                 </button>

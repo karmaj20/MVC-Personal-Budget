@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\BalanceMod;
 use App\Date;
+use App\Models\IncomeMod;
+use App\Models\SettingsMod;
 use Core\View;
 
 class DetailedBalance extends Authenticated
