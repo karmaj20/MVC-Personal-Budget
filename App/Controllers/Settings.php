@@ -12,16 +12,13 @@ class Settings extends Authenticated
 {
     public function newAction()
     {
-        View::renderTemplate('Settings/settings.html',[
-            'incomesCategory'       => IncomeMod::selectIncomesCategory(),
-            'expensesCategory'      => ExpenseMod::selectExpensesCategory(),
-            'paymentMethods'        => ExpenseMod::selectPaymentMethodsAssigned(),
-            'name'                  => SettingsMod::selectUsername(),
-            'email'                 => SettingsMod::selectEmail(),
-            'limit'                 => SettingsMod::selectLimit()
-//            'deleteIncomeCategory'  => IncomeMod::deleteIncomeCategory($incomeCategoryName),
-//            'deleteExpenseCategory' => ExpenseMod::deleteExpenseCategory($expenseCategoryName),
-//            'deletePaymentMethod'   => ExpenseMod::deletePaymentMethod($methodName),
+        View::renderTemplate('Settings/settings.html', [
+            'incomesCategory' => IncomeMod::selectIncomesCategory(),
+            'expensesCategory' => ExpenseMod::selectExpensesCategory(),
+            'paymentMethods' => ExpenseMod::selectPaymentMethodsAssigned(),
+            'name' => SettingsMod::selectUsername(),
+            'email' => SettingsMod::selectEmail(),
+            'limit' => SettingsMod::selectLimit()
 //            'deleteIncomes'         => IncomeMod::deleteIncomes(),
 //            'deleteExpenses'        => ExpenseMod::deleteExpenses(),
 //            'deleteUserAccount'     => SettingsMod::deleteUserAccount()
@@ -86,4 +83,60 @@ class Settings extends Authenticated
         }
     }
 
+    public function deleteIncomeAction()
+    {
+        $delete = new IncomeMod($_GET);
+
+        if (isset($_GET['deleteIncomeCategory'])) {
+
+            $delete->deleteIncomeCategory();
+
+            Flash::addMessage('Kategoria została usunięta', FLASH::WARNING);
+
+            $this->redirect('/Settings');
+        } else {
+
+            Flash::addMessage("Nie udało się usunąc kateogrii, spróbuj jeszcze raz.", Flash::INFO);
+
+            $this->redirect('/Settings');
+        }
+    }
+
+    public function deleteExpenseAction()
+    {
+        $delete = new ExpenseMod($_GET);
+
+        if (isset($_GET['deleteExpenseCategory'])) {
+
+            $delete->deleteExpenseCategory();
+
+            Flash::addMessage('Kategoria została usunięta', FLASH::WARNING);
+
+            $this->redirect('/Settings');
+        } else {
+
+            Flash::addMessage("Nie udało się usunąc kateogrii, spróbuj jeszcze raz.", Flash::INFO);
+
+            $this->redirect('/Settings');
+        }
+    }
+
+    public function deletePaymentMethodAction()
+    {
+        $delete = new ExpenseMod($_GET);
+
+        if (isset($_GET['deletePaymentMethod'])) {
+
+            $delete->deletePaymentMethod();
+
+            Flash::addMessage('Metoda płatności została usunięta', FLASH::WARNING);
+
+            $this->redirect('/Settings');
+        } else {
+
+            Flash::addMessage("Nie udało się usunąc metody płatności, spróbuj jeszcze raz.", Flash::INFO);
+
+            $this->redirect('/Settings');
+        }
+    }
 }

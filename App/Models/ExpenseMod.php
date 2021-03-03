@@ -33,10 +33,10 @@ class ExpenseMod extends \Core\Model
             $database = static::getDB();
             $stmt = $database->prepare($sql);
 
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id',                 $id, PDO::PARAM_INT);
             $stmt->bindValue(':categoryExpense',    $categoryExpense, PDO::PARAM_INT);
             $stmt->bindValue(':paymentMethod',      $paymentMethod,   PDO::PARAM_STR);
-            $stmt->bindValue(':amountExpense',      $amountExpense,  PDO::PARAM_STR);
+            $stmt->bindValue(':amountExpense',      $amountExpense,   PDO::PARAM_STR);
             $stmt->bindValue(':dateExpense',        $dateExpense,     PDO::PARAM_STR);
             $stmt->bindValue(':commentExpense',     $commentExpense,  PDO::PARAM_STR);
 
@@ -67,9 +67,9 @@ class ExpenseMod extends \Core\Model
             $db = static::getDb();
             $stmt = $db->prepare($sql);
 
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->bindValue(':expenseCategoryName', $expenseCategoryName, PDO::PARAM_STR);
-            $stmt->bindValue(':expenseLimit', $expenseLimit, PDO::PARAM_INT);
+            $stmt->bindValue(':id',                     $id,                  PDO::PARAM_INT);
+            $stmt->bindValue(':expenseCategoryName',    $expenseCategoryName, PDO::PARAM_STR);
+            $stmt->bindValue(':expenseLimit',           $expenseLimit,        PDO::PARAM_INT);
 
             $result = $stmt->fetchAll();
             $stmt->execute();
@@ -96,8 +96,8 @@ class ExpenseMod extends \Core\Model
             $db = static::getDb();
             $stmt = $db->prepare($sql);
 
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->bindValue(':methodName', $methodName, PDO::PARAM_STR);
+            $stmt->bindValue(':id',             $id,         PDO::PARAM_INT);
+            $stmt->bindValue(':methodName',     $methodName, PDO::PARAM_STR);
 
             $result = $stmt->fetchAll();
             $stmt->execute();
@@ -106,6 +106,60 @@ class ExpenseMod extends \Core\Model
         }
 
         return false;
+    }
+
+    public function deleteExpenseCategory()
+    {
+        $id = $_SESSION['id'];
+
+        if (isset($_GET['deleteExpenseCategory'])) {
+
+            $expenseCategoryName = $_GET['deleteExpenseCategory'];
+
+            $sql = "
+                DELETE FROM expenses_category_assigned_to_users
+                WHERE user_id = :id AND name = :expenseCategoryName
+                ";
+
+            $db = static::getDb();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':id',                     $id, PDO::PARAM_INT);
+            $stmt->bindValue(':expenseCategoryName',    $expenseCategoryName, PDO::PARAM_STR);
+
+            $result = $stmt->fetchAll();
+            $stmt->execute();
+
+            return $result;
+        }
+
+        return false;
+    }
+
+    public function deletePaymentMethod()
+    {
+        $id = $_SESSION['id'];
+
+        if (isset($_GET['deletePaymentMethod'])) {
+
+            $methodName = $_GET['deletePaymentMethod'];
+
+            $sql = "
+                    DELETE FROM payment_methods_assigned_to_users
+                    WHERE user_id = :id AND name = :methodName
+                    ";
+
+            $db = static::getDb();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':id',            $id,         PDO::PARAM_INT);
+            $stmt->bindValue(':methodName',    $methodName, PDO::PARAM_STR);
+
+            $result = $stmt->fetchAll();
+            $stmt->execute();
+
+            return $result;
+        }
     }
 
     public static function selectExpensesCategory()
@@ -138,38 +192,6 @@ class ExpenseMod extends \Core\Model
         $db = static::getDb();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-
-        return $stmt->fetchAll();
-    }
-
-    public static function deleteExpenseCategory($expenseCategoryName)
-    {
-        $id = $_SESSION['id'];
-
-        $sql = "
-                DELETE FROM expenses_category_assigned_to_users
-                WHERE user_id = '$id' AND name = '$expenseCategoryName'
-                ";
-
-        $db = static::getDb();
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetchAll();
-    }
-
-    public static function deletePaymentMethod($methodName)
-    {
-        $id = $_SESSION['id'];
-
-        $sql = "
-                DELETE FROM payment_methods_assigned_to_users
-                WHERE user_id = '$id' AND name = '$methodName'
-                ";
-
-        $db = static::getDb();
-        $stmt = $db->prepare($sql);
         $stmt->execute();
 
         return $stmt->fetchAll();

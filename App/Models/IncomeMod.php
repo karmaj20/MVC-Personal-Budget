@@ -33,7 +33,7 @@ class IncomeMod extends \Core\Model
 
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->bindValue(':categoryIncome', $categoryIncome, PDO::PARAM_STR);
-            $stmt->bindValue(':amountIncome',   $amountIncome,  PDO::PARAM_STR);
+            $stmt->bindValue(':amountIncome',   $amountIncome,   PDO::PARAM_STR);
             $stmt->bindValue(':dateIncome',     $dateIncome,     PDO::PARAM_STR);
             $stmt->bindValue(':commentIncome',  $commentIncome,  PDO::PARAM_STR);
 
@@ -41,25 +41,6 @@ class IncomeMod extends \Core\Model
         }
 
         return false;
-    }
-
-    public static function selectIncomesCategory()
-    {
-        $id = $_SESSION['id'];
-
-        $sql = "
-                SELECT incCat.name 
-                FROM incomes_category_assigned_to_users AS incCat 
-                WHERE incCat.user_id = :id
-                ";
-
-        $db = static::getDb();
-        $stmt = $db->prepare($sql);
-
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-
-        return $stmt->fetchAll();
     }
 
     public function insertIncomeCategory()
@@ -77,8 +58,8 @@ class IncomeMod extends \Core\Model
             $db = static::getDb();
             $stmt = $db->prepare($sql);
 
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->bindValue(':incomeCategoryName', $incomeCategoryName, PDO::PARAM_STR);
+            $stmt->bindValue(':id',                     $id,                 PDO::PARAM_INT);
+            $stmt->bindValue(':incomeCategoryName',     $incomeCategoryName, PDO::PARAM_STR);
 
             $result = $stmt->fetchAll();
             $stmt->execute();
@@ -89,20 +70,32 @@ class IncomeMod extends \Core\Model
         return false;
     }
 
-    public static function deleteIncomeCategory($incomeCategoryName)
+    public function deleteIncomeCategory()
     {
         $id = $_SESSION['id'];
 
-        $sql = "
-                DELETE FROM incomes_category_assigned_to_users
-                WHERE user_id = '$id' AND name = '$incomeCategoryName'
-                ";
+        if (isset($_GET['deleteIncomeCategory'])) {
 
-        $db = static::getDb();
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
+            $incomeCategoryName = $_GET['deleteIncomeCategory'];
 
-        return $stmt->fetchAll();
+            $sql = "
+                    DELETE FROM incomes_category_assigned_to_users
+                    WHERE user_id = :id AND name = :incomeCategoryName
+                    ";
+
+            $db = static::getDb();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':id',                     $id,                 PDO::PARAM_INT);
+            $stmt->bindValue(':incomeCategoryName',     $incomeCategoryName, PDO::PARAM_STR);
+
+            $result = $stmt->fetchAll();
+            $stmt->execute();
+
+            return $result;
+        }
+
+        return false;
     }
 
     public static function deleteIncomes()
@@ -116,6 +109,25 @@ class IncomeMod extends \Core\Model
 
         $db = static::getDb();
         $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public static function selectIncomesCategory()
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+                SELECT incCat.name 
+                FROM incomes_category_assigned_to_users AS incCat 
+                WHERE incCat.user_id = :id
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
         return $stmt->fetchAll();
