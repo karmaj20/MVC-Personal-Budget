@@ -46,6 +46,68 @@ class ExpenseMod extends \Core\Model
         return false;
     }
 
+    public function insertExpenseCategory()
+    {
+        $id = $_SESSION['id'];
+
+        if(isset($_GET['expense'])) {
+            $expenseCategoryName = $_GET['expense'];
+
+            if(isset($_GET['addingLimitAmount'])) {
+                $expenseLimit = $_GET['addingLimitAmount'];
+            } else {
+                $expenseLimit = null;
+            }
+
+            $sql = "
+               INSERT INTO expenses_category_assigned_to_users 
+               VALUES (null, :id, :expenseCategoryName, :expenseLimit)
+               ";
+
+            $db = static::getDb();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':expenseCategoryName', $expenseCategoryName, PDO::PARAM_STR);
+            $stmt->bindValue(':expenseLimit', $expenseLimit, PDO::PARAM_INT);
+
+            $result = $stmt->fetchAll();
+            $stmt->execute();
+
+            return $result;
+        }
+
+        return false;
+    }
+
+    public function insertPaymentMethod()
+    {
+        $id = $_SESSION['id'];
+
+        if(isset($_GET['method'])) {
+
+            $methodName = $_GET['method'];
+
+            $sql = "
+               INSERT INTO payment_methods_assigned_to_users 
+               VALUES (null, :id, :methodName)
+               ";
+
+            $db = static::getDb();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':methodName', $methodName, PDO::PARAM_STR);
+
+            $result = $stmt->fetchAll();
+            $stmt->execute();
+
+            return $result;
+        }
+
+        return false;
+    }
+
     public static function selectExpensesCategory()
     {
         $id = $_SESSION['id'];
@@ -70,27 +132,12 @@ class ExpenseMod extends \Core\Model
         $sql = "
                 SELECT payMet.name 
                 FROM payment_methods_assigned_to_users AS payMet 
-                WHERE payMet.user_id = '$id'
+                WHERE payMet.user_id = :id
                 ";
 
         $db = static::getDb();
         $stmt = $db->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetchAll();
-    }
-
-    public static function insertExpenseCategory($expenseCategoryName, $expenseLimit)
-    {
-        $id = $_SESSION['id'];
-
-        $sql = "
-               INSERT INTO expenses_category_assigned_to_users 
-               VALUES (null, '$id', '$expenseCategoryName', '$expenseLimit')
-               ";
-
-        $db = static::getDb();
-        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
         return $stmt->fetchAll();
@@ -104,22 +151,6 @@ class ExpenseMod extends \Core\Model
                 DELETE FROM expenses_category_assigned_to_users
                 WHERE user_id = '$id' AND name = '$expenseCategoryName'
                 ";
-
-        $db = static::getDb();
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetchAll();
-    }
-
-    public static function insertPaymentMethod($methodName)
-    {
-        $id = $_SESSION['id'];
-
-        $sql = "
-               INSERT INTO payment_methods_assigned_to_users 
-               VALUES (null, '$id', '$methodName')
-               ";
 
         $db = static::getDb();
         $stmt = $db->prepare($sql);

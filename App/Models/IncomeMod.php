@@ -50,30 +50,43 @@ class IncomeMod extends \Core\Model
         $sql = "
                 SELECT incCat.name 
                 FROM incomes_category_assigned_to_users AS incCat 
-                WHERE incCat.user_id = '$id'
+                WHERE incCat.user_id = :id
                 ";
 
         $db = static::getDb();
         $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
         return $stmt->fetchAll();
     }
 
-    public static function insertIncomeCategory($incomeCategoryName)
+    public function insertIncomeCategory()
     {
         $id = $_SESSION['id'];
 
-        $sql = "
+        if(isset($_GET['income'])) {
+
+            $incomeCategoryName = $_GET['income'];
+            $sql = "
                INSERT INTO incomes_category_assigned_to_users 
-               VALUES (null, '$id', '$incomeCategoryName')
+               VALUES (null, :id, :incomeCategoryName)
                ";
 
-        $db = static::getDb();
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
+            $db = static::getDb();
+            $stmt = $db->prepare($sql);
 
-        return $stmt->fetchAll();
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':incomeCategoryName', $incomeCategoryName, PDO::PARAM_STR);
+
+            $result = $stmt->fetchAll();
+            $stmt->execute();
+
+            return $result;
+        }
+
+        return false;
     }
 
     public static function deleteIncomeCategory($incomeCategoryName)

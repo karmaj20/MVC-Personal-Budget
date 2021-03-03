@@ -157,7 +157,6 @@
                     {% endfor %}
 
 <!--                    MODAL FOR ADDING PAYMENT METHOD-->
-                    <form method="get">
                     <div class="modal fade" id="addPaymentMethodModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -169,17 +168,16 @@
                                 </div>
                                 <div class="text-left ml-2 mr-2">
                                     <label class="mt-2 customText">Nazwa metody: </label>
-                                    <input name="method" type="textarea" class="col-12 form-control" autofocus>
+                                    <input type="textarea" class="col-12 form-control" autofocus>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <input formaction="settings/createPayment" name="update" type="submit" class="col-6 btn btn-success" value="DODAJ" />
+                                    <input name="update" type="submit" class="col-6 btn btn-success" value="DODAJ" />
                                     <input type="submit" class="col-6 btn btn-danger" data-dismiss="modal" value="ZAMKNIJ" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    </form>
 
                         <button class="col-12 form-group mt-3 p-2 btn-success" type="button" data-toggle="collapse" data-target="#headingIncomes">
                             FORMATUJ KATEGORIE PRZYCHODÓW
