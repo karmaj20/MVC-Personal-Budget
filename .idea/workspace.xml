@@ -7,9 +7,8 @@
       <change beforePath="$PROJECT_DIR$/App/Controllers/Settings.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Controllers/Settings.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Models/ExpenseMod.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Models/ExpenseMod.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Models/IncomeMod.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Models/IncomeMod.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Views/Balance/detailed.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Balance/detailed.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Views/Expense/expense.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Expense/expense.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Views/Income/income.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Income/income.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Views/Settings/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Settings/settings.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Model.php" afterDir="false" />
     </list>
@@ -69,6 +68,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -137,7 +137,8 @@
       <workItem from="1614780857138" duration="14829000" />
       <workItem from="1614801586370" duration="2687000" />
       <workItem from="1614807605220" duration="6123000" />
-      <workItem from="1614817208252" duration="2300000" />
+      <workItem from="1614817208252" duration="2456000" />
+      <workItem from="1614854542575" duration="7599000" />
     </task>
     <servers />
   </component>

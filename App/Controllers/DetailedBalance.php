@@ -12,7 +12,6 @@ class DetailedBalance extends Authenticated
 {
     public function newAction()
     {
-//        dump(BalanceMod::getDetailedIncomeCurrentMonth());
         View::renderTemplate('Balance/detailed.html', [
             'detailedIncomeCurrentMonth'    => BalanceMod::getDetailedIncomeCurrentMonth(),
             'detailedExpenseCurrentMonth'   => BalanceMod::getDetailedExpenseCurrentMonth(),

@@ -187,7 +187,7 @@ class ExpenseMod extends \Core\Model
         $id = $_SESSION['id'];
 
         $sql = "
-                SELECT exCat.name, exCat.id
+                SELECT exCat.name, exCat.id, exCat.expense_limit
                 FROM expenses_category_assigned_to_users AS exCat 
                 WHERE exCat.user_id = :id
                 ";
@@ -207,7 +207,7 @@ class ExpenseMod extends \Core\Model
         $id = $_SESSION['id'];
 
         $sql = "
-                SELECT payMet.name, payMet.id 
+                SELECT payMet.method, payMet.id 
                 FROM payment_methods_assigned_to_users AS payMet 
                 WHERE payMet.user_id = :id
                 ";

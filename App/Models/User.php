@@ -66,7 +66,7 @@ class User extends \Core\Model
                                     FROM users, expenses_category_default
                                     WHERE users.email = :email";
 
-            $sql_insert_paymemnt = "INSERT INTO payment_methods_assigned_to_users (user_id, name)
+            $sql_insert_paymemnt = "INSERT INTO payment_methods_assigned_to_users (user_id, method)
                                     SELECT users.id, payment_methods_default.name
                                     FROM users, payment_methods_default
                                     WHERE users.email = :email";

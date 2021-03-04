@@ -17,12 +17,7 @@ class Settings extends Authenticated
             'expensesCategory' => ExpenseMod::selectExpensesCategory(),
             'paymentMethods' => ExpenseMod::selectPaymentMethodsAssigned(),
             'name' => SettingsMod::selectUsername(),
-            'email' => SettingsMod::selectEmail(),
-            'limit' => SettingsMod::selectLimit()
-//            'deleteIncomes'         => IncomeMod::deleteIncomes(),
-//            'deleteExpenses'        => ExpenseMod::deleteExpenses(),
-//            'deleteUserAccount'     => SettingsMod::deleteUserAccount()
-
+            'email' => SettingsMod::selectEmail()
         ]);
     }
 
@@ -199,5 +194,25 @@ class Settings extends Authenticated
 
             $this->redirect('/detailed');
         }
+    }
+
+    public function updateIncomeCategoryAction()
+    {
+        $update = new IncomeMod($_POST);
+
+        if (isset($_GET['editIncomeCategory'])) {
+
+            $update->updateIncomeCateogory();
+
+            Flash::addMessage('Nazwa kategorii została zmieniona.', FLASH::SUCCESS);
+
+            $this->redirect('/settings');
+        } else {
+
+            Flash::addMessage('Nie udało się zmienić nazwy kategorii.', FLASH::INFO);
+
+            $this->redirect('/settings');
+        }
+
     }
 }

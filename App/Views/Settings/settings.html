@@ -16,6 +16,7 @@
                     <h2 style="color: white">USTAWIENIA</h2>
 
                     <!--                        MODAL FOR EDITION INCOME CATEGORY -->
+                    <form method="get">
                     {% for category in incomesCategory %}
                     <div class="modal fade editIncomeModal{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
@@ -28,17 +29,20 @@
                                 </div>
                                 <div class="text-left ml-2 mr-2">
                                     <label class="mt-2 customText">Nazwa kategorii: </label>
-                                    <input type="textarea" class="col-12 form-control" value="{{ category.name }}" autofocus>
+                                    <input type="hidden" value="{{ category.name }}" name="incomeCategoryName{{ loop.index }}" >
+                                    <input type="textarea" class="col-12 form-control"
+                                           value="{{ category.name }}" name="editIncomeCategory{{ loop.index }}" autofocus>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <input name="update" type="submit" class="col-6 btn btn-success" value="ZMIEŃ" />
+                                    <input formaction="settings/updateIncomeCategory" name="updateIncomeCategory" type="submit" class="col-6 btn btn-success" value="ZMIEŃ" />
                                     <input type="submit" class="col-6 btn btn-danger" data-dismiss="modal" value="ZAMKNIJ" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
+                    </form>
 
                     <form method="get">
                     <!--                        MODAL FOR ADDING INCOME CATEGORY -->
@@ -181,7 +185,7 @@
                     </div>
                     </form>
 
-                    <form>
+                    <form method="get">
                         <button class="col-12 form-group mt-3 p-2 btn-success" type="button" data-toggle="collapse" data-target="#headingIncomes">
                             FORMATUJ KATEGORIE PRZYCHODÓW
                         </button>
@@ -191,7 +195,7 @@
                                 <ul class="list-group rounded font-weight-bold">
                                     {% for category in incomesCategory %}
                                         <li class="list-group-item border border-success rounded bg-budgetOpacity mt-1">
-                                            {{ category.0 }}
+                                            {{ category.name }}
                                             <button class="btn-danger float-right rounded ml-1" formaction="settings/deleteIncomeCategory"
                                                     type="submit" value="{{ category.name }}" name="deleteIncomeCategory">
                                                 <i class="icon-trash-empty"></i>
@@ -219,11 +223,9 @@
                                     {% for category in expensesCategory %}
                                         <li class="list-group-item border border-success rounded bg-budgetOpacity mt-1">
                                             {{ category.0 }}
-                                            {% for x in limit %}
-                                            {% if x.name == category.0 %}
-                                            <div class="font-weight-normal d-inline-block">Limit: {{ x.expense_limit }}</div>
+                                            {% if category.expense_limit is not null%}
+                                            <div class="font-weight-normal d-inline-block">Limit: {{ category.expense_limit }}</div>
                                             {% endif %}
-                                            {% endfor %}
                                             <button class="btn-danger float-right rounded ml-1" type="submit" formaction="settings/deleteExpenseCategory"
                                                     value="{{ category.name }}" name="deleteExpenseCategory"><i class="icon-trash-empty"></i>
                                             </button>

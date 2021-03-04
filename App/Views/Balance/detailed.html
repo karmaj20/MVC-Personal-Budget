@@ -219,10 +219,11 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria: <b>      {{ expense.name }}</b></li>
-                                        <li>Kwota: <b>          {{ expense.ammount }}</b></li>
-                                        <li>Data: <b>           {{ expense.date_of_expense }}</b></li>
-                                        <li>Komentarz: <b>      {{ expense.expense_comment }}</b></li>
+                                        <li>Kategoria: <b>       {{ expense.name }}</b></li>
+                                        <li>Kwota: <b>           {{ expense.ammount }}</b></li>
+                                        <li>Data: <b>            {{ expense.date_of_expense }}</b></li>
+                                        <li>Metoda płatności: <b>{{ expense.method }}</b></li>
+                                        <li>Komentarz: <b>       {{ expense.expense_comment }}</b></li>
                                     </ul>
                                 </div>
                                 <div class="modal-footer">
@@ -249,6 +250,7 @@
                                         <li>Kategoria: <b>          {{ expense.name }}</b></li>
                                         <li>Kwota: <b>              {{ expense.ammount }}</b></li>
                                         <li>Data: <b>               {{ expense.date_of_expense }}</b></li>
+                                        <li>Metoda płatności: <b>   {{ expense.method }}</b></li>
                                         <li>Komentarz: <b>          {{ expense.expense_comment }}</b></li>
                                     </ul>
                                 </div>
@@ -276,6 +278,7 @@
                                         <li>Kategoria: <b>          {{ expense.name }}</b></li>
                                         <li>Kwota: <b>              {{ expense.ammount }}</b></li>
                                         <li>Data: <b>               {{ expense.date_of_expense }}</b></li>
+                                        <li>Metoda płatności: <b>   {{ expense.method }}</b></li>
                                         <li>Komentarz: <b>          {{ expense.expense_comment }}</b></li>
                                     </ul>
                                 </div>
@@ -303,6 +306,7 @@
                                         <li>Kategoria: <b>          {{ expense.name }}</b></li>
                                         <li>Kwota: <b>              {{ expense.ammount }}</b></li>
                                         <li>Data: <b>               {{ expense.date_of_expense }}</b></li>
+                                        <li>Metoda płatności: <b>   {{ expense.method }}</b></li>
                                         <li>Komentarz: <b>          {{ expense.expense_comment }}</b></li>
                                     </ul>
                                 </div>
@@ -330,6 +334,7 @@
                                         <li>Kategoria: <b>          {{ expense.name }}</b></li>
                                         <li>Kwota: <b>              {{ expense.ammount }}</b></li>
                                         <li>Data: <b>               {{ expense.date_of_expense }}</b></li>
+                                        <li>Metoda płatności: <b>   {{ expense.method }}</b></li>
                                         <li>Komentarz: <b>          {{ expense.expense_comment }}</b></li>
                                     </ul>
                                 </div>
@@ -353,7 +358,7 @@
                                 <th>Kategoria</th>
                                 <th>Kwota</th>
                                 <th>Data</th>
-                                <th>Komentarz</th>
+                                <th>Szczegóły/Usuń</th>
                             </tr>
                             </thead>
                             {% if range == "rangeCurrentMonth" %}
@@ -444,7 +449,7 @@
                                 <th>Kategoria</th>
                                 <th>Kwota</th>
                                 <th>Data</th>
-                                <th>Komentarz</th>
+                                <th>Szczegóły/Usuń</th>
                             </tr>
                             </thead>
                             {% if range == "rangeCurrentMonth" %}

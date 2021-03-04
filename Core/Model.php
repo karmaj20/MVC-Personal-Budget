@@ -169,10 +169,12 @@ abstract class Model
     protected static function detailedExpenseBalance($start, $end, $id)
     {
         $sql = "
-                SELECT ex.id, exdef.name, ex.ammount, ex.date_of_expense, ex.expense_comment 
+                SELECT ex.id, exdef.name, ex.ammount, ex.date_of_expense, paymet.method, ex.expense_comment 
                 FROM expenses AS ex 
                 INNER JOIN expenses_category_assigned_to_users AS exdef 
-                ON ex.expense_category_assigned_to_user_id = exdef.id 
+                ON ex.expense_category_assigned_to_user_id = exdef.id
+                INNER JOIN payment_methods_assigned_to_users AS paymet
+                ON ex.payment_method_assigned_to_user_id = paymet.id
                 INNER JOIN users 
                 ON ex.user_id = users.id AND ex.user_id = :id
                 WHERE date_of_expense BETWEEN :start AND :end
