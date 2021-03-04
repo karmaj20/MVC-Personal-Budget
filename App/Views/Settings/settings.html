@@ -14,6 +14,107 @@
             <div class="col-12 col-md-10 bg-budgetOpacity text-center mr-auto ml-auto interval">
                 <form class="form-bloc p-4 " method="" action="">
                     <h2 style="color: white">USTAWIENIA</h2>
+<!--                    MODAL FOR EDITION DATA OF YOUR ACCOUNT-->
+                    <form method="get">
+                    <div class="modal fade editAccountModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="myEditaAccountDataModalLabel">Edycja danych konta</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="text-left ml-2 mr-2">
+                                    <input type="text" class="form-control mt-2" placeholder="login" autofocus name="name"
+                                           {% for user in username %} value="{{ user.username }}" {% endfor %} />
+
+                                    <input type="email" class="form-control mt-2" aria-describedby="emailHelp" placeholder="email" name="email"
+                                           {% for user in email %} value="{{ user.email }}" {% endfor %}/>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <input formaction="settings/updateUserAccount" type="submit" class="col-6 btn btn-success" value="ZMIEŃ" />
+                                    <input type="submit" class="col-6 btn btn-danger" data-dismiss="modal" value="ZAMKNIJ" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+
+                    <!--                    MODAL FOR EDITION PASSWORD OF YOUR ACCOUNT-->
+                    <form method="get">
+                        <div class="modal fade editPasswordAccountModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edycja hasła przypisanego do konta</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="text-left ml-2 mr-2">
+                                        <input type="password" class="form-control mt-2" placeholder="Podaj aktualne hasło" autofocus name="password" />
+
+                                        <input type="password" class="form-control mt-2" placeholder="Nowe hasło" name="userPassword" />
+
+                                        <input type="password" class="form-control mt-2" placeholder="Potwierdź nowe hasło" name="repeatedUserPassword" />
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <input formaction="settings/editPassword" type="submit" class="col-6 btn btn-success" value="ZMIEŃ" />
+                                        <input type="submit" class="col-6 btn btn-danger" data-dismiss="modal" value="ZAMKNIJ" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!--                    MODAL FOR CONFIRM DELETING ACCOUNT -->
+                    <form method="get">
+                    <div class="modal confirmationUser" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Potwierdź usuwanie</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-center font-weight-bold">
+                                    <p>Naciśnij usuń aby kontynuować.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <input formaction="settings/deleteUserAccount" type="submit" class="col-6 btn btn-danger" value="USUŃ" />
+                                    <input type="submit" class="col-6 btn btn-primary" data-dismiss="modal" value="ZAMKNIJ" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                    <!--                    MODAL FOR CONFIRM DELETING INCOMES EXPENSES  -->
+
+                    <form method="get">
+                        <div class="modal confirmationIncomesExpenses" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Potwierdź usuwanie</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body text-center font-weight-bold">
+                                        <p>Naciśnij usuń aby kontynuować.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input formaction="settings/deleteIncomesExpenses" type="submit" class="col-6 btn btn-danger" value="USUŃ" />
+                                        <input type="submit" class="col-6 btn btn-primary" data-dismiss="modal" value="ZAMKNIJ" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
 
                     <!--                        MODAL FOR EDITION INCOME CATEGORY -->
                     <form method="get">
@@ -280,17 +381,26 @@
 
                             <div class="collapse multi-collapse mb-3" id="headingEditUser">
                                 <div class="card card-body text-center">
-                                    <div>Login:  {% for i in name %} <strong>{{ i.username }}</strong> {% endfor %}</div>
+                                    <div>Login:  {% for i in username %} <strong>{{ i.username }}</strong> {% endfor %}</div>
                                     <div>E-mail: {% for i in email %} <strong>{{ i.email }}</strong> {% endfor %}</div>
                                     <div>
-                                        <button class="col-5 d-inline-block btn btn-success my-2" type="submit" style="color: white">Edytuj swoje dane</button>
-                                        <button name="deleteIncomesExpenses" class="col-5 d-inline-block btn btn-danger my-2" type="submit" formaction="settings/deleteIncomesAndExpenses">
+                                        <button class="col-5 d-inline-block btn btn-success my-2" type="button" style="color: white" data-toggle="modal" data-target=".editAccountModal">
+                                            Edytuj swoje dane
+                                        </button>
+                                        <button name="deleteIncomesExpenses" class="col-5 d-inline-block btn btn-danger my-2" type="button"
+                                                data-toggle="modal" data-target=".confirmationIncomesExpenses">
                                             Usuń przychody i wydatki
                                         </button>
                                     </div>
                                     <div>
-                                        <button class="col-5 d-inline-block btn btn-success my-2" type="submit" style="color: white" >Zmień hasło</button>
-                                        <button class="col-5 d-inline-block btn btn-danger my-2" type="reset" >Usuń moje konto</button>
+                                        <button class="col-5 d-inline-block btn btn-success my-2" type="button" style="color: white"
+                                                data-toggle="modal" data-target=".editPasswordAccountModal">
+                                            Zmień hasło
+                                        </button>
+                                        <button class="col-5 d-inline-block btn btn-danger my-2" type="button"
+                                                data-toggle="modal" data-target=".confirmationUser">
+                                            Usuń moje konto
+                                        </button>
                                     </div>
                                 </div>
                             </div>

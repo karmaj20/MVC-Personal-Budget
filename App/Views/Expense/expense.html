@@ -31,7 +31,7 @@
                         <h4>FORMA PŁATNOŚCI</h4>
                         <select class="custom-select my-1 mr-sm-2 mt-3 mb-3" name="paymentMethod">
                             {% for method in paymentMethods %}
-                                <option value="{{ method.id }}">{{ method.name }}</option>
+                                <option value="{{ method.id }}">{{ method.method }}</option>
                             {% endfor %}
                         </select>
 

@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use App\Request;
+
 /**
  * Router
  *
@@ -22,6 +24,7 @@ class Router
      */
     protected $params = [];
 
+    protected Request $request;
     /**
      * Add a route to the routing table
      *
@@ -112,6 +115,7 @@ class Router
             $controller = $this->getNamespace() . $controller;
 
             if (class_exists($controller)) {
+
                 $controller_object = new $controller($this->params);
 
                 $action = $this->params['action'];

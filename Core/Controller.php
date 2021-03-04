@@ -4,6 +4,7 @@ namespace Core;
 
 use App\Auth;
 use App\Flash;
+use App\Request;
 
 /**
  * Base controller
@@ -26,6 +27,7 @@ abstract class Controller
      *
      * @return void
      */
+
     public function __construct($route_params)
     {
         $this->route_params = $route_params;

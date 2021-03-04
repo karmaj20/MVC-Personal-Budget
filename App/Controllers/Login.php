@@ -36,6 +36,7 @@ class Login extends \Core\Controller
 
         $remember_me = isset($_POST['remember_me']);
 
+
         if($user){
 
             $_SESSION['id'] = $user->id;
@@ -69,6 +70,13 @@ class Login extends \Core\Controller
     public function showLogoutMessageAction()
     {
         Flash::addMessage('Poprawne wylogowanie', FLASH::INFO);
+
+        $this->redirect('/');
+    }
+
+    public function showDeleteMessageAction()
+    {
+        Flash::addMessage('Konto zostało usunięte', FLASH::INFO);
 
         $this->redirect('/');
     }

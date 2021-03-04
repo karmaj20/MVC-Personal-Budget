@@ -247,6 +247,7 @@ class Settings extends Authenticated
     public function deleteUserAccountAction()
     {
         $delete = new SettingsMod($_GET);
+        $logout = new Login($_GET);
 
         $delete->deleteUserAccount();
 
