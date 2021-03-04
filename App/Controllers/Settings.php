@@ -83,7 +83,7 @@ class Settings extends Authenticated
         }
     }
 
-    public function deleteIncomeAction()
+    public function deleteIncomeCategoryAction()
     {
         $delete = new IncomeMod($_GET);
 
@@ -102,7 +102,7 @@ class Settings extends Authenticated
         }
     }
 
-    public function deleteExpenseAction()
+    public function deleteExpenseCategoryAction()
     {
         $delete = new ExpenseMod($_GET);
 
@@ -137,6 +137,67 @@ class Settings extends Authenticated
             Flash::addMessage("Nie udało się usunąc metody płatności, spróbuj jeszcze raz.", Flash::INFO);
 
             $this->redirect('/Settings');
+        }
+    }
+
+    public function deleteIncomesAndExpensesAction()
+    {
+        $deleteIncomes  = new IncomeMod($_GET);
+        $deleteExpenses = new ExpenseMod($_GET);
+
+        if (isset($_GET['deleteIncomesExpenses'])) {
+
+            $deleteIncomes->deleteIncomes();
+            $deleteExpenses->deleteExpenses();
+
+            Flash::addMessage('Przychody oraz wydatki zostały usunięte', FLASH::SUCCESS);
+
+            $this->redirect('/Settings');
+        } else {
+
+            Flash::addMessage('Nie udało się usunąć przychodów oraz wydatków, spróbuj ponownie.', FLASH::INFO);
+
+            $this->redirect('/Settings');
+        }
+    }
+
+    public function deleteSingleIncomeAction()
+    {
+        $delete = new IncomeMod($_POST);
+
+        if(isset($_POST['binIncome'])) {
+
+            $delete->deleteSingleIncome();
+
+            Flash::addMessage('Przychód został usunięty.', FLASH::SUCCESS);
+
+            $this->redirect('/detailed');
+
+        } else {
+
+            Flash::addMessage('Nie udało się usunąć przychodu.', FLASH::INFO);
+
+            $this->redirect('/detailed');
+        }
+    }
+
+    public function deleteSingleExpenseAction()
+    {
+        $delete = new ExpenseMod($_POST);
+
+        if(isset($_POST['binExpense'])) {
+
+            $delete->deleteSingleExpense();
+
+            Flash::addMessage('Wydatek został usunięty.', FLASH::SUCCESS);
+
+            $this->redirect('/detailed');
+
+        } else {
+
+            Flash::addMessage('Nie udało się usunąć wydatku.', FLASH::INFO);
+
+            $this->redirect('/detailed');
         }
     }
 }

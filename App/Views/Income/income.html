@@ -30,9 +30,11 @@
 
                         <h4>KATEGORIA</h4>
                         <select class="custom-select my-1 mr-sm-2" name="categoryIncome">
-                                {% for category in incomesCategory %}
-                                    <option value="{{ loop.index }}">{{ category.0 }}</option>
-                                {% endfor %}
+                            {% for category in incomesCategory %}
+                                <option value="{{ category.id }}">
+                                        {{ category.name }}
+                                </option>
+                            {% endfor %}
                         </select>
 
                         <div class="form-group mt-3 mb-5">

@@ -33,22 +33,40 @@ abstract class Model
         return $db;
     }
 
+//        $sql = "
+//                SELECT incdef.name, SUM(inc.ammount)
+//                FROM incomes AS inc
+//                INNER JOIN incomes_category_default AS incdef
+//                ON inc.income_category_assigned_to_user_id = incdef.id
+//                INNER JOIN users
+//                ON inc.user_id = users.id AND inc.user_id = :id
+//                WHERE date_of_income BETWEEN :start AND :end
+//                GROUP BY income_category_assigned_to_user_id
+//               ";
+
     protected static function getBalanceIncomeSheet($start, $end, $id)
     {
+
+
         $sql = "  
                 SELECT incdef.name, SUM(inc.ammount) 
                 FROM incomes AS inc 
-                INNER JOIN income_category_default AS incdef 
+                INNER JOIN incomes_category_assigned_to_users AS incdef 
                 ON inc.income_category_assigned_to_user_id = incdef.id 
                 INNER JOIN users 
-                ON inc.user_id = users.id AND inc.user_id = '$id'
-                WHERE date_of_income BETWEEN '$start' AND '$end'
+                ON inc.user_id = users.id AND inc.user_id = :id 
+                WHERE date_of_income BETWEEN :start AND :end 
                 GROUP BY income_category_assigned_to_user_id
                ";
 
         $db = static::getDB();
 
         $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',    $id,    PDO::PARAM_INT);
+        $stmt->bindValue(':start', $start, PDO::PARAM_STR);
+        $stmt->bindValue(':end',   $end,   PDO::PARAM_STR);
+
         $stmt->execute();
 
         return $stmt->fetchAll();
@@ -59,17 +77,22 @@ abstract class Model
         $sql = "  
                 SELECT exdef.name, SUM(ex.ammount) 
                 FROM expenses AS ex 
-                INNER JOIN expenses_category_default AS exdef 
+                INNER JOIN expenses_category_assigned_to_users AS exdef 
                 ON ex.expense_category_assigned_to_user_id = exdef.id
                 INNER JOIN users 
-                ON ex.user_id = users.id AND ex.user_id = '$id'
-                WHERE date_of_expense BETWEEN '$start' AND '$end'
+                ON ex.user_id = users.id AND ex.user_id = :id
+                WHERE date_of_expense BETWEEN :start AND :end
                 GROUP BY expense_category_assigned_to_user_id
                ";
 
         $db = static::getDB();
 
         $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',    $id,    PDO::PARAM_INT);
+        $stmt->bindValue(':start', $start, PDO::PARAM_STR);
+        $stmt->bindValue(':end',   $end,   PDO::PARAM_STR);
+
         $stmt->execute();
 
         return $stmt->fetchAll();
@@ -79,13 +102,18 @@ abstract class Model
     {
         $sql = "
                 SELECT SUM(ammount) FROM incomes AS inc 
-                INNER JOIN users ON inc.user_id = users.id AND inc.user_id = '$id'
-                WHERE date_of_income BETWEEN '$start' AND '$end'
+                INNER JOIN users ON inc.user_id = users.id AND inc.user_id = :id
+                WHERE date_of_income BETWEEN :start AND :end
                 ";
 
         $db = static::getDB();
 
         $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',    $id,    PDO::PARAM_INT);
+        $stmt->bindValue(':start', $start, PDO::PARAM_STR);
+        $stmt->bindValue(':end',   $end,   PDO::PARAM_STR);
+
         $stmt->execute();
 
         return $stmt->fetchAll();
@@ -95,13 +123,18 @@ abstract class Model
     {
         $sql = "
                 SELECT SUM(ammount) FROM expenses AS exp
-                INNER JOIN users ON exp.user_id = users.id AND exp.user_id = '$id'
-                WHERE date_of_expense BETWEEN '$start' AND '$end'
+                INNER JOIN users ON exp.user_id = users.id AND exp.user_id = :id
+                WHERE date_of_expense BETWEEN :start AND :end
                 ";
 
         $db = static::getDB();
 
         $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',    $id,    PDO::PARAM_INT);
+        $stmt->bindValue(':start', $start, PDO::PARAM_STR);
+        $stmt->bindValue(':end',   $end,   PDO::PARAM_STR);
+
         $stmt->execute();
 
         return $stmt->fetchAll();
@@ -110,44 +143,52 @@ abstract class Model
     protected static function detailedIncomeBalance($start, $end, $id)
     {
         $sql = "
-                SELECT incdef.name, inc.ammount, inc.date_of_income, inc.income_comment 
+                SELECT inc.id, incdef.name, inc.ammount, inc.date_of_income, inc.income_comment 
                 FROM incomes AS inc 
-                INNER JOIN income_category_default AS incdef 
+                INNER JOIN incomes_category_assigned_to_users AS incdef 
                 ON inc.income_category_assigned_to_user_id = incdef.id 
                 INNER JOIN users 
-                ON inc.user_id = users.id AND inc.user_id = '$id'
-                WHERE date_of_income BETWEEN '$start' AND '$end'
+                ON inc.user_id = users.id AND inc.user_id = :id
+                WHERE date_of_income BETWEEN :start AND :end
 				ORDER BY date_of_income ASC
 			    ";
 
         $db = static::getDB();
 
         $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',    $id,    PDO::PARAM_INT);
+        $stmt->bindValue(':start', $start, PDO::PARAM_STR);
+        $stmt->bindValue(':end',   $end,   PDO::PARAM_STR);
+
         $stmt->execute();
 
-//        dump($stmt->fetchAll());
         return $stmt->fetchAll();
     }
 
     protected static function detailedExpenseBalance($start, $end, $id)
     {
         $sql = "
-                SELECT exdef.name, ex.ammount, ex.date_of_expense, ex.expense_comment 
+                SELECT ex.id, exdef.name, ex.ammount, ex.date_of_expense, ex.expense_comment 
                 FROM expenses AS ex 
-                INNER JOIN expenses_category_default AS exdef 
+                INNER JOIN expenses_category_assigned_to_users AS exdef 
                 ON ex.expense_category_assigned_to_user_id = exdef.id 
                 INNER JOIN users 
-                ON ex.user_id = users.id AND ex.user_id = '$id'
-                WHERE date_of_expense BETWEEN '$start' AND '$end'
+                ON ex.user_id = users.id AND ex.user_id = :id
+                WHERE date_of_expense BETWEEN :start AND :end
 				ORDER BY date_of_expense ASC
 			    ";
 
         $db = static::getDB();
 
         $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',    $id,    PDO::PARAM_INT);
+        $stmt->bindValue(':start', $start, PDO::PARAM_STR);
+        $stmt->bindValue(':end',   $end,   PDO::PARAM_STR);
+
         $stmt->execute();
 
-//        dump($stmt->fetchAll());
         return $stmt->fetchAll();
     }
 

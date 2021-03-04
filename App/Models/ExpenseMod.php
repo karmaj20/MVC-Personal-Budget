@@ -33,7 +33,7 @@ class ExpenseMod extends \Core\Model
             $database = static::getDB();
             $stmt = $database->prepare($sql);
 
-            $stmt->bindValue(':id',                 $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id',                 $id,              PDO::PARAM_INT);
             $stmt->bindValue(':categoryExpense',    $categoryExpense, PDO::PARAM_INT);
             $stmt->bindValue(':paymentMethod',      $paymentMethod,   PDO::PARAM_STR);
             $stmt->bindValue(':amountExpense',      $amountExpense,   PDO::PARAM_STR);
@@ -124,7 +124,7 @@ class ExpenseMod extends \Core\Model
             $db = static::getDb();
             $stmt = $db->prepare($sql);
 
-            $stmt->bindValue(':id',                     $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id',                     $id,                  PDO::PARAM_INT);
             $stmt->bindValue(':expenseCategoryName',    $expenseCategoryName, PDO::PARAM_STR);
 
             $result = $stmt->fetchAll();
@@ -162,18 +162,41 @@ class ExpenseMod extends \Core\Model
         }
     }
 
+    public function deleteSingleExpense()
+    {
+        $id = $_POST['binExpense'];
+
+        $sql = "
+               DELETE FROM expenses
+               WHERE id = :id
+               ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',  $id,PDO::PARAM_INT);
+
+        $result = $stmt->fetchAll();
+        $stmt->execute();
+
+        return $result;
+    }
+
     public static function selectExpensesCategory()
     {
         $id = $_SESSION['id'];
 
         $sql = "
-                SELECT exCat.name 
+                SELECT exCat.name, exCat.id
                 FROM expenses_category_assigned_to_users AS exCat 
-                WHERE exCat.user_id = '$id'
+                WHERE exCat.user_id = :id
                 ";
 
         $db = static::getDb();
         $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
         $stmt->execute();
 
         return $stmt->fetchAll();
@@ -184,32 +207,37 @@ class ExpenseMod extends \Core\Model
         $id = $_SESSION['id'];
 
         $sql = "
-                SELECT payMet.name 
+                SELECT payMet.name, payMet.id 
                 FROM payment_methods_assigned_to_users AS payMet 
                 WHERE payMet.user_id = :id
                 ";
 
         $db = static::getDb();
         $stmt = $db->prepare($sql);
+
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
         return $stmt->fetchAll();
     }
 
-    public static function deleteExpenses()
+    public function deleteExpenses()
     {
         $id = $_SESSION['id'];
 
         $sql = "
                 DELETE FROM expenses 
-                WHERE user_id = '$id'
+                WHERE user_id = :id
                 ";
 
         $db = static::getDb();
         $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $result = $stmt->fetchAll();
         $stmt->execute();
 
-        return $stmt->fetchAll();
+        return $result;
     }
 }

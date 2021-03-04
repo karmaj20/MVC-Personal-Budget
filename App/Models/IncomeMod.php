@@ -31,8 +31,8 @@ class IncomeMod extends \Core\Model
             $database = static::getDB();
             $stmt = $database->prepare($sql);
 
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->bindValue(':categoryIncome', $categoryIncome, PDO::PARAM_STR);
+            $stmt->bindValue(':id',             $id,             PDO::PARAM_INT);
+            $stmt->bindValue(':categoryIncome', $categoryIncome, PDO::PARAM_INT);
             $stmt->bindValue(':amountIncome',   $amountIncome,   PDO::PARAM_STR);
             $stmt->bindValue(':dateIncome',     $dateIncome,     PDO::PARAM_STR);
             $stmt->bindValue(':commentIncome',  $commentIncome,  PDO::PARAM_STR);
@@ -50,6 +50,7 @@ class IncomeMod extends \Core\Model
         if(isset($_GET['income'])) {
 
             $incomeCategoryName = $_GET['income'];
+
             $sql = "
                INSERT INTO incomes_category_assigned_to_users 
                VALUES (null, :id, :incomeCategoryName)
@@ -98,20 +99,44 @@ class IncomeMod extends \Core\Model
         return false;
     }
 
-    public static function deleteIncomes()
+    public function deleteSingleIncome()
+    {
+        $id = $_POST['binIncome'];
+
+        $sql = "
+               DELETE FROM incomes
+               WHERE id = :id
+               ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',  $id,PDO::PARAM_INT);
+
+        $result = $stmt->fetchAll();
+        $stmt->execute();
+
+        return $result;
+    }
+
+    public function deleteIncomes()
     {
         $id = $_SESSION['id'];
 
         $sql = "
                 DELETE FROM incomes 
-                WHERE user_id = '$id'
+                WHERE user_id = :id
                 ";
 
         $db = static::getDb();
         $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',     $id,    PDO::PARAM_INT);
+
+        $result = $stmt->fetchAll();
         $stmt->execute();
 
-        return $stmt->fetchAll();
+        return $result;
     }
 
     public static function selectIncomesCategory()
@@ -119,7 +144,7 @@ class IncomeMod extends \Core\Model
         $id = $_SESSION['id'];
 
         $sql = "
-                SELECT incCat.name 
+                SELECT incCat.name, incCat.id
                 FROM incomes_category_assigned_to_users AS incCat 
                 WHERE incCat.user_id = :id
                 ";
@@ -132,4 +157,5 @@ class IncomeMod extends \Core\Model
 
         return $stmt->fetchAll();
     }
+
 }

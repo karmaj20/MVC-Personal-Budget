@@ -52,11 +52,10 @@
                                     <div class="form-group mt-3">
                                         OD
                                         <input type="date" value="{{ startPeriod }}" class="form-control" name="startPeriod">
-<!--                                               {{ range != "rangeChosenPeriod" ? 'disabled' : '' }}>-->
                                     </div>
                                     <div class="form-group">
                                         DO
-                                        <input type="date" value="endPeriod" class="form-control" name="endPeriod" >
+                                        <input type="date" value="{{ endPeriod }}" class="form-control" name="endPeriod" >
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -69,7 +68,7 @@
 
 <!--                    MODAL SHOWS DETAILS OF INCOME -->
                     {% if range == "rangeCurrentMonth" %}
-                    {% for incomeCategoryAmount in detailedIncomeCurrentMonth %}
+                    {% for income in detailedIncomeCurrentMonth %}
                     <div class="modal fade detailIncome{{ loop.index }}"
                          tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -82,10 +81,10 @@
                                     </div>
                                     <div class="modal-body text-left">
                                         <ul>
-                                            <li>Kategoria:<b> {{ incomeCategoryAmount.name }}</b> </li>
-                                            <li>Kwota:<b> {{ incomeCategoryAmount.ammount }}</b></li>
-                                            <li>Data:<b> {{ incomeCategoryAmount.date_of_income }}</b></li>
-                                            <li>Komentarz:<b> {{ incomeCategoryAmount.income_comment }}</b></li>
+                                            <li>Kategoria:<b> {{ income.name }}</b> </li>
+                                            <li>Kwota:<b>     {{ income.ammount }}</b></li>
+                                            <li>Data:<b>      {{ income.date_of_income }}</b></li>
+                                            <li>Komentarz:<b> {{ income.income_comment }}</b></li>
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
@@ -96,7 +95,7 @@
                         </div>
                     {% endfor %}
                     {% elseif range == "rangePreviousMonth" %}
-                    {% for incomeCategoryAmount in detailedIncomePreviousMonth %}
+                    {% for income in detailedIncomePreviousMonth %}
                     <div class="modal fade detailIncome{{ loop.index }}"
                          tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -109,10 +108,10 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria:<b> {{ incomeCategoryAmount.name }}</b> </li>
-                                        <li>Kwota:<b> {{ incomeCategoryAmount.ammount }}</b></li>
-                                        <li>Data:<b> {{ incomeCategoryAmount.date_of_income }}</b></li>
-                                        <li>Komentarz:<b> {{ incomeCategoryAmount.income_comment }}</b></li>
+                                        <li>Kategoria:<b>   {{ income.name }}</b> </li>
+                                        <li>Kwota:<b>       {{ income.ammount }}</b></li>
+                                        <li>Data:<b>        {{ income.date_of_income }}</b></li>
+                                        <li>Komentarz:<b>   {{ income.income_comment }}</b></li>
                                     </ul>
                                 </div>
                                 <div class="modal-footer">
@@ -123,7 +122,7 @@
                     </div>
                     {% endfor %}
                     {% elseif range == "rangeCurrentYear" %}
-                    {% for incomeCategoryAmount in detailedIncomeCurrentYear %}
+                    {% for income in detailedIncomeCurrentYear %}
                     <div class="modal fade detailIncome{{ loop.index }}"
                          tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -136,10 +135,10 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria:<b> {{ incomeCategoryAmount.name }}</b> </li>
-                                        <li>Kwota:<b> {{ incomeCategoryAmount.ammount }}</b></li>
-                                        <li>Data:<b> {{ incomeCategoryAmount.date_of_income }}</b></li>
-                                        <li>Komentarz:<b> {{ incomeCategoryAmount.income_comment }}</b></li>
+                                        <li>Kategoria:<b>   {{ income.name }}</b> </li>
+                                        <li>Kwota:<b>       {{ income.ammount }}</b></li>
+                                        <li>Data:<b>        {{ income.date_of_income }}</b></li>
+                                        <li>Komentarz:<b>   {{ income.income_comment }}</b></li>
                                     </ul>
                                 </div>
                                 <div class="modal-footer">
@@ -150,7 +149,7 @@
                     </div>
                     {% endfor %}
                     {% elseif range == "rangeChosenPeriod" %}
-                    {% for incomeCategoryAmount in detailedIncomeChosenPeriod %}
+                    {% for income in detailedIncomeChosenPeriod %}
                     <div class="modal fade detailIncome{{ loop.index }}"
                          tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -163,10 +162,10 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria:<b> {{ incomeCategoryAmount.name }}</b> </li>
-                                        <li>Kwota:<b> {{ incomeCategoryAmount.ammount }}</b></li>
-                                        <li>Data:<b> {{ incomeCategoryAmount.date_of_income }}</b></li>
-                                        <li>Komentarz:<b> {{ incomeCategoryAmount.income_comment }}</b></li>
+                                        <li>Kategoria:<b>   {{ income.name }}</b> </li>
+                                        <li>Kwota:<b>       {{ income.ammount }}</b></li>
+                                        <li>Data:<b>        {{ income.date_of_income }}</b></li>
+                                        <li>Komentarz:<b>   {{ income.income_comment }}</b></li>
                                     </ul>
                                 </div>
                                 <div class="modal-footer">
@@ -177,7 +176,7 @@
                     </div>
                     {% endfor %}
                     {% else %}
-                    {% for incomeCategoryAmount in detailedIncomeCurrentMonth %}
+                    {% for income in detailedIncomeCurrentMonth %}
                     <div class="modal fade detailIncome{{ loop.index }}"
                          tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -190,10 +189,10 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria:<b> {{ incomeCategoryAmount.name }}</b> </li>
-                                        <li>Kwota:<b> {{ incomeCategoryAmount.ammount }}</b></li>
-                                        <li>Data:<b> {{ incomeCategoryAmount.date_of_income }}</b></li>
-                                        <li>Komentarz:<b> {{ incomeCategoryAmount.income_comment }}</b></li>
+                                        <li>Kategoria:<b>       {{ income.name }}</b> </li>
+                                        <li>Kwota:<b>           {{ income.ammount }}</b></li>
+                                        <li>Data:<b>            {{ income.date_of_income }}</b></li>
+                                        <li>Komentarz:<b>       {{ income.income_comment }}</b></li>
                                     </ul>
                                 </div>
                                 <div class="modal-footer">
@@ -207,7 +206,7 @@
 
                     <!--                    MODAL SHOWS DETAILS OF EXPENSE -->
                     {% if range == "rangeCurrentMonth" %}
-                    {% for expenseCategoryAmount in detailedExpenseCurrentMonth %}
+                    {% for expense in detailedExpenseCurrentMonth %}
                     <div class="modal fade detailExpense{{ loop.index }}"
                          tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -220,10 +219,10 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria: <b> {{ expenseCategoryAmount.name }}</b></li>
-                                        <li>Kwota: <b>{{ expenseCategoryAmount.ammount }}</b></li>
-                                        <li>Data: <b>{{ expenseCategoryAmount.date_of_expense }}</b></li>
-                                        <li>Komentarz: <b>{{ expenseCategoryAmount.expense_comment }}</b></li>
+                                        <li>Kategoria: <b>      {{ expense.name }}</b></li>
+                                        <li>Kwota: <b>          {{ expense.ammount }}</b></li>
+                                        <li>Data: <b>           {{ expense.date_of_expense }}</b></li>
+                                        <li>Komentarz: <b>      {{ expense.expense_comment }}</b></li>
                                     </ul>
                                 </div>
                                 <div class="modal-footer">
@@ -234,7 +233,7 @@
                     </div>
                     {% endfor %}
                     {% elseif range == "rangePreviousMonth" %}
-                    {% for expenseCategoryAmount in detailedExpensePreviousMonth %}
+                    {% for expense in detailedExpensePreviousMonth %}
                     <div class="modal fade detailExpense{{ loop.index }}"
                          tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -247,10 +246,10 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria: <b> {{ expenseCategoryAmount.name }}</b></li>
-                                        <li>Kwota: <b>{{ expenseCategoryAmount.ammount }}</b></li>
-                                        <li>Data: <b>{{ expenseCategoryAmount.date_of_expense }}</b></li>
-                                        <li>Komentarz: <b>{{ expenseCategoryAmount.expense_comment }}</b></li>
+                                        <li>Kategoria: <b>          {{ expense.name }}</b></li>
+                                        <li>Kwota: <b>              {{ expense.ammount }}</b></li>
+                                        <li>Data: <b>               {{ expense.date_of_expense }}</b></li>
+                                        <li>Komentarz: <b>          {{ expense.expense_comment }}</b></li>
                                     </ul>
                                 </div>
                                 <div class="modal-footer">
@@ -261,7 +260,7 @@
                     </div>
                     {% endfor %}
                     {% elseif range == "rangeCurrentYear" %}
-                    {% for expenseCategoryAmount in detailedExpenseCurrentYear %}
+                    {% for expense in detailedExpenseCurrentYear %}
                     <div class="modal fade detailExpense{{ loop.index }}"
                          tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -274,10 +273,10 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria: <b> {{ expenseCategoryAmount.name }}</b></li>
-                                        <li>Kwota: <b>{{ expenseCategoryAmount.ammount }}</b></li>
-                                        <li>Data: <b>{{ expenseCategoryAmount.date_of_expense }}</b></li>
-                                        <li>Komentarz: <b>{{ expenseCategoryAmount.expense_comment }}</b></li>
+                                        <li>Kategoria: <b>          {{ expense.name }}</b></li>
+                                        <li>Kwota: <b>              {{ expense.ammount }}</b></li>
+                                        <li>Data: <b>               {{ expense.date_of_expense }}</b></li>
+                                        <li>Komentarz: <b>          {{ expense.expense_comment }}</b></li>
                                     </ul>
                                 </div>
                                 <div class="modal-footer">
@@ -288,7 +287,7 @@
                     </div>
                     {% endfor %}
                     {% elseif range == "rangeChosenPeriod" %}
-                    {% for expenseCategoryAmount in detailedExpenseChosenPeriod %}
+                    {% for expense in detailedExpenseChosenPeriod %}
                     <div class="modal fade detailExpense{{ loop.index }}"
                          tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -301,10 +300,10 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria: <b> {{ expenseCategoryAmount.name }}</b></li>
-                                        <li>Kwota: <b>{{ expenseCategoryAmount.ammount }}</b></li>
-                                        <li>Data: <b>{{ expenseCategoryAmount.date_of_expense }}</b></li>
-                                        <li>Komentarz: <b>{{ expenseCategoryAmount.expense_comment }}</b></li>
+                                        <li>Kategoria: <b>          {{ expense.name }}</b></li>
+                                        <li>Kwota: <b>              {{ expense.ammount }}</b></li>
+                                        <li>Data: <b>               {{ expense.date_of_expense }}</b></li>
+                                        <li>Komentarz: <b>          {{ expense.expense_comment }}</b></li>
                                     </ul>
                                 </div>
                                 <div class="modal-footer">
@@ -315,7 +314,7 @@
                     </div>
                     {% endfor %}
                     {% else %}
-                    {% for expenseCategoryAmount in detailedExpenseCurrentMonth %}
+                    {% for expense in detailedExpenseCurrentMonth %}
                     <div class="modal fade detailExpense{{ loop.index }}"
                          tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -328,10 +327,10 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria: <b> {{ expenseCategoryAmount.name }}</b></li>
-                                        <li>Kwota: <b>{{ expenseCategoryAmount.ammount }}</b></li>
-                                        <li>Data: <b>{{ expenseCategoryAmount.date_of_expense }}</b></li>
-                                        <li>Komentarz: <b>{{ expenseCategoryAmount.expense_comment }}</b></li>
+                                        <li>Kategoria: <b>          {{ expense.name }}</b></li>
+                                        <li>Kwota: <b>              {{ expense.ammount }}</b></li>
+                                        <li>Data: <b>               {{ expense.date_of_expense }}</b></li>
+                                        <li>Komentarz: <b>          {{ expense.expense_comment }}</b></li>
                                     </ul>
                                 </div>
                                 <div class="modal-footer">
@@ -358,60 +357,79 @@
                             </tr>
                             </thead>
                             {% if range == "rangeCurrentMonth" %}
-                            {% for incomeCategoryAmount in detailedIncomeCurrentMonth %}
+                            {% for income in detailedIncomeCurrentMonth %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ incomeCategoryAmount.name }}</th>
-                                <th>{{ incomeCategoryAmount.ammount }}</th>
-                                <th>{{ incomeCategoryAmount.date_of_income }}</th>
+                                <th>{{ income.name }}</th>
+                                <th>{{ income.ammount }}</th>
+                                <th>{{ income.date_of_income }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailIncome{{ loop.index }}">
                                     Szczegóły
                                     </button>
-                                        <button class="btn-danger" type="submit" value="delete">Usuń</button>
+                                        <button class="btn-danger" type="submit" value="{{ income.id }}" name="binIncome"
+                                                formaction="settings/deleteSingleIncome">
+                                            Usuń
+                                        </button>
                                     </th></tr>
                             {% endfor %}
                             {% elseif range == "rangePreviousMonth" %}
-                            {% for incomeCategoryAmount in detailedIncomePreviousMonth %}
+                            {% for income in detailedIncomePreviousMonth %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ incomeCategoryAmount.name }}</th>
-                                <th>{{ incomeCategoryAmount.ammount }}</th>
-                                <th>{{ incomeCategoryAmount.date_of_income }}</th>
+                                <th>{{ income.name }}</th>
+                                <th>{{ income.ammount }}</th>
+                                <th>{{ income.date_of_income }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailIncome{{ loop.index }}">
                                     Szczegóły
                                     </button>
-                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
+                                    <button class="btn-danger" type="submit" value="{{ income.id }}" name="binIncome"
+                                            formaction="settings/deleteSingleIncome">
+                                        Usuń
+                                    </button>
+                                </th></tr>
                             {% endfor %}
                             {% elseif range == "rangeCurrentYear" %}
-                            {% for incomeCategoryAmount in detailedIncomeCurrentYear %}
+                            {% for income in detailedIncomeCurrentYear %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ incomeCategoryAmount.name }}</th>
-                                <th>{{ incomeCategoryAmount.ammount }}</th>
-                                <th>{{ incomeCategoryAmount.date_of_income }}</th>
+                                <th>{{ income.name }}</th>
+                                <th>{{ income.ammount }}</th>
+                                <th>{{ income.date_of_income }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailIncome{{ loop.index }}">
                                     Szczegóły
                                     </button>
-                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
+                                    <button class="btn-danger" type="submit" value="{{ income.id }}" name="binIncome"
+                                            formaction="settings/deleteSingleIncome">
+                                        Usuń
+                                    </button>
+                                </th></tr>
                             {% endfor %}
                             {% elseif range == "rangeChosenPeriod" %}
-                            {% for incomeCategoryAmount in detailedIncomeChosenPeriod %}
+                            {% for income in detailedIncomeChosenPeriod %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ incomeCategoryAmount.name }}</th>
-                                <th>{{ incomeCategoryAmount.ammount }}</th>
-                                <th>{{ incomeCategoryAmount.date_of_income }}</th>
+                                <th>{{ income.name }}</th>
+                                <th>{{ income.ammount }}</th>
+                                <th>{{ income.date_of_income }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailIncome{{ loop.index }}">
                                     Szczegóły
                                 </button>
-                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
+                                    <button class="btn-danger" type="submit" value="{{ income.id }}" name="binIncome"
+                                            formaction="settings/deleteSingleIncome">
+                                        Usuń
+                                    </button>
+                                </th></tr>
                             {% endfor %}
                             {% else %}
-                            {% for incomeCategoryAmount in detailedIncomeCurrentMonth %}
+                            {% for income in detailedIncomeCurrentMonth %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ incomeCategoryAmount.name }}</th>
-                                <th>{{ incomeCategoryAmount.ammount }}</th>
-                                <th>{{ incomeCategoryAmount.date_of_income }}</th>
+                                <th>{{ income.name }}</th>
+                                <th>{{ income.ammount }}</th>
+                                <th>{{ income.date_of_income }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailIncome{{ loop.index }}">
                                     Szczegóły
                                     </button>
-                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
+                                    <button class="btn-danger" type="submit" value="{{ income.id }}" name="binIncome"
+                                            formaction="settings/deleteSingleIncome">
+                                        Usuń
+                                    </button>
+                                </th></tr>
                             {% endfor %}
                             {% endif %}
                         </table>
@@ -430,59 +448,79 @@
                             </tr>
                             </thead>
                             {% if range == "rangeCurrentMonth" %}
-                            {% for expenseCategoryAmount in detailedExpenseCurrentMonth %}
+                            {% for expense in detailedExpenseCurrentMonth %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ expenseCategoryAmount.name }}</th>
-                                <th>{{ expenseCategoryAmount.ammount }}</th>
-                                <th>{{ expenseCategoryAmount.date_of_expense }}</th>
+                                <th>{{ expense.name }}</th>
+                                <th>{{ expense.ammount }}</th>
+                                <th>{{ expense.date_of_expense }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailExpense{{ loop.index }}">
                                     Szczegóły
                                     </button>
-                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
+                                    <button class="btn-danger" type="submit" value="{{ expense.id }}" name="binExpense"
+                                            formaction="settings/deleteSingleExpense">
+                                        Usuń
+                                    </button>
+                                </th></tr>
                             {% endfor %}
                             {% elseif range == "rangePreviousMonth" %}
-                            {% for expenseCategoryAmount in detailedExpensePreviousMonth %}
+                            {% for expense in detailedExpensePreviousMonth %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ expenseCategoryAmount.name }}</th>
-                                <th>{{ expenseCategoryAmount.ammount }}</th>
-                                <th>{{ expenseCategoryAmount.date_of_expense }}</th>
+                                <th>{{ expense.name }}</th>
+                                <th>{{ expense.ammount }}</th>
+                                <th>{{ expense.date_of_expense }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailExpense{{ loop.index }}">
                                     Szczegóły
                                     </button>
-                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
+                                    <button class="btn-danger" type="submit" value="{{ expense.id }}" name="binExpense"
+                                            formaction="settings/deleteSingleExpense">
+                                        Usuń
+                                    </button>
+                                </th></tr>
                             {% endfor %}
                             {% elseif range == "rangeCurrentYear" %}
-                            {% for expenseCategoryAmount in detailedExpenseCurrentYear %}
+                            {% for expense in detailedExpenseCurrentYear %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ expenseCategoryAmount.name }}</th>
-                                <th>{{ expenseCategoryAmount.ammount }}</th>
-                                <th>{{ expenseCategoryAmount.date_of_expense }}</th>
+                                <th>{{ expense.name }}</th>
+                                <th>{{ expense.ammount }}</th>
+                                <th>{{ expense.date_of_expense }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailExpense{{ loop.index }}">
                                     Szczegóły
                                     </button>
-                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
+                                    <button class="btn-danger" type="submit" value="{{ expense.id }}" name="binExpense"
+                                            formaction="settings/deleteSingleExpense">
+                                        Usuń
+                                    </button>
+                                </th></tr>
                             {% endfor %}
                             {% elseif range == "rangeChosenPeriod" %}
-                            {% for expenseCategoryAmount in detailedExpenseChosenPeriod %}
+                            {% for expense in detailedExpenseChosenPeriod %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ expenseCategoryAmount.name }}</th>
-                                <th>{{ expenseCategoryAmount.ammount }}</th>
-                                <th>{{ expenseCategoryAmount.date_of_expense }}</th>
+                                <th>{{ expense.name }}</th>
+                                <th>{{ expense.ammount }}</th>
+                                <th>{{ expense.date_of_expense }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailExpense{{ loop.index }}">
                                     Szczegóły
                                     </button>
-                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
+                                    <button class="btn-danger" type="submit" value="{{ expense.id }}" name="binExpense"
+                                            formaction="settings/deleteSingleExpense">
+                                        Usuń
+                                    </button>
+                                </th></tr>
                             {% endfor %}
                             {% else %}
-                            {% for expenseCategoryAmount in detailedExpenseCurrentMonth %}
+                            {% for expense in detailedExpenseCurrentMonth %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ expenseCategoryAmount.name }}</th>
-                                <th>{{ expenseCategoryAmount.ammount }}</th>
-                                <th>{{ expenseCategoryAmount.date_of_expense }}</th>
+                                <th>{{ expense.name }}</th>
+                                <th>{{ expense.ammount }}</th>
+                                <th>{{ expense.date_of_expense }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailExpense{{ loop.index }}">
                                     Szczegóły
                                     </button>
-                                    <button class="btn-danger" type="submit" value="delete">Usuń</button></th></tr>
+                                    <button class="btn-danger" type="submit" value="{{ expense.id }}" name="binExpense"
+                                            formaction="settings/deleteSingleExpense">
+                                        Usuń
+                                    </button>
+                                </th></tr>
                             {% endfor %}
                             {% endif %}
                         </table>
