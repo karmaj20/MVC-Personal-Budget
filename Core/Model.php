@@ -44,12 +44,26 @@ abstract class Model
 //                GROUP BY income_category_assigned_to_user_id
 //               ";
 
+//          SELECT inc.id, inc.user_id, income_category_assigned_to_user_id,
+//                 inc.ammount, inc.date_of_income, inc.income_comment
+//          FROM incomes AS inc
+//          INNER JOIN incomes_category_assigned_to_users AS incass
+//          ON inc.income_category_assigned_to_user_id = incass.id
+//          WHERE inc.user_id = 133 AND incass.name = 'Odsetki Bankowe'
+
+//UPDATE incomes SET income_category_assigned_to_user_id =[value-3] WHERE incomes.user_id = 133
+
+//INSERT INTO incomes
+//SELECT inc.id, inc.user_id, income_category_assigned_to_user_id, inc.ammount, inc.date_of_income, inc.income_comment FROM incomes AS inc INNER JOIN incomes_category_assigned_to_users AS incass
+//ON inc.income_category_assigned_to_user_id = incass.id
+//WHERE inc.user_id = 133 AND incass.name = 'Odsetki Bankowe'
+
     protected static function getBalanceIncomeSheet($start, $end, $id)
     {
 
 
         $sql = "  
-                SELECT incdef.name, SUM(inc.ammount) 
+                SELECT incdef.category, SUM(inc.ammount) 
                 FROM incomes AS inc 
                 INNER JOIN incomes_category_assigned_to_users AS incdef 
                 ON inc.income_category_assigned_to_user_id = incdef.id 
@@ -75,7 +89,7 @@ abstract class Model
     protected static function getBalanceExpenseSheet($start, $end, $id)
     {
         $sql = "  
-                SELECT exdef.name, SUM(ex.ammount) 
+                SELECT exdef.category, SUM(ex.ammount) 
                 FROM expenses AS ex 
                 INNER JOIN expenses_category_assigned_to_users AS exdef 
                 ON ex.expense_category_assigned_to_user_id = exdef.id
@@ -143,7 +157,7 @@ abstract class Model
     protected static function detailedIncomeBalance($start, $end, $id)
     {
         $sql = "
-                SELECT inc.id, incdef.name, inc.ammount, inc.date_of_income, inc.income_comment 
+                SELECT inc.id, incdef.category, inc.ammount, inc.date_of_income, inc.income_comment 
                 FROM incomes AS inc 
                 INNER JOIN incomes_category_assigned_to_users AS incdef 
                 ON inc.income_category_assigned_to_user_id = incdef.id 
@@ -169,7 +183,7 @@ abstract class Model
     protected static function detailedExpenseBalance($start, $end, $id)
     {
         $sql = "
-                SELECT ex.id, exdef.name, ex.ammount, ex.date_of_expense, paymet.method, ex.expense_comment 
+                SELECT ex.id, exdef.category, ex.ammount, ex.date_of_expense, paymet.method, ex.expense_comment 
                 FROM expenses AS ex 
                 INNER JOIN expenses_category_assigned_to_users AS exdef 
                 ON ex.expense_category_assigned_to_user_id = exdef.id

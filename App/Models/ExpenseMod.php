@@ -53,6 +53,8 @@ class ExpenseMod extends \Core\Model
         if(isset($_GET['expense'])) {
             $expenseCategoryName = $_GET['expense'];
 
+            $expenseCategoryName = SettingsMod::convertTextToFirstCapitalize($expenseCategoryName);
+
             if(isset($_GET['addingLimitAmount'])) {
                 $expenseLimit = $_GET['addingLimitAmount'];
             } else {
@@ -88,6 +90,8 @@ class ExpenseMod extends \Core\Model
 
             $methodName = $_GET['method'];
 
+            $methodName = SettingsMod::convertTextToFirstCapitalize($methodName);
+
             $sql = "
                INSERT INTO payment_methods_assigned_to_users 
                VALUES (null, :id, :methodName)
@@ -116,10 +120,20 @@ class ExpenseMod extends \Core\Model
 
             $expenseCategoryName = $_GET['deleteExpenseCategory'];
 
+            $tab = $this->selectIdDeletedExpensesCategory($expenseCategoryName);
+            $idDeleteCategory = 0;
+
+            for($i = 0; $i < sizeof($tab); $i++) {
+                if ($expenseCategoryName == $tab[$i]['category'])
+                    (int) $idDeleteCategory = $tab[$i]['id'];
+            }
+
+            $this->updateExpensesDeletedCategory($idDeleteCategory);
+
             $sql = "
-                DELETE FROM expenses_category_assigned_to_users
-                WHERE user_id = :id AND name = :expenseCategoryName
-                ";
+                    DELETE FROM expenses_category_assigned_to_users
+                    WHERE user_id = :id AND category = :expenseCategoryName
+                    ";
 
             $db = static::getDb();
             $stmt = $db->prepare($sql);
@@ -144,9 +158,20 @@ class ExpenseMod extends \Core\Model
 
             $methodName = $_GET['deletePaymentMethod'];
 
+            $tab = $this->selectIdDeletedMethodCategory($methodName);
+            $idDeleteMethod = 0;
+
+            for($i = 0; $i < sizeof($tab); $i++) {
+                if ($methodName == $tab[$i]['method']) {
+                    $idDeleteMethod = $tab[$i]['id'];
+                }
+            }
+
+            $this->updateDeletedPaymentMethod($idDeleteMethod);
+
             $sql = "
                     DELETE FROM payment_methods_assigned_to_users
-                    WHERE user_id = :id AND name = :methodName
+                    WHERE user_id = :id AND method = :methodName
                     ";
 
             $db = static::getDb();
@@ -187,7 +212,7 @@ class ExpenseMod extends \Core\Model
         $id = $_SESSION['id'];
 
         $sql = "
-                SELECT exCat.name, exCat.id, exCat.expense_limit
+                SELECT exCat.category, exCat.id, exCat.expense_limit
                 FROM expenses_category_assigned_to_users AS exCat 
                 WHERE exCat.user_id = :id
                 ";
@@ -239,5 +264,146 @@ class ExpenseMod extends \Core\Model
         $stmt->execute();
 
         return $result;
+    }
+
+    private function updateExpensesDeletedCategory($deletedCategory)
+    {
+        $id = $_SESSION['id'];
+
+        $inneWydatkiCategory = $this->selectIdExpenseInneWydatkiCategory();
+
+        $inneWydatkiID = 0;
+
+        for($i = 0; $i < sizeof($inneWydatkiCategory); $i++) {
+            $inneWydatkiID = $inneWydatkiCategory[$i]['id'];
+        }
+
+        $sql = "
+                UPDATE expenses 
+                SET expense_category_assigned_to_user_id = :inneWydatkiID 
+                WHERE expenses.user_id = :id AND expense_category_assigned_to_user_id = :deletedCategory
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',                     $id,                PDO::PARAM_INT);
+        $stmt->bindValue(':inneWydatkiID',          $inneWydatkiID,     PDO::PARAM_INT);
+        $stmt->bindValue(':deletedCategory',        $deletedCategory,   PDO::PARAM_INT);
+
+        $result = $stmt->fetchAll();
+        $stmt->execute();
+
+        return $result;
+    }
+
+    private function selectIdExpenseInneWydatkiCategory()
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+                SELECT id
+                FROM expenses_category_assigned_to_users AS exCat 
+                WHERE exCat.user_id = :id AND category = 'Inne Wydatki'
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    private function selectIdDeletedExpensesCategory($deleteCategory)
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+                SELECT id, category
+                FROM expenses_category_assigned_to_users AS exCat 
+                WHERE exCat.user_id = :id AND category = :deleteCategory
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',                 $id,             PDO::PARAM_INT);
+        $stmt->bindValue(':deleteCategory',     $deleteCategory, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    private function updateDeletedPaymentMethod($deletedPaymentMethod)
+    {
+        $id = $_SESSION['id'];
+
+        $paymentMethodCategory = $this->selectIdMethodCategory();
+
+        $methodID = 0;
+
+        for($i = 0; $i < sizeof($paymentMethodCategory); $i++) {
+            $methodID = $paymentMethodCategory[$i]['id'];
+        }
+
+        $sql = "
+                UPDATE expenses 
+                SET payment_method_assigned_to_user_id = :methodID 
+                WHERE user_id = :id AND payment_method_assigned_to_user_id = :deletedPaymentMethod
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',                         $id,                    PDO::PARAM_INT);
+        $stmt->bindValue(':methodID',                   $methodID,              PDO::PARAM_INT);
+        $stmt->bindValue(':deletedPaymentMethod',       $deletedPaymentMethod,  PDO::PARAM_INT);
+
+        $result = $stmt->fetchAll();
+        $stmt->execute();
+
+        return $result;
+    }
+
+    private function selectIdMethodCategory()
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+                SELECT id
+                FROM payment_methods_assigned_to_users AS payMet 
+                WHERE payMet.user_id = :id AND method = 'Inna forma płatności'
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    private function selectIdDeletedMethodCategory($deleteMethod)
+    {
+        $id = $_SESSION['id'];
+
+
+        $sql = "
+                SELECT id, method
+                FROM payment_methods_assigned_to_users AS payMet 
+                WHERE payMet.user_id = :id AND method = :deleteMethod
+                ";
+
+        $db = static::getDb();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',                 $id,             PDO::PARAM_INT);
+        $stmt->bindValue(':deleteMethod',       $deleteMethod,   PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
     }
 }

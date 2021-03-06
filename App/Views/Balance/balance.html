@@ -82,31 +82,31 @@
                             {% if range == "rangeCurrentMonth" %}
                                 {% for incomeCategoryAmount in incomeCurrentMonth %}
                                     <tr><th>{{ loop.index }}</th>
-                                        <th>{{ incomeCategoryAmount.name }}</th>
+                                        <th>{{ incomeCategoryAmount.category }}</th>
                                         <th>{{ incomeCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% elseif range == "rangePreviousMonth" %}
                                 {% for incomeCategoryAmount in incomePreviousMonth %}
                                     <tr><th>{{ loop.index }}</th>
-                                        <th>{{ incomeCategoryAmount.name }}</th>
+                                        <th>{{ incomeCategoryAmount.category }}</th>
                                         <th>{{ incomeCategoryAmount.1 }}</th></tr>
                                     {% endfor %}
                             {% elseif range == "rangeCurrentYear" %}
                                 {% for incomeCategoryAmount in incomeCurrentYear %}
                                 <tr><th>{{ loop.index }}</th>
-                                    <th>{{ incomeCategoryAmount.name }}</th>
+                                    <th>{{ incomeCategoryAmount.category }}</th>
                                     <th>{{ incomeCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% elseif range == "rangeChosenPeriod" %}
                                 {% for incomeCategoryAmount in incomeChosenPeriod %}
                                 <tr><th>{{ loop.index }}</th>
-                                    <th>{{ incomeCategoryAmount.name }}</th>
+                                    <th>{{ incomeCategoryAmount.category }}</th>
                                     <th>{{ incomeCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% else %}
                                 {% for incomeCategoryAmount in incomeCurrentMonth %}
                                 <tr><th>{{ loop.index }}</th>
-                                    <th>{{ incomeCategoryAmount.name }}</th>
+                                    <th>{{ incomeCategoryAmount.category }}</th>
                                     <th>{{ incomeCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% endif %}
@@ -126,31 +126,31 @@
                             {% if range == "rangeCurrentMonth" %}
                                 {% for expenseCategoryAmount in expenseCurrentMonth %}
                                 <tr><th>{{ loop.index }}</th>
-                                    <th>{{ expenseCategoryAmount.name }}</th>
+                                    <th>{{ expenseCategoryAmount.category }}</th>
                                     <th>{{ expenseCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% elseif range == "rangePreviousMonth" %}
                                 {% for expenseCategoryAmount in expensePreviousMonth %}
                                 <tr><th>{{ loop.index }}</th>
-                                    <th>{{ expenseCategoryAmount.name }}</th>
+                                    <th>{{ expenseCategoryAmount.category }}</th>
                                     <th>{{ expenseCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% elseif range == "rangeCurrentYear" %}
                                 {% for expenseCategoryAmount in expenseCurrentYear %}
                                 <tr><th>{{ loop.index }}</th>
-                                    <th>{{ expenseCategoryAmount.name }}</th>
+                                    <th>{{ expenseCategoryAmount.category }}</th>
                                     <th>{{ expenseCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% elseif range == "rangeChosenPeriod" %}
                                 {% for expenseCategoryAmount in expenseChosenPeriod %}
                                 <tr><th>{{ loop.index }}</th>
-                                    <th>{{ expenseCategoryAmount.name }}</th>
+                                    <th>{{ expenseCategoryAmount.category }}</th>
                                     <th>{{ expenseCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% else %}
                                 {% for expenseCategoryAmount in expenseCurrentMonth %}
                                 <tr><th>{{ loop.index }}</th>
-                                    <th>{{ expenseCategoryAmount.name }}</th>
+                                    <th>{{ expenseCategoryAmount.category }}</th>
                                     <th>{{ expenseCategoryAmount.1 }}</th></tr>
                                 {% endfor %}
                             {% endif %}

@@ -130,9 +130,9 @@
                                 </div>
                                 <div class="text-left ml-2 mr-2">
                                     <label class="mt-2 customText">Nazwa kategorii: </label>
-                                    <input type="hidden" value="{{ category.name }}" name="incomeCategoryName{{ loop.index }}" >
+                                    <input type="hidden" value="{{ category.category }}" name="incomeCategoryName{{ loop.index }}" >
                                     <input type="textarea" class="col-12 form-control"
-                                           value="{{ category.name }}" name="editIncomeCategory{{ loop.index }}" autofocus>
+                                           value="{{ category.category }}" name="editIncomeCategory{{ loop.index }}" autofocus>
                                 </div>
 
                                 <div class="modal-footer">
@@ -183,7 +183,7 @@
                                 </div>
                                 <div class="text-left ml-2 mr-2">
                                     <label class="mt-2 customText">Nazwa kategorii: </label>
-                                    <input type="textarea" class="col-12 form-control" value="{{ category.name }}" autofocus>
+                                    <input type="textarea" class="col-12 form-control" value="{{ category.category }}" autofocus>
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" name="switchLimitOn" onclick="this.form.elements['editionLimitAmount{{ loop.index }}'].disabled = !this.checked" >
@@ -249,7 +249,7 @@
                                 </div>
                                 <div class="text-left ml-2 mr-2">
                                     <label class="mt-2 customText">Nazwa metody: </label>
-                                    <input type="textarea" class="col-12 form-control" value="{{ method.name }}" autofocus>
+                                    <input type="textarea" class="col-12 form-control" value="{{ method.method }}" autofocus>
                                 </div>
 
                                 <div class="modal-footer">
@@ -296,9 +296,9 @@
                                 <ul class="list-group rounded font-weight-bold">
                                     {% for category in incomesCategory %}
                                         <li class="list-group-item border border-success rounded bg-budgetOpacity mt-1">
-                                            {{ category.name }}
+                                            {{ category.category }}
                                             <button class="btn-danger float-right rounded ml-1" formaction="settings/deleteIncomeCategory"
-                                                    type="submit" value="{{ category.name }}" name="deleteIncomeCategory">
+                                                    type="submit" value="{{ category.category }}" name="deleteIncomeCategory">
                                                 <i class="icon-trash-empty"></i>
                                             </button>
                                             <button class="btn-success float-right rounded"
@@ -328,7 +328,7 @@
                                             <div class="font-weight-normal d-inline-block">Limit: {{ category.expense_limit }}</div>
                                             {% endif %}
                                             <button class="btn-danger float-right rounded ml-1" type="submit" formaction="settings/deleteExpenseCategory"
-                                                    value="{{ category.name }}" name="deleteExpenseCategory"><i class="icon-trash-empty"></i>
+                                                    value="{{ category.category }}" name="deleteExpenseCategory"><i class="icon-trash-empty"></i>
                                             </button>
                                             <button class="btn-success float-right rounded"
                                                     data-toggle="modal" data-target=".editExpenseModal{{ loop.index }}" type="button" value="modificate">
@@ -355,7 +355,7 @@
                                         <li class="list-group-item border border-success rounded bg-budgetOpacity mt-1">
                                             {{ method.0 }}
                                             <button class="btn-danger float-right rounded ml-1" formaction="settings/deletePaymentMethod"
-                                                    type="submit" value="{{ method.name }}" name="deletePaymentMethod">
+                                                    type="submit" value="{{ method.method }}" name="deletePaymentMethod">
                                                 <i class="icon-trash-empty"></i>
                                             </button>
 

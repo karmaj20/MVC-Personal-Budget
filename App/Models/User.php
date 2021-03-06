@@ -56,12 +56,12 @@ class User extends \Core\Model
             $sql_insert_user = 'INSERT INTO users
                                 VALUES (null, :username, :password, :email)';
 
-            $sql_insert_incomes = "INSERT INTO incomes_category_assigned_to_users (user_id, name)
+            $sql_insert_incomes = "INSERT INTO incomes_category_assigned_to_users (user_id, category)
                                    SELECT users.id, income_category_default.name 
                                    FROM users, income_category_default
                                    WHERE users.email = :email";
 
-            $sql_insert_expenses = "INSERT INTO expenses_category_assigned_to_users (user_id, name)
+            $sql_insert_expenses = "INSERT INTO expenses_category_assigned_to_users (user_id, category)
                                     SELECT users.id, expenses_category_default.name 
                                     FROM users, expenses_category_default
                                     WHERE users.email = :email";

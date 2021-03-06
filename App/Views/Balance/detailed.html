@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="modal-body text-left">
                                         <ul>
-                                            <li>Kategoria:<b> {{ income.name }}</b> </li>
+                                            <li>Kategoria:<b> {{ income.category }}</b> </li>
                                             <li>Kwota:<b>     {{ income.ammount }}</b></li>
                                             <li>Data:<b>      {{ income.date_of_income }}</b></li>
                                             <li>Komentarz:<b> {{ income.income_comment }}</b></li>
@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria:<b>   {{ income.name }}</b> </li>
+                                        <li>Kategoria:<b>   {{ income.category }}</b> </li>
                                         <li>Kwota:<b>       {{ income.ammount }}</b></li>
                                         <li>Data:<b>        {{ income.date_of_income }}</b></li>
                                         <li>Komentarz:<b>   {{ income.income_comment }}</b></li>
@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria:<b>   {{ income.name }}</b> </li>
+                                        <li>Kategoria:<b>   {{ income.category }}</b> </li>
                                         <li>Kwota:<b>       {{ income.ammount }}</b></li>
                                         <li>Data:<b>        {{ income.date_of_income }}</b></li>
                                         <li>Komentarz:<b>   {{ income.income_comment }}</b></li>
@@ -162,7 +162,7 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria:<b>   {{ income.name }}</b> </li>
+                                        <li>Kategoria:<b>   {{ income.category }}</b> </li>
                                         <li>Kwota:<b>       {{ income.ammount }}</b></li>
                                         <li>Data:<b>        {{ income.date_of_income }}</b></li>
                                         <li>Komentarz:<b>   {{ income.income_comment }}</b></li>
@@ -189,7 +189,7 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria:<b>       {{ income.name }}</b> </li>
+                                        <li>Kategoria:<b>       {{ income.category }}</b> </li>
                                         <li>Kwota:<b>           {{ income.ammount }}</b></li>
                                         <li>Data:<b>            {{ income.date_of_income }}</b></li>
                                         <li>Komentarz:<b>       {{ income.income_comment }}</b></li>
@@ -219,7 +219,7 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria: <b>       {{ expense.name }}</b></li>
+                                        <li>Kategoria: <b>       {{ expense.category }}</b></li>
                                         <li>Kwota: <b>           {{ expense.ammount }}</b></li>
                                         <li>Data: <b>            {{ expense.date_of_expense }}</b></li>
                                         <li>Metoda płatności: <b>{{ expense.method }}</b></li>
@@ -247,7 +247,7 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria: <b>          {{ expense.name }}</b></li>
+                                        <li>Kategoria: <b>          {{ expense.category }}</b></li>
                                         <li>Kwota: <b>              {{ expense.ammount }}</b></li>
                                         <li>Data: <b>               {{ expense.date_of_expense }}</b></li>
                                         <li>Metoda płatności: <b>   {{ expense.method }}</b></li>
@@ -275,7 +275,7 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria: <b>          {{ expense.name }}</b></li>
+                                        <li>Kategoria: <b>          {{ expense.category }}</b></li>
                                         <li>Kwota: <b>              {{ expense.ammount }}</b></li>
                                         <li>Data: <b>               {{ expense.date_of_expense }}</b></li>
                                         <li>Metoda płatności: <b>   {{ expense.method }}</b></li>
@@ -303,7 +303,7 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria: <b>          {{ expense.name }}</b></li>
+                                        <li>Kategoria: <b>          {{ expense.category }}</b></li>
                                         <li>Kwota: <b>              {{ expense.ammount }}</b></li>
                                         <li>Data: <b>               {{ expense.date_of_expense }}</b></li>
                                         <li>Metoda płatności: <b>   {{ expense.method }}</b></li>
@@ -331,7 +331,7 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <ul>
-                                        <li>Kategoria: <b>          {{ expense.name }}</b></li>
+                                        <li>Kategoria: <b>          {{ expense.category }}</b></li>
                                         <li>Kwota: <b>              {{ expense.ammount }}</b></li>
                                         <li>Data: <b>               {{ expense.date_of_expense }}</b></li>
                                         <li>Metoda płatności: <b>   {{ expense.method }}</b></li>
@@ -364,7 +364,7 @@
                             {% if range == "rangeCurrentMonth" %}
                             {% for income in detailedIncomeCurrentMonth %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ income.name }}</th>
+                                <th>{{ income.category }}</th>
                                 <th>{{ income.ammount }}</th>
                                 <th>{{ income.date_of_income }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailIncome{{ loop.index }}">
@@ -379,7 +379,7 @@
                             {% elseif range == "rangePreviousMonth" %}
                             {% for income in detailedIncomePreviousMonth %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ income.name }}</th>
+                                <th>{{ income.category }}</th>
                                 <th>{{ income.ammount }}</th>
                                 <th>{{ income.date_of_income }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailIncome{{ loop.index }}">
@@ -394,7 +394,7 @@
                             {% elseif range == "rangeCurrentYear" %}
                             {% for income in detailedIncomeCurrentYear %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ income.name }}</th>
+                                <th>{{ income.category }}</th>
                                 <th>{{ income.ammount }}</th>
                                 <th>{{ income.date_of_income }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailIncome{{ loop.index }}">
@@ -409,7 +409,7 @@
                             {% elseif range == "rangeChosenPeriod" %}
                             {% for income in detailedIncomeChosenPeriod %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ income.name }}</th>
+                                <th>{{ income.category }}</th>
                                 <th>{{ income.ammount }}</th>
                                 <th>{{ income.date_of_income }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailIncome{{ loop.index }}">
@@ -424,7 +424,7 @@
                             {% else %}
                             {% for income in detailedIncomeCurrentMonth %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ income.name }}</th>
+                                <th>{{ income.category }}</th>
                                 <th>{{ income.ammount }}</th>
                                 <th>{{ income.date_of_income }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailIncome{{ loop.index }}">
@@ -455,7 +455,7 @@
                             {% if range == "rangeCurrentMonth" %}
                             {% for expense in detailedExpenseCurrentMonth %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ expense.name }}</th>
+                                <th>{{ expense.category }}</th>
                                 <th>{{ expense.ammount }}</th>
                                 <th>{{ expense.date_of_expense }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailExpense{{ loop.index }}">
@@ -470,7 +470,7 @@
                             {% elseif range == "rangePreviousMonth" %}
                             {% for expense in detailedExpensePreviousMonth %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ expense.name }}</th>
+                                <th>{{ expense.category }}</th>
                                 <th>{{ expense.ammount }}</th>
                                 <th>{{ expense.date_of_expense }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailExpense{{ loop.index }}">
@@ -485,7 +485,7 @@
                             {% elseif range == "rangeCurrentYear" %}
                             {% for expense in detailedExpenseCurrentYear %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ expense.name }}</th>
+                                <th>{{ expense.category }}</th>
                                 <th>{{ expense.ammount }}</th>
                                 <th>{{ expense.date_of_expense }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailExpense{{ loop.index }}">
@@ -500,7 +500,7 @@
                             {% elseif range == "rangeChosenPeriod" %}
                             {% for expense in detailedExpenseChosenPeriod %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ expense.name }}</th>
+                                <th>{{ expense.category }}</th>
                                 <th>{{ expense.ammount }}</th>
                                 <th>{{ expense.date_of_expense }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailExpense{{ loop.index }}">
@@ -515,7 +515,7 @@
                             {% else %}
                             {% for expense in detailedExpenseCurrentMonth %}
                             <tr><th>{{ loop.index }}</th>
-                                <th>{{ expense.name }}</th>
+                                <th>{{ expense.category }}</th>
                                 <th>{{ expense.ammount }}</th>
                                 <th>{{ expense.date_of_expense }}</th>
                                 <th><button class="btn-success" type="button" data-toggle="modal" data-target=".detailExpense{{ loop.index }}">

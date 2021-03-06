@@ -143,6 +143,14 @@ class SettingsMod extends \Core\Model
 
     }
 
+    public static function convertTextToFirstCapitalize($word)
+    {
+        $word = strtolower($word);
+        $word = ucwords($word);
+
+        return $word;
+    }
+
     private static function selectPassword()
     {
         $id = $_SESSION['id'];

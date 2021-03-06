@@ -38,7 +38,7 @@
                         <label><h4>KATEGORIA</h4></label>
                         <select class="custom-select my-1 mr-sm-2" name="categoryExpense">
                             {% for category in expensesCategory %}
-                                <option value="{{ category.1 }}">{{ category.name }}</option>
+                                <option value="{{ category.1 }}">{{ category.category }}</option>
                             {% endfor %}
                         </select>
 
