@@ -62,9 +62,9 @@ class ExpenseMod extends \Core\Model
             }
 
             $sql = "
-               INSERT INTO expenses_category_assigned_to_users 
-               VALUES (null, :id, :expenseCategoryName, :expenseLimit)
-               ";
+                   INSERT INTO expenses_category_assigned_to_users 
+                   VALUES (null, :id, :expenseCategoryName, :expenseLimit)
+                   ";
 
             $db = static::getDb();
             $stmt = $db->prepare($sql);
@@ -93,9 +93,9 @@ class ExpenseMod extends \Core\Model
             $methodName = SettingsMod::convertTextToFirstCapitalize($methodName);
 
             $sql = "
-               INSERT INTO payment_methods_assigned_to_users 
-               VALUES (null, :id, :methodName)
-               ";
+                   INSERT INTO payment_methods_assigned_to_users 
+                   VALUES (null, :id, :methodName)
+                   ";
 
             $db = static::getDb();
             $stmt = $db->prepare($sql);
@@ -128,19 +128,17 @@ class ExpenseMod extends \Core\Model
                 $newExpenseCategoryName = $_GET['editExpenseCategory' . $i];
                 $newExpenseLimitName = $_GET['editionLimitAmount' . $i];
             }
-//            if($_GET['editionLimitAmount' . $i] != $expenseName[$j]['expense_limit']) {
-//                $newExpenseLimitName = $_GET['editionLimitAmount' . $i];
-//                $newExpenseCategoryName = $_GET['editExpenseCategory' . $i];
-//            }
             $j++;
         }
 
+        $newExpenseCategoryName = SettingsMod::convertTextToFirstCapitalize($newExpenseCategoryName);
+
         $sqlExpenseCategory =
-                "
-                UPDATE expenses_category_assigned_to_users
-                SET category = :newExpenseCategoryName, expense_limit = :newExpenseLimitName
-                WHERE category = :oldExpenseCategoryName AND user_id = :id
-                ";
+                            "
+                            UPDATE expenses_category_assigned_to_users
+                            SET category = :newExpenseCategoryName, expense_limit = :newExpenseLimitName
+                            WHERE category = :oldExpenseCategoryName AND user_id = :id
+                            ";
 
         $db = static::getDB();
         $stmt_category = $db->prepare($sqlExpenseCategory);
@@ -174,6 +172,8 @@ class ExpenseMod extends \Core\Model
             }
             $j++;
         }
+
+        $newPaymentMethodName = SettingsMod::convertTextToFirstCapitalize($newPaymentMethodName);
 
         $sql = "
                 UPDATE payment_methods_assigned_to_users

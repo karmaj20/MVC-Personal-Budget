@@ -171,6 +171,7 @@ class IncomeMod extends \Core\Model
             $j++;
         }
 
+        $newIncomeCategoryName = SettingsMod::convertTextToFirstCapitalize($newIncomeCategoryName);
 
         $sql = "
                 UPDATE `incomes_category_assigned_to_users` 
