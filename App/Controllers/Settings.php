@@ -178,9 +178,9 @@ class Settings extends Authenticated
 
     public function updateIncomeCategoryAction()
     {
-        $update = new IncomeMod($_POST);
+        $update = new IncomeMod($_GET);
 
-        if (isset($_GET['editIncomeCategory'])) {
+        if (isset($_GET['editIncomeCategory1'])) {
 
             $update->updateIncomeCateogory();
 

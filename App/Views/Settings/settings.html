@@ -76,7 +76,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Potwierdź usuwanie</h5>
+                                    <h5 class="modal-title">Potwierdź</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -130,9 +130,10 @@
                                 </div>
                                 <div class="text-left ml-2 mr-2">
                                     <label class="mt-2 customText">Nazwa kategorii: </label>
-                                    <input type="hidden" value="{{ category.category }}" name="incomeCategoryName{{ loop.index }}" >
-                                    <input type="textarea" class="col-12 form-control"
-                                           value="{{ category.category }}" name="editIncomeCategory{{ loop.index }}" autofocus>
+                                    <input type="hidden" value="category{{ loop.index }}" name="incomeCategoryName" >
+                                    <input type="text" class="col-12 form-control"
+                                           value="{{ category.category }}"
+                                           name="editIncomeCategory{{ loop.index }}" autofocus>
                                 </div>
 
                                 <div class="modal-footer">

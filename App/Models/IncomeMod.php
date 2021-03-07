@@ -156,20 +156,34 @@ class IncomeMod extends \Core\Model
     {
         $id = $_SESSION['id'];
 
-        $newIncomeCategoryName = $_GET['editIncomeCategory'];
-        $incomeCategoryName = $_GET['incomeCategoryName'];
+        $count = sizeof(IncomeMod::selectIncomesCategory());
+        $incomeName = IncomeMod::selectIncomesCategory();
+
+        $oldIncomeCategoryName = "";
+        $newIncomeCategoryName = "";
+
+        $j = 0;
+        for ($i = 1; $i <= $count; $i++) {
+            if($_GET['editIncomeCategory' . $i] != $incomeName[$j]['category']) {
+                $oldIncomeCategoryName = $incomeName[$j]['category'];
+                $newIncomeCategoryName = $_GET['editIncomeCategory' . $i];
+            }
+            $j++;
+        }
+
 
         $sql = "
                 UPDATE `incomes_category_assigned_to_users` 
-                SET name = :newIncomeCategoryName 
-                WHERE name = :incomeCategoryName AND user_id = :id
+                SET category = :newIncomeCategoryName 
+                WHERE category = :oldIncomeCategoryName AND user_id = :id
                 ";
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
 
         $stmt->bindValue(':id',                         $id,                    PDO::PARAM_INT);
-        $stmt->bindValue(':incomeCategoryName',         $incomeCategoryName,    PDO::PARAM_STR);
+        $stmt->bindValue(':oldIncomeCategoryName',      $oldIncomeCategoryName,    PDO::PARAM_STR);
+        $stmt->bindValue(':newIncomeCategoryName',      $newIncomeCategoryName,    PDO::PARAM_STR);
 
         $result = $stmt->fetchAll();
         $stmt->execute();
