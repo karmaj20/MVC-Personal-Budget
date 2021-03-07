@@ -112,6 +112,88 @@ class ExpenseMod extends \Core\Model
         return false;
     }
 
+    public function updateExpenseCategory()
+    {
+        $id = $_SESSION['id'];
+
+        $count = sizeof(ExpenseMod::selectExpensesCategory());
+        $expenseName = ExpenseMod::selectExpensesCategory();
+
+        $j = 0;
+        for ($i = 1; $i <= $count; $i++) {
+            if ($_GET['editExpenseCategory' .$i] != $expenseName[$j]['category'] ||
+                $_GET['editionLimitAmount' . $i] != $expenseName[$j]['expense_limit']) {
+
+                $oldExpenseCategoryName = $expenseName[$j]['category'];
+                $newExpenseCategoryName = $_GET['editExpenseCategory' . $i];
+                $newExpenseLimitName = $_GET['editionLimitAmount' . $i];
+            }
+//            if($_GET['editionLimitAmount' . $i] != $expenseName[$j]['expense_limit']) {
+//                $newExpenseLimitName = $_GET['editionLimitAmount' . $i];
+//                $newExpenseCategoryName = $_GET['editExpenseCategory' . $i];
+//            }
+            $j++;
+        }
+
+        $sqlExpenseCategory =
+                "
+                UPDATE expenses_category_assigned_to_users
+                SET category = :newExpenseCategoryName, expense_limit = :newExpenseLimitName
+                WHERE category = :oldExpenseCategoryName AND user_id = :id
+                ";
+
+        $db = static::getDB();
+        $stmt_category = $db->prepare($sqlExpenseCategory);
+
+        $stmt_category->bindValue(':id',                            $id,                     PDO::PARAM_INT);
+        $stmt_category->bindValue(':newExpenseCategoryName',        $newExpenseCategoryName, PDO::PARAM_STR);
+        $stmt_category->bindValue(':oldExpenseCategoryName',        $oldExpenseCategoryName, PDO::PARAM_STR);
+        $stmt_category->bindValue(':newExpenseLimitName',           $newExpenseLimitName,    PDO::PARAM_INT);
+
+        $stmt_category->execute();
+
+
+        return $stmt_category->execute();
+    }
+
+    public function updatePaymentMethod()
+    {
+        $id = $_SESSION['id'];
+
+        $count = sizeof(ExpenseMod::selectPaymentMethodsAssigned());
+        $paymentMethodName = ExpenseMod::selectPaymentMethodsAssigned();
+
+        $oldPaymentMethodName = "";
+        $newPaymentMethodName = "";
+
+        $j = 0;
+        for($i = 1; $i <= $count; $i++) {
+            if($_GET['editPaymentMethod' . $i] != $paymentMethodName[$j]['method']) {
+                $oldPaymentMethodName = $paymentMethodName[$j]['method'];
+                $newPaymentMethodName = $_GET['editPaymentMethod' . $i];
+            }
+            $j++;
+        }
+
+        $sql = "
+                UPDATE payment_methods_assigned_to_users
+                SET method = :newPaymentMethodName
+                WHERE method = :oldPaymentMethodName AND user_id = :id
+               ";
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',                             $id,                   PDO::PARAM_INT);
+        $stmt->bindValue(':oldPaymentMethodName',           $oldPaymentMethodName, PDO::PARAM_STR);
+        $stmt->bindValue(':newPaymentMethodName',           $newPaymentMethodName, PDO::PARAM_STR);
+
+        $result = $stmt->fetchAll();
+        $stmt->execute();
+
+        return $result;
+    }
+
     public function deleteExpenseCategory()
     {
         $id = $_SESSION['id'];

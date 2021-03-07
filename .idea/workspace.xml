@@ -4,6 +4,7 @@
     <list default="true" id="156290d6-61f5-4bd3-95e7-20bb52dc9caa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Controllers/Settings.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Controllers/Settings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Models/ExpenseMod.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Models/ExpenseMod.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Models/IncomeMod.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Models/IncomeMod.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Views/Settings/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Settings/settings.html" afterDir="false" />
     </list>
@@ -143,6 +144,7 @@
       <workItem from="1615038422930" duration="2616000" />
       <workItem from="1615041700447" duration="479000" />
       <workItem from="1615146519897" duration="2628000" />
+      <workItem from="1615154969349" duration="4571000" />
     </task>
     <servers />
   </component>

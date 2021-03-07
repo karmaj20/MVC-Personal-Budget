@@ -172,6 +172,7 @@
                     </form>
 
 <!--                        MODAL FOR EDITION EXPENSE CATEGORY -->
+                    <form method="get">
                     {% for category in expensesCategory %}
                     <div class="modal fade editExpenseModal{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
@@ -184,25 +185,31 @@
                                 </div>
                                 <div class="text-left ml-2 mr-2">
                                     <label class="mt-2 customText">Nazwa kategorii: </label>
-                                    <input type="textarea" class="col-12 form-control" value="{{ category.category }}" autofocus>
+                                    <input type="hidden" value="category{{ loop.index }}" name="expenseCategoryName" >
+                                    <input type="textarea" class="col-12 form-control"
+                                           value="{{ category.category }}"
+                                           name="editExpenseCategory{{ loop.index }}" autofocus>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="switchLimitOn" onclick="this.form.elements['editionLimitAmount{{ loop.index }}'].disabled = !this.checked" >
+                                            <input type="checkbox" name="switchLimitOn" onclick="this.form.elements['editionLimitAmount{{ loop.index }}'].readOnly = !this.checked" >
                                             Włącz limit dla kategorii
                                         </label>
                                         <p>Ustaw miesięczny limit wydatków dla kategorii: </p>
-                                        <input type="value" class="form-control" placeholder="Wpisz kwotę" name="editionLimitAmount{{ loop.index }}" disabled>
+
+                                        <input type="value" class="form-control" placeholder="Wpisz kwotę" value="{{ category.expense_limit }}"
+                                               name="editionLimitAmount{{ loop.index }}" readonly>
                                     </div>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <input name="update" type="submit" class="col-6 btn btn-success" value="ZMIEŃ" />
+                                    <input formaction="settings/updateExpenseCategory" name="update" type="submit" class="col-6 btn btn-success" value="ZMIEŃ" />
                                     <input type="submit" class="col-6 btn btn-danger" data-dismiss="modal" value="ZAMKNIJ" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
+                    </form>
 
 <!--                    MODAL FOR ADDING EXPENSE CATEGORY -->
                     <form method="get">
@@ -238,6 +245,7 @@
                     </form>
 
 <!--                    MODAL FOR EDITION PAYMENT METHOD -->
+                    <form method="get">
                     {% for method in paymentMethods %}
                     <div class="modal fade paymentMethodModal{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
@@ -250,17 +258,21 @@
                                 </div>
                                 <div class="text-left ml-2 mr-2">
                                     <label class="mt-2 customText">Nazwa metody: </label>
-                                    <input type="textarea" class="col-12 form-control" value="{{ method.method }}" autofocus>
+                                    <input type="hidden" value="method{{ loop.index }}" name="methodPaymentName" >
+                                    <input type="textarea" class="col-12 form-control"
+                                           value="{{ method.method }}"
+                                           name="editPaymentMethod{{ loop.index }}" autofocus>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <input name="update" type="submit" class="col-6 btn btn-success" value="ZMIEŃ" />
+                                    <input formaction="settings/updatePaymentMethod" name="update" type="submit" class="col-6 btn btn-success" value="ZMIEŃ" />
                                     <input type="submit" class="col-6 btn btn-danger" data-dismiss="modal" value="ZAMKNIJ" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
+                    </form>
 
 <!--                    MODAL FOR ADDING PAYMENT METHOD-->
                     <form method="get">

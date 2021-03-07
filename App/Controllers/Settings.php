@@ -182,7 +182,7 @@ class Settings extends Authenticated
 
         if (isset($_GET['editIncomeCategory1'])) {
 
-            $update->updateIncomeCateogory();
+            $update->updateIncomeCategory();
 
             Flash::addMessage('Nazwa kategorii została zmieniona.', FLASH::SUCCESS);
 
@@ -190,6 +190,45 @@ class Settings extends Authenticated
         } else {
 
             Flash::addMessage('Nie udało się zmienić nazwy kategorii.', FLASH::INFO);
+
+            $this->redirect('/settings');
+        }
+    }
+
+    public function updateExpenseCategoryAction()
+    {
+        $update = new ExpenseMod($_GET);
+
+        if (isset($_GET['editExpenseCategory1'])) {
+
+            $update->updateExpenseCategory();
+
+            Flash::addMessage('Nazwa kategorii została zmieniona.', FLASH::SUCCESS);
+
+            $this->redirect('/settings');
+        } else {
+
+            Flash::addMessage('Nie udało się zmienić nazwy kategorii.', FLASH::INFO);
+
+            $this->redirect('/settings');
+        }
+    }
+
+    public function updatePaymentMethodAction()
+    {
+        $update = new ExpenseMod($_GET);
+
+
+        if (isset($_GET['editPaymentMethod1'])) {
+
+            $update->updatePaymentMethod();
+
+            Flash::addMessage('Nazwa metody płatności została zmieniona.', FLASH::SUCCESS);
+
+            $this->redirect('/settings');
+        } else {
+
+            Flash::addMessage('Nie udało się zmienić nazwy metody płatności.', FLASH::INFO);
 
             $this->redirect('/settings');
         }

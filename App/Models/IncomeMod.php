@@ -152,7 +152,7 @@ class IncomeMod extends \Core\Model
         return $result;
     }
 
-    public function updateIncomeCateogory()
+    public function updateIncomeCategory()
     {
         $id = $_SESSION['id'];
 
@@ -181,7 +181,7 @@ class IncomeMod extends \Core\Model
         $db = static::getDB();
         $stmt = $db->prepare($sql);
 
-        $stmt->bindValue(':id',                         $id,                    PDO::PARAM_INT);
+        $stmt->bindValue(':id',                         $id,                       PDO::PARAM_INT);
         $stmt->bindValue(':oldIncomeCategoryName',      $oldIncomeCategoryName,    PDO::PARAM_STR);
         $stmt->bindValue(':newIncomeCategoryName',      $newIncomeCategoryName,    PDO::PARAM_STR);
 
