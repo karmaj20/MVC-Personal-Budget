@@ -3,15 +3,15 @@ if ( window.history.replaceState ) {
 }
 
 $(document).ready(function(){
-    $('#amountExpense').on("keyup keydown change",function(){
-        let expenseCategory = $('#expenseCategory').val();
-        let amount = $(this).val();
+    $('#amountExpense').on('keyup keydown change',function(){
+        let categoryExpense = $('#categoryExpense').val();
+        let amountExpense = $(this).val();
         $.ajax({
             url:"/expense/check-limit",
             method:"POST",
             data:{
-                expenseCategory: expenseCategory,
-                amount: amount
+                categoryExpense: categoryExpense,
+                amountExpense: amountExpense
             },
             success:function(data){
                 $('#categoryLimit').html(data);
@@ -20,33 +20,19 @@ $(document).ready(function(){
     });
 
     $('#categoryExpense').change(function(){
-        let expenseCategory = $(this).val();
-        let amount = $('#amount').val();
+        let categoryExpense = $(this).val();
+        let amountExpense = $('#amountExpense').val();
         $.ajax({
             url:"/expense/check-limit",
             method:"POST",
             data:{
-                expenseCategory:expenseCategory,
-                amount:amount
+                categoryExpense: categoryExpense,
+                amountExpense: amountExpense
             },
-            success:function(data){
+            success: function(data){
                 $('#categoryLimit').html(data);
-            }
-        });
-    });
-
-    $('#amountExpense').on("keyup keydown change",function(){
-        let amount = $(this).val();
-        let expenseCategory = $('#categoryExpense').val();
-        $.ajax({
-            url:"/expense/get-final-value",
-            method:"POST",
-            data:{
-                expenseCategory:expenseCategory,
-                amount:amount
-            },
-            success:function(data){
-                if (!data) {
+                console.log(data);
+                if (data > 0) {
                     $('#categoryLimit').removeClass('alert-danger');
                     $('#categoryLimit').addClass('alert-success');
 
@@ -54,30 +40,10 @@ $(document).ready(function(){
                     $('#categoryLimit').removeClass('alert-success');
                     $('#categoryLimit').addClass('alert-danger');
                 }
+
             }
         });
     });
 
-    $('#categoryExpense').change(function(){
-        let expenseCategory = $(this).val();
-        let amount = $('#amount').val();
-        $.ajax({
-            url:"/expense/get-final-value",
-            method:"POST",
-            data:{
-                expenseCategory:expenseCategory,
-                amount:amount
-            },
-            success:function(data){
-                if (!data) {
-                    $('#categoryLimit').removeClass('alert-danger');
-                    $('#categoryLimit').addClass('alert-success');
 
-                } else {
-                    $('#categoryLimit').removeClass('alert-success');
-                    $('#categoryLimit').addClass('alert-danger');
-                }
-            }
-        });
-    });
 });

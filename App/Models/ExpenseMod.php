@@ -492,31 +492,29 @@ class ExpenseMod extends \Core\Model
 
     public function showExpenseLimit()
     {
-        $amountEntered = $_POST['amountExpense'];
+        if (isset($_POST['amountExpense'])) {
 
-        $limit = $this->getLimitExpenseCategory($_POST['categoryExpense']);
-        $limitSpentCurrentMonth = $this->getSumSpentThisMonth($_POST['categoryExpense']);
-
-        $difference = $limit - $limitSpentCurrentMonth;
-
-        if($amountEntered != "") {
+            $amountEntered = $_POST['amountExpense'];
+            $amountEntered = str_replace(",", ".", $amountEntered);
+            $limit = $this->getLimitExpenseCategory($_POST['categoryExpense']);
+            $limitSpentCurrentMonth = $this->getSumSpentThisMonth($_POST['categoryExpense']);
             $expensesSpent = $limitSpentCurrentMonth + $amountEntered;
 
-        }
+            $difference = $limit - $expensesSpent;
 
-        if($limit != null) {
-            echo "Miesięczny limit: ".$limit."<br>";
-            if($limitSpentCurrentMonth != "") {
-                echo "Wydatki w tym miesiącu: ". $limitSpentCurrentMonth ."<br>";
-            } else {
-                echo "Wydatki w tym miesiącu: 0<br>";
-            }
-            echo "Różnica: ". $difference ."<br>";
-            if($amountEntered != "") {
-                echo "Wydatki + wpisana kwota: ". $expensesSpent;
+            if ($limit != null) {
+                echo "Miesięczny limit: " . $limit . "<br>";
+                if ($limitSpentCurrentMonth != "") {
+                    echo "Wydatki w tym miesiącu: " . $limitSpentCurrentMonth . "<br>";
+                } else {
+                    echo "Wydatki w tym miesiącu: 0<br>";
+                }
+                echo "Różnica: " . $difference . "<br>";
+                if ($amountEntered != "") {
+                    echo "Wydatki + wpisana kwota: " . $expensesSpent;
+                }
             }
         }
-        exit;
     }
 
     private function getLimitExpenseCategory($categoryName)
