@@ -4,6 +4,10 @@
 
 {% block body %}
 
+{% block footer %}
+    <script src="../js/showLimit.js">   </script>
+{% endblock %}
+
 <main>
 
     <article>
@@ -11,6 +15,14 @@
         <div class="container">
 
             <div class="row">
+
+                <section class="block remove-top" id="contact-us" style="display: none;">
+                    <form method="post" action="" name="contactform" id="contactform">
+                        <div class="row">
+                            <div>INFO</div>
+                        </div>
+                    </form>
+                </section>
 
                 <div class="col-sm-10 bg-budgetOpacity text-center information mt-5 mr-auto ml-auto ">
 
@@ -20,7 +32,7 @@
                     <form method="post" id="buttons" action="/expense/create" class="form-block income mr-auto ml-auto mt-4">
                         <div class="form-group mb-3">
                             <h4>KWOTA</h4>
-                            <input type="value" class="form-control" placeholder="Wpisz kwotę" name="amountExpense" required autofocus>
+                            <input type="value" class="form-control" placeholder="Wpisz kwotę" id="amountExpense" name="amountExpense" required autofocus>
                         </div>
 
                         <div class="form-group mb-3">
@@ -36,7 +48,7 @@
                         </select>
 
                         <label><h4>KATEGORIA</h4></label>
-                        <select class="custom-select my-1 mr-sm-2" name="categoryExpense">
+                        <select class="custom-select my-1 mr-sm-2" name="categoryExpense" id="categoryExpense">
                             {% for category in expensesCategory %}
                                 <option value="{{ category.1 }}">{{ category.category }}</option>
                             {% endfor %}

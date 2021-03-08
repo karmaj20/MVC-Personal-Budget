@@ -33,31 +33,6 @@ abstract class Model
         return $db;
     }
 
-//        $sql = "
-//                SELECT incdef.name, SUM(inc.ammount)
-//                FROM incomes AS inc
-//                INNER JOIN incomes_category_default AS incdef
-//                ON inc.income_category_assigned_to_user_id = incdef.id
-//                INNER JOIN users
-//                ON inc.user_id = users.id AND inc.user_id = :id
-//                WHERE date_of_income BETWEEN :start AND :end
-//                GROUP BY income_category_assigned_to_user_id
-//               ";
-
-//          SELECT inc.id, inc.user_id, income_category_assigned_to_user_id,
-//                 inc.ammount, inc.date_of_income, inc.income_comment
-//          FROM incomes AS inc
-//          INNER JOIN incomes_category_assigned_to_users AS incass
-//          ON inc.income_category_assigned_to_user_id = incass.id
-//          WHERE inc.user_id = 133 AND incass.name = 'Odsetki Bankowe'
-
-//UPDATE incomes SET income_category_assigned_to_user_id =[value-3] WHERE incomes.user_id = 133
-
-//INSERT INTO incomes
-//SELECT inc.id, inc.user_id, income_category_assigned_to_user_id, inc.ammount, inc.date_of_income, inc.income_comment FROM incomes AS inc INNER JOIN incomes_category_assigned_to_users AS incass
-//ON inc.income_category_assigned_to_user_id = incass.id
-//WHERE inc.user_id = 133 AND incass.name = 'Odsetki Bankowe'
-
     protected static function getBalanceIncomeSheet($start, $end, $id)
     {
 

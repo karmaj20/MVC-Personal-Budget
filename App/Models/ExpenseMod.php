@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Date;
 use App\Flash;
 use PDO;
 
@@ -487,5 +488,82 @@ class ExpenseMod extends \Core\Model
         $stmt->execute();
 
         return $stmt->fetchAll();
+    }
+
+    public function showExpenseLimit()
+    {
+        $amountEntered = $_POST['amountExpense'];
+
+        $limit = $this->getLimitExpenseCategory($_POST['categoryExpense']);
+        $limitSpentCurrentMonth = $this->getSumSpentThisMonth($_POST['categoryExpense']);
+
+        $difference = $limit - $limitSpentCurrentMonth;
+
+        if($amountEntered != "") {
+            $expensesSpent = $limitSpentCurrentMonth + $amountEntered;
+
+        }
+
+        if($limit != null) {
+            echo "Miesięczny limit: ".$limit."<br>";
+            if($limitSpentCurrentMonth != "") {
+                echo "Wydatki w tym miesiącu: ". $limitSpentCurrentMonth ."<br>";
+            } else {
+                echo "Wydatki w tym miesiącu: 0<br>";
+            }
+            echo "Różnica: ". $difference ."<br>";
+            if($amountEntered != "") {
+                echo "Wydatki + wpisana kwota: ". $expensesSpent;
+            }
+        }
+        exit;
+    }
+
+    private function getLimitExpenseCategory($categoryName)
+    {
+        $id = $_SESSION['id'];
+
+        $sql = "
+                SELECT expense_limit 
+                FROM expenses_category_assigned_to_users
+                WHERE user_id = :id AND id = :categoryName
+                ";
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id',                 $id,            PDO::PARAM_INT);
+        $stmt->bindValue(':categoryName',       $categoryName,  PDO::PARAM_INT);
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+
+        return $result[0]['expense_limit'];
+    }
+
+    private function getSumSpentThisMonth($categoryName)
+    {
+        $startCurrentMonth = Date::getBeginCurrentMonth();
+        $endCurrentMonth   = Date::getEndCurrentMonth();
+        $sql = "
+                SELECT SUM(ex.ammount) 
+                FROM expenses AS ex
+                WHERE expense_category_assigned_to_user_id = :categoryName
+                AND date_of_expense 
+                BETWEEN :startCurrentMonth AND :endCurrentMonth
+                ";
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':categoryName',           $categoryName,      PDO::PARAM_INT);
+        $stmt->bindValue(':startCurrentMonth',      $startCurrentMonth, PDO::PARAM_STR);
+        $stmt->bindValue(':endCurrentMonth',        $endCurrentMonth,   PDO::PARAM_STR);
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+
+        return $result[0][0];
+
     }
 }

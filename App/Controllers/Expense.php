@@ -24,6 +24,8 @@ class Expense extends Authenticated
 
         if ($_POST['amountExpense'] > 0) {
 
+            $this->checkLimitAction();
+
             $expense->addExpenseToDatabase();
 
             Flash::addMessage('Wydatek został dodany.');
@@ -33,6 +35,18 @@ class Expense extends Authenticated
 
             Flash::addMessage('Wydatek nie został dodany, spróbuj jeszcze raz.');
 
+            $this->redirect('/Expense');
+        }
+    }
+
+    public function checkLimitAction()
+    {
+        if (isset($_POST['categoryExpense'])) {
+
+            $expense = new ExpenseMod($_POST);
+            $expense->showExpenseLimit();
+
+        } else {
             $this->redirect('/Expense');
         }
     }
