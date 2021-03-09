@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Controllers/Expense.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Controllers/Expense.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/Models/ExpenseMod.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Models/ExpenseMod.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Views/Expense/expense.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Expense/expense.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/showLimit.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/showLimit.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,6 +148,8 @@
       <workItem from="1615213771719" duration="9867000" />
       <workItem from="1615230436226" duration="4459000" />
       <workItem from="1615237715620" duration="3868000" />
+      <workItem from="1615242731242" duration="2585000" />
+      <workItem from="1615282607804" duration="1404000" />
     </task>
     <servers />
   </component>

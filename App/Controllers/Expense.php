@@ -51,4 +51,16 @@ class Expense extends Authenticated
         }
     }
 
+    public function getFinalValueAction()
+    {
+        if(isset($_POST["amountExpense"]))
+        {
+            $expense = new ExpenseMod($_POST);
+            $expense->getFinalValue();
+
+        } else {
+            $this->redirect('/expense/index');
+        }
+    }
+
 }

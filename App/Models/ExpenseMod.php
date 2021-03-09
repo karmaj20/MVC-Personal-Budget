@@ -501,6 +501,9 @@ class ExpenseMod extends \Core\Model
             $expensesSpent = $limitSpentCurrentMonth + $amountEntered;
 
             $difference = $limit - $expensesSpent;
+            echo '<script>';
+            echo 'var difference = ' . json_encode($difference) . ';';
+            echo '</script>';
 
             if ($limit != null) {
                 echo "Miesięczny limit: " . $limit . "<br>";
@@ -514,6 +517,25 @@ class ExpenseMod extends \Core\Model
                     echo "Wydatki + wpisana kwota: " . $expensesSpent;
                 }
             }
+        }
+    }
+
+    public function getFinalValue()
+    {
+
+        if (isset($_POST['amountExpense']) != "") {
+
+            $amountEntered = $_POST['amountExpense'];
+            $limit = $this->getLimitExpenseCategory($_POST['categoryExpense']);
+            $limitSpentCurrentMonth = $this->getSumSpentThisMonth($_POST['categoryExpense']);
+            $expensesSpent = $limitSpentCurrentMonth + $amountEntered;
+
+            if($expensesSpent <= $limit) {
+                echo false;
+            } else {
+                echo true;
+            }
+
         }
     }
 

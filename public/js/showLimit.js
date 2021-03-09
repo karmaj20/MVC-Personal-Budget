@@ -31,8 +31,8 @@ $(document).ready(function(){
             },
             success: function(data){
                 $('#categoryLimit').html(data);
-                console.log(data);
-                if (data > 0) {
+                console.log(difference);
+                if (difference > 0) {
                     $('#categoryLimit').removeClass('alert-danger');
                     $('#categoryLimit').addClass('alert-success');
 
@@ -45,5 +45,49 @@ $(document).ready(function(){
         });
     });
 
+    $('#amountExpense').on("keyup keydown change",function(){
+        var amountExpense = $(this).val();
+        var categoryExpense = $('#categoryExpense').val();
+        $.ajax({
+            url:"/expense/get-final-value",
+            method:"POST",
+            data:{
+                categoryExpense: categoryExpense,
+                amountExpense: amountExpense
+            },
+            success:function(data){
+                if (!data) {
+                    $('#categoryLimit').removeClass('alert-danger');
+                    $('#categoryLimit').addClass('alert-success');
 
+                } else {
+                    $('#categoryLimit').removeClass('alert-success');
+                    $('#categoryLimit').addClass('alert-danger');
+                }
+            }
+        });
+    });
+
+    $('#categoryExpense').change(function(){
+        var categoryExpense = $(this).val();
+        var amountExpense = $('#amountExpense').val();
+        $.ajax({
+            url:"/expense/get-final-value",
+            method:"POST",
+            data:{
+                categoryExpense:categoryExpense,
+                amountExpense: amountExpense
+            },
+            success:function(data){
+                if (!data) {
+                    $('#categoryLimit').removeClass('alert-danger');
+                    $('#categoryLimit').addClass('alert-success');
+
+                } else {
+                    $('#categoryLimit').removeClass('alert-success');
+                    $('#categoryLimit').addClass('alert-danger');
+                }
+            }
+        });
+    });
 });
