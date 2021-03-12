@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'fontello';
-  src: url('../font/fontello.eot?61427300');
-  src: url('../font/fontello.eot?61427300#iefix') format('embedded-opentype'),
-       url('../font/fontello.woff2?61427300') format('woff2'),
-       url('../font/fontello.woff?61427300') format('woff'),
-       url('../font/fontello.ttf?61427300') format('truetype'),
-       url('../font/fontello.svg?61427300#fontello') format('svg');
+  font-family: 'settings';
+  src: url('../font/settings.eot?79238903');
+  src: url('../font/settings.eot?79238903#iefix') format('embedded-opentype'),
+       url('../font/settings.woff2?79238903') format('woff2'),
+       url('../font/settings.woff?79238903') format('woff'),
+       url('../font/settings.ttf?79238903') format('truetype'),
+       url('../font/settings.svg?79238903#settings') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,14 +14,14 @@
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: 'fontello';
-    src: url('../font/fontello.svg?61427300#fontello') format('svg');
+    font-family: 'settings';
+    src: url('../font/settings.svg?79238903#settings') format('svg');
   }
 }
 */
  
  [class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "fontello";
+  font-family: "settings";
   font-style: normal;
   font-weight: normal;
   speak: never;
@@ -55,6 +55,11 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-trash-empty:before { content: '\e800'; } /* '' */
-.icon-pencil:before { content: '\e801'; } /* '' */
-.icon-plus:before { content: '\e802'; } /* '' */
+.icon-cog-alt:before { content: '\e800'; } /* '' */
+.icon-info-circled:before { content: '\e801'; } /* '' */
+.icon-chart-pie:before { content: '\e802'; } /* '' */
+.icon-search:before { content: '\e803'; } /* '' */
+.icon-plus:before { content: '\e804'; } /* '' */
+.icon-trash-empty:before { content: '\e805'; } /* '' */
+.icon-pencil:before { content: '\e806'; } /* '' */
+.icon-home-outline:before { content: '\e807'; } /* '' */

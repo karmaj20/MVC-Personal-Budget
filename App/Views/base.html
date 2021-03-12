@@ -12,89 +12,91 @@
 
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/fontello/css/fontello.css" type="text/css">
+    <link rel="stylesheet" href="/css/fontello/css/settings.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;subset=latin-ext" rel="stylesheet" />
 
 </head>
 
 <body>
     <header>
-        <span class="d-none d-sm-block">
+        <span class="d-none d-md-block d-sm-block">
             <div class="bg-budget text-center">
-                <a class="navbar-brand nav-item nav-link mr-auto ml-auto" style="color: white" href="/Home/index">
+                <a class="navbar-brand nav-item nav-link mr-auto ml-auto p-3 text-white" href="/Home/index">
                     <h1>BUDŻET DOMOWY</h1>
                 </a>
                 <form class="form-inline">
                     {% if current_user %}
                         <button class="btn bg-budget login shadow-none" type="submit">
-                            <a href="/Logout" style="color: #ffffff">WYLOGUJ SIĘ</a>
+                            <a class="text-white" href="/Logout">WYLOGUJ SIĘ</a>
                         </button>
                     {% else %}
                         <button class="btn bg-budget login shadow-none" type="submit">
-                            <a href="/Login" style="color: #ffffff">ZALOGUJ SIĘ</a>
+                            <a class="text-white" href="/Login">ZALOGUJ SIĘ</a>
                         </button>
                     {% endif %}
                 </form>
             </div>
         </span>
 
-        <nav class="navbar navbar-dark bg-budget navbar-expand-lg">
+        {% if current_user %}
+        <nav class="navbar navbar-dark bg-budget navbar-expand-lg text-uppercase">
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon text-white"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="mainmenu">
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/Home/index"> Strona główna </a>
+                        <a class="nav-link text-white" href="/Home/index"><i class="icon-info-circled"></i>Strona główna </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" {% if current_user %} href="/income" {% endif %}> Dodaj Przychód </a>
+                        <a class="nav-link text-white" href="/income"><i class="icon-plus"></i>Dodaj Przychód </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" {% if current_user %} href="/expense" {% endif %}> Dodaj Wydatek </a>
+                        <a class="nav-link text-white" href="/expense"><i class="icon-plus"></i>Dodaj Wydatek </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" {% if current_user %} href="/balance" {% endif %}> Przeglądaj Bilans </a>
+                        <a class="nav-link text-white" href="/balance"><i class="icon-chart-pie"></i>Przeglądaj Bilans </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" {% if current_user %} href="/detailed" {% endif %}> Szczegółowa Analiza </a>
+                        <a class="nav-link text-white" href="/detailed"><i class="icon-search"></i>Szczegółowa Analiza </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" {% if current_user %} href="/settings" {% endif %}> Ustawienia </a>
+                        <a class="nav-link text-white" href="/settings"><i class="icon-cog-alt"></i>Ustawienia </a>
                     </li>
 
                     {% if current_user %}
                     <li class="nav-item">
-                            <span class="d-block d-sm-none">
-                                <a class="nav-link" href="#">
-                                    <div class="text-center">
-                                        <button class="btn bg-budget smallLogin shadow-none" type="submit">WYLOGUJ SIĘ</button>
-                                    </div>
-                                </a>
-                            </span>
+                                <span class="d-block d-md-none">
+                                    <a class="nav-link" href="/Logout">
+                                        <div class="text-center">
+                                            <button class="btn bg-budget smallLogin shadow-none" type="submit">WYLOGUJ SIĘ</button>
+                                        </div>
+                                    </a>
+                                </span>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                            <span class="d-block d-sm-none">
-                                <a class="nav-link" href="#">
-                                    <div class="text-center">
-                                        <button class="btn bg-budget smallLogin shadow-none" type="submit">ZALOGUJ SIĘ</button>
-                                    </div>
-                                </a>
-                            </span>
+                                <span class="d-block d-md-none">
+                                    <a class="nav-link" href="/Login">
+                                        <div class="text-center">
+                                            <button class="btn bg-budget smallLogin shadow-none" type="submit">ZALOGUJ SIĘ</button>
+                                        </div>
+                                    </a>
+                                </span>
                     </li>
                     {% endif %}
                 </ul>
             </div>
         </nav>
+        {% endif %}
     </header>
 
     {% for message in flash_messages %}

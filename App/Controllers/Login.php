@@ -43,9 +43,6 @@ class Login extends \Core\Controller
 
             Auth::login($user, $remember_me);
 
-            // Remember the login here
-            // ...
-
             Flash::addMessage('Poprawne logowanie');
 
             $this->redirect('/Income');
@@ -53,7 +50,7 @@ class Login extends \Core\Controller
         }else{
             Flash::addMessage('Niepoprawne logowanie, spróbuj ponownie', FLASH::WARNING);
 
-            View::renderTemplate('Login/new.html',[
+            View::renderTemplate('Login/login.html',[
                 'email' => $_POST['email'],
                 'remember_me' => $remember_me
             ]);

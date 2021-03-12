@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use App\Controllers\Home;
 use App\Request;
 
 /**

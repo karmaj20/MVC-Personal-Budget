@@ -3,6 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="156290d6-61f5-4bd3-95e7-20bb52dc9caa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Controllers/Login.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Controllers/Login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Views/Home/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/Home/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Views/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/Views/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/fontello/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/fontello/LICENSE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/fontello/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/fontello/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/fontello/css/fontello-codes.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/fontello/css/fontello-embedded.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/fontello/css/fontello-ie7-codes.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/fontello/css/fontello-ie7.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/fontello/css/fontello.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/fontello/demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/fontello/demo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/fontello/font/fontello.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/fontello/font/fontello.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/fontello/font/fontello.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/fontello/font/fontello.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/fontello/font/fontello.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,6 +170,8 @@
       <workItem from="1615308438516" duration="3494000" />
       <workItem from="1615419558499" duration="495000" />
       <workItem from="1615497987014" duration="491000" />
+      <workItem from="1615503186280" duration="303000" />
+      <workItem from="1615555745759" duration="4758000" />
     </task>
     <servers />
   </component>
